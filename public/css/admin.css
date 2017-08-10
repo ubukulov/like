@@ -1,0 +1,6 @@
+.main_opt_price td{
+    border-bottom: 1px solid #ccc; padding: 10px; border-collapse: collapse;
+}
+.uploadPrice{
+    margin-bottom: 20px;
+}
