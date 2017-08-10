@@ -64,13 +64,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="special1">special1</label>
-                            <input type="text" class="form-control" id="special1" name="special1" value="{{ $cert->special1 }}">
+                            <label for="special2">Цена без скидки</label>
+                            <input type="text" class="form-control" id="special2" name="special2" value="{{ $cert->special2 }}" placeholder="Цена без скидки"/>
                         </div>
 
                         <div class="form-group">
-                            <label for="special2">Цена без скидки</label>
-                            <input type="text" class="form-control" id="special2" name="special2" value="{{ $cert->special2 }}" placeholder="Цена без скидки"/>
+                            <label for="special3">Цена со скидкой</label>
+                            <input type="text" class="form-control" id="special3" value="{{ $cert->special3 }}" name="special3" placeholder="Цена со скидкой" />
                         </div>
 
                     </div>
@@ -83,14 +83,19 @@
                     <div class="box-body">
 
                         <div class="form-group">
+                            <label for="special1">special1</label>
+                            <input type="text" class="form-control" id="special1" name="special1" value="{{ $cert->special1 }}">
+                        </div>
+
+                        <div class="form-group">
                             <label for="special4">special4</label>
                             <input type="text" class="form-control" id="special4" name="special4" value="{{ $cert->special4 }}" placeholder="special4" />
                         </div>
 
-                        <div class="form-group">
-                            <label for="old_price">Старая цена</label>
-                            <input type="text" class="form-control" id="old_price" name="old_price" value="{{ $cert->old_price }}" placeholder="old_price" />
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="old_price">Старая цена</label>--}}
+                            {{--<input type="text" class="form-control" id="old_price" name="old_price" value="{{ $cert->old_price }}" placeholder="old_price" />--}}
+                        {{--</div>--}}
 
                         <div class="form-group">
                             <label for="economy">economy</label>
@@ -110,11 +115,6 @@
                         <div class="form-group">
                             <label for="meta_keywords">Ключевые слова</label>
                             <input type="text" class="form-control" id="meta_keywords" value="{{ $cert->meta_keywords }}" name="meta_keywords" placeholder="meta_keywords" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="special3">Цена со скидкой</label>
-                            <input type="text" class="form-control" id="special3" value="{{ $cert->special3 }}" name="special3" placeholder="Цена со скидкой" />
                         </div>
 
                         <div class="form-group">

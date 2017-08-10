@@ -19,7 +19,9 @@ $(document).ready(function(){
             $('#taskButton_gift').hide();
         }
     });
-    $("#tabs").tabs();
+    if($('div').is('#tabs')){
+        $("#tabs").tabs();
+    }
     $('#doneTask').click(function(){
         $('.ui.modal').modal({
             closable  : false,
@@ -33,26 +35,26 @@ $(document).ready(function(){
         $('.menu').addClass('active').css({'margin-top': '20px'}).dropdown();
     });
     
-    $('#info_editor').froalaEditor({
-        heightMin: 160,
-        heightMax: 800,
-        language: 'ru',
-        charCounterMax: 3072,
-        toolbarSticky: false,
-        enter: $.FroalaEditor.ENTER_DIV,
-        tabSpaces: 8,
-        fontSize: ['8', '10', '12', '14', '18'],
-        toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript',
-            'fontFamily', 'fontSize', '|',
-            'color', 'emoticons', 'paragraphStyle', '|',
-            'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent','quote', 'insertHR', '|',
-            'insertLink', /*'insertImage', 'insertVideo', 'insertFile', 'insertTable',*/ 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'],
-        tableStyles: {
-            fr_portal_table1: 'стиль таблицы 1',
-            fr_portal_table2: 'стиль таблицы 2',
-            fr_portal_table3: 'стиль таблицы 3'
-        }
-    });
+    // $('#info_editor').froalaEditor({
+    //     heightMin: 160,
+    //     heightMax: 800,
+    //     language: 'ru',
+    //     charCounterMax: 3072,
+    //     toolbarSticky: false,
+    //     enter: $.FroalaEditor.ENTER_DIV,
+    //     tabSpaces: 8,
+    //     fontSize: ['8', '10', '12', '14', '18'],
+    //     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript',
+    //         'fontFamily', 'fontSize', '|',
+    //         'color', 'emoticons', 'paragraphStyle', '|',
+    //         'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent','quote', 'insertHR', '|',
+    //         'insertLink', /*'insertImage', 'insertVideo', 'insertFile', 'insertTable',*/ 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'],
+    //     tableStyles: {
+    //         fr_portal_table1: 'стиль таблицы 1',
+    //         fr_portal_table2: 'стиль таблицы 2',
+    //         fr_portal_table3: 'стиль таблицы 3'
+    //     }
+    // });
 
     $('#sendTask').on('click', function(){
         var formdata = new FormData();
@@ -90,7 +92,6 @@ $(document).ready(function(){
 
         });
     });
-    $('#asd').countdown();
 });
 
 function taskButton_money(){

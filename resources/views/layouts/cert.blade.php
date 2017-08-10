@@ -13,7 +13,7 @@
     {{--    <link rel="stylesheet" href="{{ asset('components/icon.min.css') }}">--}}
     {{--    <link rel="stylesheet" href="{{ asset('components/modal.min.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('css/partner.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('css/owl.theme.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('lib/froala/css/froala_editor.min.css') }}">
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('lib/flipclock/flipclock.css') }}">
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </head>
 <body>
 <div id="wrap">

@@ -120,7 +120,7 @@
                 <p>{!! htmlspecialchars_decode($cert->conditions) !!}</p>
             </div>
             <div id="tabs-2">
-                <p>{!! htmlspecialchars_decode($cert->description) !!}</p>
+                <p>{!! htmlspecialchars_decode($cert->features) !!}</p>
             </div>
             <div id="tabs-3">
 
