@@ -58,7 +58,8 @@ class CertController extends Controller
             'partner_id' => $request->input('id_partner'), 'date_start' => strtotime($request->input('date_start')),
             'date_end' => strtotime($request->input('date_end')), 'meta_description' => $request->input('meta_description'),
             'meta_keywords' => $request->input('meta_keywords'), 'sort' => $request->input('sort'),
-            'cert_type' => $request->input('cert_type')
+            'cert_type' => $request->input('cert_type'), 'article_code' => $request->input('article_code'),
+            'b1' => $request->input('b1'), 'b2' => $request->input('b2'), 'b3' => $request->input('b3')
         ];
         if(!empty($data['image'])){
             $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image'];
@@ -153,7 +154,8 @@ class CertController extends Controller
             'partner_id' => $request->input('id_partner'), 'date_start' => strtotime($request->input('date_start')),
             'date_end' => strtotime($request->input('date_end')), 'meta_description' => $request->input('meta_description'),
             'meta_keywords' => $request->input('meta_keywords'), 'sort' => $request->input('sort'),
-            'cert_type' => $request->input('cert_type')
+            'cert_type' => $request->input('cert_type'), 'article_code' => $request->input('article_code'),
+            'b1' => $request->input('b1'), 'b2' => $request->input('b2'), 'b3' => $request->input('b3')
         ];
 
         $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/';

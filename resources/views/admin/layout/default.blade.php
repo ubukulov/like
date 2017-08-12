@@ -345,7 +345,7 @@
                         </span>
                     </a>
                 </li>
-
+                @if(check_admin_users_role(Auth::guard('admin')->user()->role))
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-pie-chart"></i>
@@ -423,6 +423,7 @@
                         <li><a href="{{ url('/admin/task/types') }}"><i class="fa fa-circle-o"></i> Типы задании</a></li>
                     </ul>
                 </li>
+                @endif
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -647,6 +648,7 @@
     $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.6 -->
+<script src="{{ asset('themes/admin/admin_lte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('themes/admin/admin_lte/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
@@ -678,6 +680,7 @@
 <script src="{{ asset('themes/admin/admin_lte/plugins/select2/select2.full.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('lib/tinymce/tinymce.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('lib/tinymce/config.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 <script src="{{ asset('js/ajaxupload.js') }}"></script>
 <script src="{{ asset('js/upload_image.js') }}"></script>
 <script src="{{ asset('js/admin.js') }}"></script>

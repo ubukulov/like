@@ -54,9 +54,11 @@
                                     <td>
                                         <a href="{{ url('admin/cert/'.$cert->id) }}" class="btn btn-warning">Редактировать</a>
                                     </td>
+                                    @if(check_admin_users_role(Auth::guard('admin')->user()->role))
                                     <td>
                                         <button onclick="delete_cert({{ $cert->id }});" class="btn btn-danger">Удалить</button>
                                     </td>
+                                    @endif
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>

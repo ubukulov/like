@@ -348,3 +348,9 @@ function getUserData($id){
     $user = User::find($id);
     return $user;
 }
+# По ролу пользователя скрыть некоторые модули
+function check_admin_users_role($role){
+    if($role == 4){
+        return true;
+    }
+}

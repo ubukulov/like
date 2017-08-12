@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -85,5 +86,24 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function phone(){
+        $phone1 = $_POST['phone'];
+        return $phone1;
+    }
+
+    public function card($number){
+        $result = DB::select("SELECT US.id,US.referral,US.avatar,US.lastname,US.firstname,US.mphone,CR.code, US.fm, US.created_at,US.reg_date FROM users US
+                        INNER JOIN cards CR ON CR.user_id=US.id
+                        WHERE CR.code='$number'");
+        $result = collect($result)->toArray();
+        for($i=0; $i<count($result); $i++){
+            $result[$i]->fm = __decode($result[$i]->fm, env('KEY'));
+            if(!empty($result[$i]->reg_date)){
+                $result[$i]->reg_date = date('d.m.Y H:i:s', $result[$i]->reg_date);
+            }
+        }
+        return json_encode($result);
     }
 }

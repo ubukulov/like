@@ -6,26 +6,26 @@ $(function(){
     $('#date_end').datepicker({});
 
     $('#id_cat').dropdown();
-    $('#info_editor').froalaEditor({
-        heightMin: 160,
-        heightMax: 800,
-        language: 'ru',
-        charCounterMax: 3072,
-        toolbarSticky: false,
-        enter: $.FroalaEditor.ENTER_DIV,
-        tabSpaces: 8,
-        fontSize: ['8', '10', '12', '14', '18'],
-        toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript',
-            'fontFamily', 'fontSize', '|',
-            'color', 'emoticons', 'paragraphStyle', '|',
-            'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent','quote', 'insertHR', '|',
-            'insertLink', /*'insertImage', 'insertVideo', 'insertFile', 'insertTable',*/ 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'],
-        tableStyles: {
-            fr_portal_table1: 'стиль таблицы 1',
-            fr_portal_table2: 'стиль таблицы 2',
-            fr_portal_table3: 'стиль таблицы 3'
-        }
-    });
+    // $('#info_editor').froalaEditor({
+    //     heightMin: 160,
+    //     heightMax: 800,
+    //     language: 'ru',
+    //     charCounterMax: 3072,
+    //     toolbarSticky: false,
+    //     enter: $.FroalaEditor.ENTER_DIV,
+    //     tabSpaces: 8,
+    //     fontSize: ['8', '10', '12', '14', '18'],
+    //     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript',
+    //         'fontFamily', 'fontSize', '|',
+    //         'color', 'emoticons', 'paragraphStyle', '|',
+    //         'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent','quote', 'insertHR', '|',
+    //         'insertLink', /*'insertImage', 'insertVideo', 'insertFile', 'insertTable',*/ 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'],
+    //     tableStyles: {
+    //         fr_portal_table1: 'стиль таблицы 1',
+    //         fr_portal_table2: 'стиль таблицы 2',
+    //         fr_portal_table3: 'стиль таблицы 3'
+    //     }
+    // });
     $('#task_variant1').change(function(){
         if($(this).prop('checked')){
             $('.task_money').show();
@@ -44,6 +44,8 @@ $(function(){
             $('#taskButton_gift').hide();
         }
     });
+    $("#phone").mask("+7 (999)-999-99-99");
+    $("#card_number").mask("99999999");
 });
 
 function delete_opt_partner(id) {
@@ -130,4 +132,46 @@ function return_pay_to_user(id) {
     if(del){
         window.location = '/admin/partner/charge/refund/'+id;
     }
+}
+// поиск по телефон номеру
+function search_by_phone() {
+    var phone = $('#phone').val();
+    var user_content = $('#user_content');
+    $.ajax({
+        type: 'post',
+        url: '/admin/users/phone',
+        data: { phone: phone },
+        cache: false,
+        //dataType: 'json',
+        success: function (res) {
+            user_content.html('');
+        }
+    });
+}
+// поиск по номер карты
+function search_by_card() {
+    var card_number = $('#card_number').val();
+    var user_content = $('#user_content');
+    $.get("/admin/users/card/"+card_number, function(data){
+        user_content.html('');
+        data = JSON.parse(data);
+        var html = "";
+        for(var i = 0; i < data.length; i++){
+            var avatar;
+            var reg_date;
+            if(data[i].avatar == ''){
+                avatar = '<img src="/img/blank_avatar_220.png" alt="" height="40" width="40" />';
+            }else{
+                avatar = '<img src="/uploads/users/small/'+data[i].avatar+'" alt="" height="40" width="40" />';
+            }
+            if(data[i].reg_date == ''){
+                reg_date = data[i].created_at;
+            }else{
+                reg_date = data[i].reg_date;
+            }
+            avatar = avatar + ' ' + data[i].firstname+' '+data[i].lastname;
+            html = html + '<tr><td>'+data[i].id+'</td><td>'+data[i].referral+'</td><td>'+avatar+'</td><td></td><td>'+data[i].mphone+'</td><td><button class="blue" >войти</button></td><td>'+data[i].code+'</td><td>'+data[i].fm+'</td><td>'+reg_date+'</td></tr>';
+        }
+        user_content.html(html);
+    });
 }

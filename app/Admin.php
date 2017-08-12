@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class Admin extends Authenticatable
 {
@@ -23,4 +24,12 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function role($role){
+        $id_user = Auth::guard('admin')->user()->id;
+        $result = Admin::where(['id' => $id_user, 'role' => $role])->first();
+        if($result){
+            return true;
+        }
+    }
 }

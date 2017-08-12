@@ -73,6 +73,21 @@
                             <input type="text" class="form-control" id="special3" value="{{ $cert->special3 }}" name="special3" placeholder="Цена со скидкой" />
                         </div>
 
+                        <div class="form-group">
+                            <label for="b1">Бизнес1</label>
+                            <input type="text" class="form-control" id="b1" name="b1" value="{{ $cert->b1 }}" placeholder="Бизнес1" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="b2">Бизнес2</label>
+                            <input type="text" class="form-control" id="b2" name="b2" value="{{ $cert->b2 }}" placeholder="Бизнес2" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="b3">Бизнес3</label>
+                            <input type="text" class="form-control" id="b3" name="b3" value="{{ $cert->b3 }}" placeholder="Бизнес3" />
+                        </div>
+
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -81,6 +96,11 @@
                 <div class="box box-primary">
                     <!-- /.box-header -->
                     <div class="box-body">
+
+                        <div class="form-group">
+                            <label for="article_code">Код товара</label>
+                            <input type="text" class="form-control" id="article_code" name="article_code" value="{{ $cert->article_code }}">
+                        </div>
 
                         <div class="form-group">
                             <label for="special1">special1</label>
