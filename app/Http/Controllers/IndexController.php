@@ -8,6 +8,7 @@ use App\Cert;
 use App\Category;
 use App\Partner;
 use Illuminate\Support\Facades\DB;
+use App\CertView;
 
 class IndexController extends Controller
 {
@@ -38,10 +39,26 @@ class IndexController extends Controller
         if(!$id){
             $id = 3;
         }
-
         $cert = Cert::getByIdCertData($id);
-        //$d1 = $cert->date_end - time();
-        //dd($d1);
+        $ip = $_SERVER['REMOTE_ADDR']; // Ип адрес пользователя
+        $current_date = date("Y-m-d H:i:s"); // текущая время
+        if(!CertView::exists($ip)){
+            // пользователь первый раз заходит к нам
+            CertView::create([
+                'ip' => $ip, 'id_cert' => $id, 'created_at' => $current_date
+            ]);
+            $cert->views += 1;
+            $cert->save();
+        }
+        if(CertView::limit($current_date) >= 86400){
+            // прошел 1 день
+            $cert_view = CertView::findOrFail(get_id_wrapping($ip));
+            $cert_view->updated_at = $current_date;
+            $cert_view->save();
+            $cert->views += 1;
+            $cert->save();
+        }
+
         $partner = Partner::getByIdPartnerData($cert->partner_id);
         return view('cert-index', compact('cert', 'partner'));
     }

@@ -103,8 +103,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="special1">special1</label>
-                            <input type="text" class="form-control" id="special1" name="special1" value="{{ $cert->special1 }}">
+                            <label for="special1">Вознаграждение</label>
+                            <input type="text" class="form-control" id="special1" name="special1" value="{{ $cert->special1 }}" placeholder="Введите вознаграждение">
                         </div>
 
                         <div class="form-group">

@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\DB;
 use App\OptPartner;
 use App\User;
 use App\Task;
+use App\CertView;
 # Посчитать кол-во задании
 function count_certs(){
     $result = DB::select("SELECT * FROM certs");
@@ -353,4 +354,9 @@ function check_admin_users_role($role){
     if($role == 4){
         return true;
     }
+}
+# По ип адреса получить идентификатор
+function get_id_wrapping($ip){
+    $result = CertView::where('ip','=',$ip)->get();
+    return $result[0]->id;
 }

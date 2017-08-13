@@ -44,8 +44,10 @@
                                                     <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
                                                     <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ $cert->special2 }}</b></font></small></td>
                                                 @else
+                                                <td width="130">
                                                     <span style="text-decoration: line-through; font-size: 12px;">{{ $cert->special2 }} тг</span><br>
                                                     <span style="color: green; font-weight: bold;">{{ $cert->special3 }} тг</span>
+                                                </td>
                                                 @endif
                                                 @if(is_tariff(Auth::id()))
                                                     <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>

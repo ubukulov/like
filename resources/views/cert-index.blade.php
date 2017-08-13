@@ -10,17 +10,21 @@
                 <div style="width: 400px" id="myCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
+                        @if(!empty($cert->image))
                         <div class="item active">
                             <img width="400" src="{{ asset('uploads/certs/'.$cert->image) }}" alt="foto">
                         </div>
-
+                        @endif
+                        @if(!empty($cert->image2))
                         <div class="item">
                             <img width="400" src="{{ asset('uploads/certs/'.$cert->image2) }}" alt="foto">
                         </div>
-
+                        @endif
+                        @if(!empty($cert->image3))
                         <div class="item">
                             <img width="400" src="{{ asset('uploads/certs/'.$cert->image3) }}" alt="foto">
                         </div>
+                        @endif
                     </div>
 
                     <!-- Left and right controls -->
@@ -36,12 +40,7 @@
             </div>
             <div class="col-md-7" style="padding-left: 30px;">
                 <div class="price">
-                    <?php if($cert->cert_type == 3) :?>
-                    <font style="color:#619F05"></font>Цена скидки:<br />
-                    <?php else :?>
-                    <font style="color:#619F05"></font>Цена:<br />
-                    <?php endif;?>
-                    <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;<?= $cert->special1 ?></font>
+                    <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Вознаграждение:<br /><font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $cert->special1 ?></font>
                 </div>
 
                 <div class="last_time">
@@ -62,31 +61,17 @@
                         });
                     </script>
                 </div>
-
-                <div class="cert_button">
-                    <?php if($cert->cert_type == 1) :?>
+                <br>
+                <div class="cert_button" style="border-bottom:1px solid #d7d7d7; padding-bottom: 10px;">
                     <button type="button" class="playbutton" data-toggle="modal" data-target="#taskSubs">
-                        &nbsp;&nbsp;&nbsp;Купить
+                        <i class="fa fa-play fa-2"></i>&nbsp;&nbsp;&nbsp;Посмотреть задания
                     </button>
-                    <?php endif; ?>
-
-                    <?php if($cert->cert_type == 2) :?>
-                    <button type="button" class="playbutton" data-toggle="modal" data-target="#taskSubs">
-                        &nbsp;&nbsp;&nbsp;Купить
-                    </button>
-                    <?php endif; ?>
-
-                    <?php if($cert->cert_type == 3) :?>
-                    <button type="button" class="playbutton" data-toggle="modal" data-target="#taskSubs">
-                        &nbsp;&nbsp;&nbsp;Купить
-                    </button>
-                    <?php endif; ?>
                 </div>
-
-                <div class="cert_statistics">
+                <br>
+                <div class="cert_statistics" style="border-bottom:1px solid #d7d7d7; padding-bottom: 10px;">
                     <font style="color:#d7d7d7"> <i class="fa fa-thumbs-up fa-2"></i></font>&nbsp;&nbsp;Уже купили:  чел.<br /><font style="color:#d7d7d7"><i class="fa fa-eye fa-2"></i></font>&nbsp;&nbsp;Посмотрели задание: <?= $cert->views ?> чел.
                 </div>
-
+                <br>
                 <div class="cert_social">
                     <script type="text/javascript">
                         (function () {

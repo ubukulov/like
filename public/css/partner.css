@@ -1033,3 +1033,24 @@ a .rss:hover
 .fr-element,.fr-view{
     font-size: 14px; font-weight: 300;
 }
+.playbutton {
+    background-color: transparent;
+    -moz-border-radius: 60px;
+    -webkit-border-radius: 60px;
+    border-radius: 60px;
+    border: solid 2px #0099CC;
+    display: inline-block;
+    cursor: pointer;
+    color: #0099CC;
+    font-family: Ubuntu;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 25px;
+    text-decoration: none;
+    float: none;
+    margin: 0px 0px 0px 10px;
+}
+.playbutton:hover{
+    background: #0099CC;
+    color: #ffffff;
+}
