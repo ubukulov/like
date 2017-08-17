@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CertSub;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Cert;
@@ -39,9 +40,11 @@ class IndexController extends Controller
         if(!$id){
             $id = 3;
         }
+        
         $cert = Cert::getByIdCertData($id);
         $ip = $_SERVER['REMOTE_ADDR']; // Ип адрес пользователя
         $current_date = date("Y-m-d H:i:s"); // текущая время
+        // просмотр данного страницы
         if(!CertView::exists($ip)){
             // пользователь первый раз заходит к нам
             CertView::create([
@@ -58,9 +61,9 @@ class IndexController extends Controller
             $cert->views += 1;
             $cert->save();
         }
-
+        $certs_sub = CertSub::get_cert_subs($id);
         $partner = Partner::getByIdPartnerData($cert->partner_id);
-        return view('cert-index', compact('cert', 'partner'));
+        return view('cert-index', compact('cert', 'partner', 'certs_sub'));
     }
 
     # По ип адресу определить местоположение пользователя

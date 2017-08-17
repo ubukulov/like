@@ -31,6 +31,7 @@ $(document).ready(function(){
         $('.ui.modal').modal('hide').remove();
     });
 
+
     $('.ui .dropdown .item').on('hover', function(){
         $('.menu').addClass('active').css({'margin-top': '20px'}).dropdown();
     });
@@ -97,6 +98,43 @@ $(document).ready(function(){
     $('.int').on('input', function () {
         this.value = this.value.replace(/^\.|[^\d\.]|\.(?=.*\.)|^-1+(?=\d)/g, '');
     });
+    //
+    $('#closeCertDetails').click(function(){
+        $('.ui.modal').modal({
+            closable  : false,
+        }).modal('hide');
+        $('#positive').addClass('hidden').html('');
+    });
+    // Пересчитать корзину
+    $(".cart_input").each(function () {
+        var qty_start = $(this).val();
+        $(this).change(function () {
+            var qty = $(this).val();
+            var res = confirm("Пересчитать корзину?");
+            if(res){
+                var id = $(this).attr("id");
+                id = id.substr(3);
+                if(!parseInt(qty)){
+                    qty = qty_start;
+                }
+                $.get("/cart/count/"+id+"/"+qty, function (data) {
+                    data = JSON.parse(data);
+                    if(data == 1){
+                        window.location = '/cart';
+                    }else{
+                        alert("Пересчитать корзину по каким то причинам не получилось");
+                        window.location = '/cart';
+                    }
+                });
+            }else{
+                $(this).val(qty_start);
+            }
+        });
+    });
+    $('.phone').each(function(){
+        $(this).mask("+7 (999)-999-99-99");
+    });
+
 });
 
 function taskButton_money(){
@@ -355,4 +393,41 @@ function task_commit_img() {
 // перенаправлять пользователя на форму авторизации
 function redirect_to_user_login_form() {
     window.location = '/user/login';
+}
+// варианты предложении задании
+function certDetails(){
+    $(function() {
+        $('.ui.modal').modal({
+            closable: false,
+        }).modal('show');
+    });
+}
+function payment(id) {
+    var id = id;
+    switch (id){
+        case 1:
+            $("#pay").show();
+            $("#qiwi").hide();
+            break;
+
+        case 2:
+            $("#pay").hide();
+            $("#qiwi").show();
+            break;
+
+        case 3:
+            $("#pay").hide();
+            $("#qiwi").hide();
+            break;
+    }
+}
+// добавить товар в корзину
+function addToCart(offer_id){
+    var offer_id = parseInt(offer_id);
+    $.get("/cart/add/"+offer_id, function(data){
+        if(data == 1){
+            var html = '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><h4>Товар добавлен в корзину</h4></div>';
+            $('#positive').html(html).removeClass('hidden');
+        }
+    });
 }

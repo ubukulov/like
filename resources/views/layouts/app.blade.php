@@ -46,7 +46,10 @@
                                 {{--<i class="fa fa-male"></i>&nbsp;&nbsp;ЛИЧНЫЙ КАБИНЕТ--}}
                             {{--</a>--}}
                             @if(Auth::check())
-                                <a style="color: #fff; cursor: pointer;" href="{{ url('user/account') }}">
+                                <?php if(isset($_SESSION['cart']) AND !empty($_SESSION['cart'])) :?>
+                                <a href="{{ url('/cart') }}" style="float: left; padding: 0px; top: -2px;"><img src="{{ asset('img/basket2.png') }}" alt=""> <?=$_SESSION['total_quantity']?> товар(-ов)</a>
+                                <?php endif; ?>
+                                <a style="color: #fff; cursor: pointer; float: left;" href="{{ url('user/account') }}">
                                     @if (!empty(Auth::user()->avatar))
                                         <img class="my_avatar_small" src="{{ asset('uploads/users/small/'.Auth::user()->avatar) }}" alt="user-photo">
                                     @else
@@ -55,7 +58,7 @@
                                     &nbsp;
                                     {{ Auth::user()->firstname }}
                                     &nbsp;
-                                    <font color="#619F05">0 тг</font>
+                                    <font color="#619F05">{{ __decode(Auth::user()->fm, env('KEY')) }} тг</font>
                                 </a>
                                 <br>
                             @else

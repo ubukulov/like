@@ -63,8 +63,8 @@
                 </div>
                 <br>
                 <div class="cert_button" style="border-bottom:1px solid #d7d7d7; padding-bottom: 10px;">
-                    <button type="button" class="playbutton" data-toggle="modal" data-target="#taskSubs">
-                        <i class="fa fa-play fa-2"></i>&nbsp;&nbsp;&nbsp;Посмотреть задания
+                    <button type="button" class="playbutton" onclick="certDetails();">
+                        <i class="fa fa-play fa-2"></i>&nbsp;&nbsp;&nbsp;Купить
                     </button>
                 </div>
                 <br>
@@ -132,5 +132,74 @@
         <img src="{{ asset('img/attention.png') }}" alt="attention" align="left">&nbsp;&nbsp;&nbsp;&nbsp;
         <font color="#cc0033"><em>Для получения вознаграждения предъявите карту Likemoney.me <font color="#d7d7d7"><i class="fa fa-question-circle fa-2"></i></font><br />
                 &nbsp;&nbsp;&nbsp;&nbsp;К Вам на телефон придет уведомление о начислении вознаграждения</em></font>
+    </div>
+    <div class="ui modal large" style="top:0px; height: 550px; width: 1000px; padding: 20px;">
+        <div class="content" style="padding: 10px;">
+            <div class="row">
+                <h2 class="green">Виды предложений</h2>
+                <hr>
+                <table class="table" style="font-size: 14px;">
+                    <thead>
+                        <th>Описание</th>
+                        @if($cert->cert_type == 3)
+                        <th>Кол-во</th>
+                        <th>Цена</th>
+                        <td></td>
+                        @else
+                        <th>Цена</th>
+                        <th>Купили</th>
+                        <th>Осталось</th>
+                        <th>Доход</th>
+                        @if(Auth::check())
+                        <th>Действие</th>
+                        @endif
+                        @endif
+                    </thead>
+                    <tbody>
+                    @foreach($certs_sub as $sub)
+                        <tr>
+                            <td>{{ $sub->title }}</td>
+                            @if($cert->cert_type == 3)
+                            <td><?= $sub->limit ?></td>
+                            <td><?= $sub->price ?></td>
+                            <td>
+                                <a style="width: 200px; padding: 4px;" class="btn btn-lg btn-block btn-confirm actbutton" href="/add_to_cart.php?offer=<?=$sub->id;?>&type=buy&coupon=1">Купить сейчас</a>
+                            </td>
+                            @else
+                            <td width="130">
+                                <span style="text-decoration: line-through; font-size: 12px;color:#000000;"><?=$sub->price_minus?> тг</span><br>
+                                <span style="color: green; font-weight: bold;color:#619F05"><?=$sub->price?> тг</span>
+                            </td>
+                            @endif
+                            <td style="text-align: center;"><?= $sub->purchased ?></td>
+                            <td style="text-align: center;"><?= $sub->limit ?></td>
+                            <td width="130" style="text-align: center;">
+                                <font style="font-family: ubuntu; font-size: 15px; font-weight: 600; color:#619F05"><i class="fa fa-credit-card fa-2"></i>&nbsp;&nbsp;<?= $sub->com_agent ?> <?
+                                    if ($sub->type == 1) {
+                                        echo 'тг.';
+                                    } elseif ($sub->type == 2) {
+                                        echo '%';
+                                    }
+                                    ?></font>
+                            </td>
+                            @if(Auth::check())
+                            <td>
+                                <a class="btn btn-danger" href="{{ url('/cart/offer/'.$sub->id) }}">Купить сейчас</a>
+                                <button type="button" onclick="addToCart({{ $sub->id }});" class="btn btn-danger">Добавить в корзину</button>
+                            </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        <br>
+        <hr>
+        <button id="closeCertDetails" type="button" class="btn btn-danger right"><i class="remove small circle icon"></i>&nbsp;&nbsp;Закрыть окно</button>
+        <br><br>
+        <div id="positive" class="hidden">
+
+        </div>
+        </div>
     </div>
 @stop

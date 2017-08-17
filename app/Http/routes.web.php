@@ -22,4 +22,12 @@ Route::get('/task/filter/partners', 'TaskController@partners'); // топ исп
 Route::get('/task/filter/types/{id}', 'TaskController@types_tasks');
 Route::get('/task/filter/partners/{id}', 'TaskController@partners_tasks');
 Route::get('/task/filter/high_price', 'TaskController@high_payment');
+
+# Корзина
+Route::get('/cart', 'CartController@index'); // корзина
+Route::get('/cart/offer/{id}', 'CartController@add'); // добавление товара в корзину
+Route::get('/cart/delete/{id}', 'CartController@delete'); // удаление товара из корзины
+Route::get('/cart/count/{id}/{qty}', 'CartController@count'); // пересчитать корзину
+Route::get('/cart/add/{id}', 'CartController@add_to_cart'); // положить товар в корзину
+Route::post('/cart/order', 'CartController@order'); //
 ### Конец ###
