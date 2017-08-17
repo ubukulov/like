@@ -59,7 +59,7 @@ function getCities(){
     $result = DB::select("SELECT * FROM city WHERE city!=''");
     return $result;
 }
-
+# метод шифрование по ключу
 function __encode($text, $key) {
     $td = mcrypt_module_open("tripledes", '', 'cfb', '');
     $iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
@@ -70,7 +70,7 @@ function __encode($text, $key) {
         return $enc_text;
     }
 }
-
+# метод расшифрование по ключу
 function __decode($text, $key) {
     $td = mcrypt_module_open("tripledes", '', 'cfb', '');
     $iv_size = mcrypt_enc_get_iv_size($td);
@@ -191,6 +191,13 @@ function is_tariff($user_id){
     }
 }
 
+# Определить срок тарифа Бизнес
+function get_deadline_tariff($user_id){
+    $result = DB::select("SELECT UNIX_TIMESTAMP(deadline) AS dd FROM user_pay_tariff WHERE id_user='$user_id'");
+    
+    return $result[0]->dd;
+}
+
 # Посчитать кол-во оставших дней промокодов
 function promo_count_day($date){
     $sql = "SELECT (TO_DAYS('$date') - TO_DAYS(CURRENT_TIMESTAMP)) AS count_day";
@@ -215,7 +222,7 @@ function getOptPartnerLogo($id_partner){
     $result = OptPartner::find($id_partner);
     return $result->logo;
 }
-
+# По ид партнера получить данные партнера по оптпрайсу
 function getOptPartnerData($id_partner){
     $result = OptPartner::find($id_partner);
     return $result;
@@ -227,7 +234,7 @@ function count_certs_main_cat($id){
     $result = DB::select($sql);
     return count($result);
 }
-# 
+# проверка урл
 function request_uri($url){
     $pattern = '/'.$url.'/i';
     $request_uri = $_SERVER['REQUEST_URI'];
@@ -360,3 +367,32 @@ function get_id_wrapping($ip){
     $result = CertView::where('ip','=',$ip)->get();
     return $result[0]->id;
 }
+# распечатка массива
+function print_array($arr){
+    echo '<pre>';
+    print_r($arr);
+    echo '</pre>';
+}
+# проверить по номер карты его существование в базе
+function check_card_by_number($card_number){
+    $result = DB::select("SELECT * FROM cards WHERE code='$card_number'");
+    if(count($result) == 1){
+        return $result;
+    }
+}
+### PAYBOX ###
+function get_post_return_array($action, $data) {
+    $ch = curl_init($action);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    $xml = simplexml_load_string($response, "SimpleXMLElement", LIBXML_NOCDATA);
+    $json = json_encode($xml);
+    $array = json_decode($json, TRUE);
+
+    return $array;
+}
+### PAYBOX ###

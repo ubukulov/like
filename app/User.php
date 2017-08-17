@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
+use App\Partner;
 
 class User extends Authenticatable
 {
@@ -114,5 +115,54 @@ class User extends Authenticatable
         }else{
             return true;
         }
+    }
+
+    # добавляем начисление пользователю
+    public static function add_pay_to_user($partner_id, $cert_id, $cert_sub_id, $card, $user_id, $sum, $sum_minus, $count, $status,$sms_code = 0) {
+        $cert_id = (int) $cert_id;
+        $cert_sub_id = (int) $cert_sub_id;
+        $sum = (int) $sum;
+        $sum_minus = (int) $sum_minus;
+        $count = (int) $count;
+        $status = (int) $status;
+        $date = time();
+        $user_id = (int) $user_id;
+
+        //добавляем в статистику
+        $sql = "INSERT INTO pay_to_user (partner_id, cert_id, cert_sub_id, card, user_id, sum, sum_minus, count, status, date, sms_code)
+                VALUES('$partner_id','$cert_id','$cert_sub_id','$card','$user_id','$sum', '$sum_minus', '$count','$status','$date','$sms_code')";
+        DB::insert($sql);
+
+
+        $partner = getPartner($partner_id);
+        $partner_balance = __decode($partner->fm, env('KEY'));
+        //если у партнера достаточно средств то начисляем
+        if($partner_balance >= $sum_minus){
+            // снимаем с баланса партнера
+            Partner::partner_fm_minus($partner_id,$sum_minus, "Начисление вознаграждение");
+            User::user_fm_plus($user_id,$sum, "Начислиние вознаграждения");
+        }else{
+            // если не достаточна баланс у партнера, то деньги будут в ожидании у испольнителя
+            self::user_fm_plus_v_ojidanii($user_id, $partner_id, $sum, 'Начислиние вознаграждения. В ожидании.');
+        }
+
+        return TRUE;
+    }
+
+    # метод
+    public static function user_fm_plus_v_ojidanii($id_user, $id_partner_from, $amount, $description = '', $offer_id=0) {
+        $id_user = (int) $id_user;
+        $amount = (int) $amount;
+        $mktime = time();
+        $sql = "INSERT INTO user_fm_history (id_user, id_partner_from, type, amount, description, date, offer_id)
+                VALUES('$id_user','$id_partner_from','?','$amount','$description','$mktime','$offer_id')";
+        DB::insert($sql);
+    }
+
+    # посчитаем суммы которые стоит в ожидании
+    public static function count_user_balanse_v_ojidanii($id_user) {
+        $sql = "SELECT SUM(amount) as all_amount FROM user_fm_history WHERE id_user = '$id_user' AND type='?'";
+        $result = DB::select($sql);
+        return (int) $result[0]->all_amount;
     }
 }

@@ -76,7 +76,7 @@
                             <a href="#" class="partner_link">Купить статус</a>
 
                             <p style="color: #fff;">
-                                Баланс: <strong>@if(!empty(Auth::guard('partner')->user()->fm)) {{ __decode(Auth::guard('partner')->user()->fm, env('KEY')) }} @else 0 @endif тг. </strong> | В ожидании: <strong>0 тг.</strong> | <a href="#" class="partner_link" data-toggle="modal" data-target="#userPaymentModal">пополнить</a>
+                                Баланс: <strong>@if(!empty(Auth::guard('partner')->user()->fm)) {{ __decode(Auth::guard('partner')->user()->fm, env('KEY')) }} @else 0 @endif тг. </strong> | В ожидании: <strong>0 тг.</strong> | <a href="{{ url('/partner/payment') }}" class="partner_link">пополнить</a>
                             </p>
 
                             <span style="position: absolute;"><a href="{{ url('partner/balance/history') }}" class="partner_link">Посмотреть историю баланса</a></span>
@@ -104,6 +104,9 @@
                             <div class="ui massive menu" style="font-size: 20px;border-radius: 0;border-bottom: 1px solid #fff;">
                                 <a href="{{ url('partner/account') }}" class="active item" style="background: none;">
                                     Личный кабинет
+                                </a>
+                                <a href="{{ url('partner/transfer_percent') }}" class="active item" style="background: none;">
+                                    Начисление %
                                 </a>
                                 <div class="ui compact menu" style="font-size: 18px; border: none;box-shadow: none;">
                                     <div class="ui simple dropdown item">
@@ -171,4 +174,5 @@
 <script src="{{ asset('lib/froala/js/froala_editor.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('lib/froala/js/languages/ru.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/partner_account.js') }}"></script>
 </html>

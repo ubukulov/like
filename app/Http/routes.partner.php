@@ -23,5 +23,12 @@ Route::group(['namespace' => 'Partner', 'prefix' => 'partner'], function(){
         Route::get('/balance/history', 'IndexController@balance_history');
         # история отправленные подарки
         Route::get('/task/gifts', 'TaskController@gifts'); // список отправленные подарки
+        # Начисление процент испольнителю
+        Route::get('/transfer_percent', 'TransferController@index'); // шаблон для страницу начисление процента
+        Route::get('/transfer_percent/{card}', 'TransferController@card'); // поиск владелца по номер карту
+        Route::post('/transfer_percent/user', 'TransferController@transfer_percent'); // начисляем процент пользователю
+        # пополнение счета
+        Route::get('/payment', 'TransferController@payment'); // форма пополнение счета
+        Route::post('/paybox/payment', 'TransferController@replenish'); // оплата
     });
 });

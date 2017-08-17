@@ -20,7 +20,9 @@
         "classmap": [
             "database"
         ],
-        "files": ["app/Acme/functions.php"],
+        "files": [
+            "app/Acme/functions.php"
+        ],
         "psr-4": {
             "App\\": "app/"
         }

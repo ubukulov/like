@@ -69,7 +69,7 @@
                             <a href="#" class="partner_link">Купить статус</a>
 
                             <p style="color: #fff;">
-                                Баланс: <strong>@if(!empty(Auth::user()->fm)) {{ __decode(Auth::user()->fm,env('KEY')) }} @else 0 @endif тг.</strong> | В ожидании: <strong>0 тг.</strong> | <a href="#" class="partner_link" data-toggle="modal" data-target="#userPaymentModal">пополнить</a>
+                                Баланс: <strong>@if(!empty(Auth::user()->fm)) {{ __decode(Auth::user()->fm,env('KEY')) }} @else 0 @endif тг.</strong> | В ожидании: <strong>{{ \App\User::count_user_balanse_v_ojidanii(Auth::user()->id) }} тг.</strong> | <a href="#" class="partner_link" data-toggle="modal" data-target="#userPaymentModal">пополнить</a>
                             </p>
 
                             <span style="position: absolute;"><a href="{{ url('user/balance/history') }}" class="partner_link">Посмотреть историю баланса</a></span>

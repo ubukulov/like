@@ -92,6 +92,11 @@ $(document).ready(function(){
 
         });
     });
+
+    //только цифры
+    $('.int').on('input', function () {
+        this.value = this.value.replace(/^\.|[^\d\.]|\.(?=.*\.)|^-1+(?=\d)/g, '');
+    });
 });
 
 function taskButton_money(){
