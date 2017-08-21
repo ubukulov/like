@@ -76,6 +76,11 @@
                                 <input class="form-control centered-form phone" id="phone" name="phone" required="required" placeholder="Моб. Телефон" type="text">
                             </div>
                         </div>
+                        <div class="col-md-8 col-md-push-3">
+                            <div class="form-group">
+                                <textarea name="address" class="form-control" id="address" cols="30" rows="3" placeholder="Адрес доставки"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="">
                         <strong>Выбор способа оплаты</strong>
@@ -86,6 +91,12 @@
                                 <input name="status" type="radio" value="1" checked="checked"  onchange="payment(1);">
                             </div><font class="sm-text">Со счета Likemoney</font><br>
                             <img class="card" src="{{ asset('img/card.png') }}" style="width:80px">
+                        </div>
+                        <div class="col-sm-3 col-xs-6 no-padding">
+                            <div style="float:left; margin-right:5px; margin-top:5px; margin-bottom:10px;">
+                                <input name="status" type="radio" value="4" onchange="payment(4);">
+                            </div><font class="sm-text">Курьеру наличными</font><br>
+                            <img class="card" src="{{ asset('img/nalichnie.jpg') }}" style="width:63px">
                         </div>
                         <div class="col-sm-3 col-xs-6 no-padding">
                             <div style="float:left; margin: 5px 5px 10px 15px;">

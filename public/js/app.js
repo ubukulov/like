@@ -419,6 +419,10 @@ function payment(id) {
             $("#pay").hide();
             $("#qiwi").hide();
             break;
+        case 4:
+            $("#pay").show();
+            $("#qiwi").hide();
+            break;
     }
 }
 // добавить товар в корзину

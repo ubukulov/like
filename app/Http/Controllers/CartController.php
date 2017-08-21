@@ -85,9 +85,8 @@ class CartController extends Controller
     public function order(Request $request){
         $data = $request->all();
         $customer_id = $this->setBusinessCustomers($data);
-        $payment_type = $data['status'];
         if($customer_id){
-            $this->setBusinessCustomerOrder($_SESSION['cart'], $customer_id, $payment_type);
+            $this->setBusinessCustomerOrder($_SESSION['cart'], $customer_id, $data);
             unset($_SESSION['cart']);
             return redirect('/cart')->with('message', 'Заявка оформлено.');
         }
@@ -141,11 +140,13 @@ class CartController extends Controller
     }
 
     # Сохраняем заказы клиента
-    public function setBusinessCustomerOrder($cert, $customer_id, $payment_type){
+    public function setBusinessCustomerOrder($cert, $customer_id, $data){
         $client_ip = $_SERVER['REMOTE_ADDR'];
         $sms_code = strtoupper(generateCode(6));
         $current_date = date("Y-m-d H:i:s");
         $total_sum = $_SESSION['total_sum'];
+        $payment_type = $data['status'];
+        $address = $data['address'];
         $customer = $this->getBusinessCustomerData($customer_id);
         foreach($cert as $key=>$val){
             $title = $val['name'];
@@ -159,8 +160,8 @@ class CartController extends Controller
             $sms_text = "SC-code: ".$sms_code.". ".$name_sms." (".$this->set_transliterator($title)."). Podrobnee: likemoney.me/cert/".$cert_id;
             sendSms($customer[0]->client_phone, $sms_text);
 
-            $sql = "INSERT INTO business_sell_offers(customer_id,offer_id,agent_id,title,qty,price,payment_type,ip,sms_code,created_at,updated_at)
-                              VALUES('$customer_id','$key','$this->id_user','$title','$qty','$price','$payment_type','$client_ip','$sms_code','$current_date','$current_date')";
+            $sql = "INSERT INTO business_sell_offers(customer_id,offer_id,agent_id,title,qty,price,payment_type,ip,sms_code,address,created_at,updated_at)
+                              VALUES('$customer_id','$key','$this->id_user','$title','$qty','$price','$payment_type','$client_ip','$sms_code','$address','$current_date','$current_date')";
             DB::insert($sql);
         }
         // Снимаем деньги со счета агента
