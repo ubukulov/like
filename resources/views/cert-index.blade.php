@@ -39,39 +39,54 @@
                 </div>
             </div>
             <div class="col-md-7" style="padding-left: 30px;">
-                <div class="price">
-                    <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Вознаграждение:<br /><font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $cert->special1 ?></font>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="price">
+                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Цена:<br /><font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $cert->special1 ?></font>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cert_button" style="padding-bottom: 10px;">
+                            <button style="width: 220px;" type="button" class="playbutton" onclick="certDetails();">
+                                <i class="fa fa-play fa-2"></i>&nbsp;&nbsp;&nbsp;Купить
+                            </button>
+                        </div>
+                    </div>
                 </div>
+                <hr>
+                <div class="last_time" style="padding: 10px;">
+                    {{--<font style="color:#d7d7d7"> <i class="fa fa-clock-o fa-2"></i></font>--}}
+                    {{--&nbsp;&nbsp;До окончания осталось:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--}}
+                    {{--<font style="font-weight: 600; text-decoration: underline" id="getting-started"></font>--}}
+                    {{--<div class="clock"></div>--}}
 
-                <div class="last_time">
-                    <font style="color:#d7d7d7"> <i class="fa fa-clock-o fa-2"></i></font>
-                    &nbsp;&nbsp;До окончания осталось:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <font style="font-weight: 600; text-decoration: underline" id="getting-started"></font>
-                    <div class="clock"></div>
+                    {{--<script type="text/javascript">--}}
+                        {{--$(document).ready(function() {--}}
+                            {{--var clock = $('.clock').FlipClock({{ $cert->date_end - time() }}, {--}}
+                                {{--clockFace: 'DailyCounter',--}}
+                                {{--countdown: true--}}
+                            {{--});--}}
+                            {{--clock.setCountdown(true);--}}
+                            {{--clock.start();--}}
 
-                    <script type="text/javascript">
-                        $(document).ready(function() {
-                            var clock = $('.clock').FlipClock({{ $cert->date_end - time() }}, {
-                                clockFace: 'DailyCounter',
-                                countdown: true
-                            });
-                            clock.setCountdown(true);
-                            clock.start();
-
-                        });
-                    </script>
+                        {{--});--}}
+                    {{--</script>--}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Хочешь получить скидку? <br> 10%</label>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="playbutton">
+                                <i class="fa fa-play fa-2"></i>&nbsp;&nbsp;&nbsp;Посмотреть задания
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <br>
-                <div class="cert_button" style="border-bottom:1px solid #d7d7d7; padding-bottom: 10px;">
-                    <button type="button" class="playbutton" onclick="certDetails();">
-                        <i class="fa fa-play fa-2"></i>&nbsp;&nbsp;&nbsp;Купить
-                    </button>
-                </div>
-                <br>
-                <div class="cert_statistics" style="border-bottom:1px solid #d7d7d7; padding-bottom: 10px;">
+                <hr>
+                <div class="cert_statistics" style="padding-bottom: 10px;">
                     <font style="color:#d7d7d7"> <i class="fa fa-thumbs-up fa-2"></i></font>&nbsp;&nbsp;Уже купили:  чел.<br /><font style="color:#d7d7d7"><i class="fa fa-eye fa-2"></i></font>&nbsp;&nbsp;Посмотрели задание: <?= $cert->views ?> чел.
                 </div>
-                <br>
+                <hr>
                 <div class="cert_social">
                     <script type="text/javascript">
                         (function () {

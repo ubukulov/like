@@ -148,7 +148,6 @@
 
             </tr>
             @endforeach
-            {{ $transactions->links() }}
-
         </table>
+		{{ $transactions->links() }}
 @stop

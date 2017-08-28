@@ -10,7 +10,7 @@ use Auth;
 class Partner extends Authenticatable
 {
     protected $fillable = [
-        'id', 'name', 'name_sms', 'phone', 'mphone', 'address', 'login', 'pass', 'email', 'hours', 'coords', 'token',
+        'id', 'name', 'name_sms', 'phone', 'mphone', 'address', 'username', 'password', 'email', 'hours', 'coords', 'token',
         'type', 'max_sum', 'percent_proizvol_sum', 'image', 'percent_bonus', 'fm', 'referral', 'remember_token',
         'created_at', 'updated_at'
     ];

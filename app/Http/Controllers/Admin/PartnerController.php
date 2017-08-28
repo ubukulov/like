@@ -99,7 +99,7 @@ class PartnerController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $partner = Partner::find($id);
+        $partner = Partner::findOrFail($id);
         if(!empty($data['photo1'])){
             $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['photo1'];
             $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/partners/'.$data['photo1'];
@@ -116,6 +116,10 @@ class PartnerController extends Controller
             $data['image'] = $data['photo1'];
             unset($data['photo1']);
         }
+		if(substr($data['password'],0,6) != '$2y$10'){
+			// пароль введен заново
+            $data['password'] = bcrypt($data['password']);
+		}
         $partner->update($data);
         return redirect('admin/partners')->with('message', 'Успешно обновлено');
     }
