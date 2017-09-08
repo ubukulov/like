@@ -21,9 +21,11 @@ class IndexController extends Controller
     }
 
     public function welcome(){
+        $tree = $this->getTree($this->getCat());
+        $cat_menu = $this->showCat($tree);
         $certs = Cert::get();
         $cats = $this->cats;
-        return view('welcome', compact('certs', 'cats'));
+        return view('welcome', compact('certs', 'cats', 'cat_menu'));
     }
 
     # Кэшбэк
@@ -122,5 +124,58 @@ class IndexController extends Controller
 
     public function task_content(){
         return view('task-content');
+    }
+
+    public function getCat(){
+        $result = DB::table('cats')->get();
+        $result = collect($result)->map(function($x){ return (array) $x; })->toArray();
+        $cat = array();
+
+        foreach($result as $val){
+            $cat[$val['id']] = $val;
+        }
+
+        return $cat;
+    }
+
+    public function getTree($data){
+        $tree = array();
+
+        foreach ($data as $id => &$node) {
+            //Если нет вложений
+            if (!$node['parent']){
+                $tree[$id] = &$node;
+            }else{
+                //Если есть потомки то перебераем массив
+                $data[$node['parent']]['childs'][$id] = &$node;
+            }
+        }
+        return $tree;
+    }
+
+    //Шаблон для вывода меню в виде дерева
+    public function tplMenu($category){
+        $menu = '<li';
+        $menu .= (isset($category['childs'])) ? ' class="parent">' : '>';
+		$menu .= '<a href="#" title="'. $category['title'] .'">'.
+            $category['title'].'</a>';
+
+        if(isset($category['childs'])){
+            $menu .= '<ul>'. $this->showCat($category['childs']) .'</ul>';
+        }
+        $menu .= '</li>';
+
+        return $menu;
+    }
+
+    /**
+     * Рекурсивно считываем наш шаблон
+     **/
+    public function showCat($data){
+        $string = '';
+        foreach($data as $item){
+            $string .= $this->tplMenu($item);
+        }
+        return $string;
     }
 }
