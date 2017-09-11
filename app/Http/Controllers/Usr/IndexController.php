@@ -53,4 +53,9 @@ class IndexController extends Controller
         $profit_month = User::get_count_sum_agent($this->id_user,3);
         return view('user/balance-history', compact('balances', 'profit_today', 'profit_week', 'profit_month'));
     }
+
+    # снят со счета
+    public function withdraw(){
+        
+    }
 }

@@ -95,6 +95,10 @@ class AuthController extends Controller
         }
     }
 
+    protected function username(){
+        return 'mphone';
+    }
+
     # проверка
     public function checkPartnerAuth(){
         if(Auth::guard('partner')->check()){

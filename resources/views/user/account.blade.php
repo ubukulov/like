@@ -19,19 +19,6 @@
             <div class="field">
                 <img src="{{ asset('img/card.png') }}" alt="card_likemone.me" align="right" class="img-responsive">
             </div>
-
-            <div class="field">
-                <h4 style="text-align: center;"><strong>Вывод средств</strong></h4>
-                <br>
-                <div class="ui left action input">
-                    <button type="button" style="width: 170px;" class="ui big teal labeled icon button">
-                        <i class="payment icon"></i>
-                        Укажите сумму
-                    </button>
-                    <input type="text" value="$52.03">
-                </div>
-                <span>Комиссия: 300тг</span>
-            </div>
         </div>
     </div>
 
@@ -50,8 +37,6 @@
                     </div>
                     <span id="vyvod_commission">-комиссия%</span>
                     <font color="#d7d7d7"><i class="fa fa-question-circle fa-2"></i></font>&nbsp;
-                    <button onclick="account.vyvod_send_sms_code()" id="btn_vyvod" type="submit" class="btn btn-danger">вывод</button>
-
                 </div>
             </td>
         </tr>
@@ -68,6 +53,15 @@
                     </div>
 
                     <button onclick="account.vyvod_get()" id="btn_vyvod_get" style="display: none"   class="btn btn-danger">подтвердить</button>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="form-inline">
+                    <img src="{{ asset('img/li_3.png') }}">&nbsp;&nbsp;
+                    <button id="btn_vyvod" type="submit" class="btn btn-danger">Заказать вывод</button>
                 </div>
             </td>
         </tr>

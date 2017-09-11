@@ -21,6 +21,9 @@ Route::group(['namespace' => 'Usr', 'prefix' => 'user'], function(){
         
         # баланс
         Route::get('/balance/history', 'IndexController@balance_history');
+
+        # вывод средство
+        Route::get('/balance/withdraw', 'IndexController@withdraw'); // снят со счета
     });
 
 });

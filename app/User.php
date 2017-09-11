@@ -17,7 +17,7 @@ class User extends Authenticatable
     protected $fillable = [
         # 'name', 'email', 'password',
         'id', 'role', 'firstname', 'lastname', 'sms_code', 'sms_date', 'hash', 'fio', 'city', 'sex', 'reg_date',
-        'pass', 'email', 'card', 'mphone', 'avatar', 'bonuses', 'fm', 'bonus', 'birthday', 'private_key',
+        'password', 'email', 'card', 'mphone', 'avatar', 'bonuses', 'fm', 'bonus', 'birthday', 'private_key',
         'actived', 'banned', 'export_to_xls', 'referral', 'mini_ofis', 'cards_count'
     ];
 
