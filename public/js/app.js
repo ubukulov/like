@@ -458,130 +458,34 @@ var account = {
             $('#vyvod_amount_total').val(~~vyvod_amount_total);
         }
     },
-    vyvod_get: function () {
-        if (!$('#vyvod_sms').val()) {
-            alert("Введите смс код подтверждения!");
-        } else {
-            var data = {
-                sms_code: $('#vyvod_sms').val()
-            };
-            $.get("/user/balance/withdraw", );
-            $.ajax({
-                type: 'POST',
-                url: 'request/_account_validate_sms_code.php',
-                data: data,
-                dataType: 'json',
-                success: function (data) {
-
-                    if (data.res == 1) {
-
-                        location = 'paybox/reg2nonreg?amount=' + $('#vyvod_amount_total').val() + '&sms_code=' + $('#vyvod_sms').val();
-
-                    } else if (data.res == 2) {
-
-                        alert(data.message);
-
-                    } else {
-                        alert('Не удалось отправить запрос!');
-                    }
-
-
-                }
-            })
-        }
-    },
-    vyvod_send_sms_code: function () {
+    withdraw: function(){
         var vyvod_amount_total = $('#vyvod_amount_total').val();
         if (vyvod_amount_total) {
-
             var data = {
-                amount: vyvod_amount_total,
-                amount_in_commission: $('#vyvod_amount').val(),
+                amount: vyvod_amount_total, // с учетом комиссии
+                amount_in_commission: $('#vyvod_amount').val(), // без учета комиссии
+                _token: $('#token').val()
             };
 
             $.ajax({
                 type: 'POST',
-                url: 'request/_account_send_sms_code.php',
+                url: '/user/account/withdraw',
                 data: data,
-                dataType: 'json',
+                //dataType: 'json',
                 success: function (data) {
-
-                    if (data.res == 1) {
-
-                        alert('На ваш телефон отправлено смс с кодом, введите его для подтверждения!');
-                        $("#btn_vyvod, #vyvod_amount").prop("disabled", true);
-                        $("#btn_vyvod_get, #vyvod_sms").fadeIn(200);
-
-
-                    } else if (data.res == 2) {
-
-                        alert(data.message);
-
-
-
+                    if(data > 0){
+                        var html = '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><h4>Заявка успешно отправлено! Менеджер связывается с Вами ближайшее время.</h4></div>';
+                        $('#msg').html(html).removeClass('hidden');
                     }
-
-
+                    if(data == 0){
+                        var html = '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><h4>Ошибка! Произошло неизвестное ошибка.</h4></div>';
+                        $('#msg').html(html).removeClass('hidden');
+                    }
                 }
             })
-
         } else {
             alert('Сумма должна быть больше 300тг.!');
             $('#vyvod_amount').focus();
         }
-
-    },
-    edit: function () {
-
-        if ($('#e_firstname').val().length < 3) {
-            alert('Введите ваше Имя!');
-            $('#e_firstname').focus();
-        } else if (!$('#e_sex option:selected').val()) {
-            alert('Выберите ваш пол!');
-        } else if ($('#e_birthday').val().length < 6) {
-            alert('Введите вашу дату рождения!');
-            $('#e_birthday').focus();
-        } else if (!validateEmail($('#e_email').val())) {
-            alert('Введите правельный E-mail!');
-            $('#e_email').focus();
-        } else if ($('#e_mphone').val().length < 11) {
-            alert('Введите ваш сотовый телефон!');
-            $('#e_mphone').focus();
-        } else {
-
-            var data = {
-                firstname: $('#e_firstname').val(),
-                lastname: $('#e_lastname').val(),
-                sex: $('#e_sex option:selected').val(),
-                birthday: $('#e_birthday').val(),
-                city: $('#e_city option:selected').val(),
-                email: $('#e_email').val(),
-                mphone: $('#e_mphone').val()
-
-            };
-
-
-
-            $.ajax({
-                type: 'POST',
-                url: 'request/edit_account.php',
-                data: data,
-                success: function (data) {
-                    if (data == null) {
-                        alert("По какипто причинам нанные не изменены!");
-                    } else {
-                        location = "account";
-                    }
-
-                }
-            })
-
-
-
-        }
-
-
-
     }
-
 }

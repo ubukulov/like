@@ -55,7 +55,18 @@ class IndexController extends Controller
     }
 
     # снят со счета
-    public function withdraw(){
-        
+    public function withdraw(Request $request){
+        $data = $request->all();
+        $amount = $data['amount'];
+        //$amount_in_commission = $data['amount_in_commission'];
+        $lastInsertID = DB::table('user_withdraw_history')->insertGetId([
+            'id_user' => $this->id_user, 'amount' => $amount, 'status' => '0', 'created_at' => date("Y-m-d H:i:s")
+        ]);
+
+        if($lastInsertID){
+            return $lastInsertID;
+        }else{
+            return 0;
+        }
     }
 }

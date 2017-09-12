@@ -423,6 +423,15 @@
                         <li><a href="{{ url('/admin/task/types') }}"><i class="fa fa-circle-o"></i> Типы задании</a></li>
                     </ul>
                 </li>
+
+                <li @if(request_uri('withdraw')) class="active" @endif>
+                    <a href="{{ url('admin/withdraw') }}">
+                        <i class="fa fa-money" aria-hidden="true"></i> <span>Заявки на вывод</span>
+                        <span class="pull-right-container">
+                      <span class="label label-primary pull-right">{{ count_withdraw() }}</span>
+                    </span>
+                    </a>
+                </li>
                 @endif
             </ul>
         </section>

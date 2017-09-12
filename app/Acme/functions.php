@@ -33,6 +33,11 @@ function count_pages(){
     $result = DB::select("SELECT * FROM pages");
     return count($result);
 }
+# Посчитать кол-во заявок на вывод
+function count_withdraw(){
+    $result = DB::select("SELECT * FROM user_withdraw_history");
+    return count($result);
+}
 
 # По ид пользователя получить его номер карты
 function getCardNumberByUserID($user_id){

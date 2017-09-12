@@ -106,4 +106,9 @@ class UserController extends Controller
         }
         return json_encode($result);
     }
+
+    public function withdraw(){
+        $withdraw = DB::table('user_withdraw_history')->orderBy('created_at', 'DESC')->paginate(20);
+        return view('admin/user/withdraw', compact('withdraw'));
+    }
 }

@@ -27,6 +27,7 @@
         <h3>Вывод средств</h3>
     </div>
     <table class="table">
+        <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
         <tr>
             <td>
                 <div class="form-inline">
@@ -51,8 +52,6 @@
                         тг.
                         <input rel="txtTooltip" maxlength="4" style="width: 100px; display: none" id="vyvod_sms" class="form-control int" placeholder="смс код" data-toggle="tooltip" title="Введите 4-х значный смс код который был выслан на ваш телефон" />
                     </div>
-
-                    <button onclick="account.vyvod_get()" id="btn_vyvod_get" style="display: none"   class="btn btn-danger">подтвердить</button>
                 </div>
             </td>
         </tr>
@@ -61,9 +60,10 @@
             <td>
                 <div class="form-inline">
                     <img src="{{ asset('img/li_3.png') }}">&nbsp;&nbsp;
-                    <button id="btn_vyvod" type="submit" class="btn btn-danger">Заказать вывод</button>
+                    <button onclick="account.withdraw();" id="btn_vyvod" type="submit" class="btn btn-danger">Заказать вывод</button>
                 </div>
             </td>
         </tr>
     </table>
+    <div id="msg" class="hidden"></div>
 @stop

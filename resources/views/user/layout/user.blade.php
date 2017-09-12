@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="{{ asset('css/partner.css') }}">
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
+    <script type="text/javascript">
+        $.fn.bsModal = $.fn.modal.noConflict();
+    </script>
 </head>
 <body>
 <div id="wrap">

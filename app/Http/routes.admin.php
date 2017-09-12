@@ -72,6 +72,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('/task/type/delete/{id}', 'TaskController@type_destroy'); // удаление тип
         Route::get('/task/{id}', 'TaskController@edit'); // форма редактирование задании
         Route::get('/task/delete/{id}', 'TaskController@destroy'); // удаление таск по ид
+        # Вывод средств
+        Route::get('/withdraw', 'UserController@withdraw');
     });
 
     # Привилегии для менеджера
