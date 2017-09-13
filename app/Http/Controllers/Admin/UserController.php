@@ -111,4 +111,27 @@ class UserController extends Controller
         $withdraw = DB::table('user_withdraw_history')->orderBy('created_at', 'DESC')->paginate(20);
         return view('admin/user/withdraw', compact('withdraw'));
     }
+
+    public function withdraw_set($id){
+        $id = (int) $id;
+        $withdraw = DB::table('user_withdraw_history')->where(['id' => $id, 'status' => '0'])->first();
+        if($withdraw){
+            $amount = $withdraw->amount;
+            $id_user = $withdraw->id_user;
+            $user = User::findOrFail($id_user);
+            $user_balance = __decode($user->fm, env('KEY'));
+            if($user_balance >= $amount){
+                // у пользователя достаточно денег для снятия
+                DB::transaction(function() use ($id_user, $amount, $id){
+                    User::user_fm_minus($id_user, $amount, "Вывод денег со счета.");
+                    DB::update("UPDATE user_withdraw_history SET status='1' WHERE id='$id'");
+                });
+                return redirect()->back()->with('message', 'Успешно начислено.');
+            }else{
+                return redirect()->back()->with('message', 'У пользователя недостаточно денег.');
+            }
+        }else{
+            return redirect()->back()->with('message', 'Платеж уже начислен либо отменен.');
+        }
+    }
 }

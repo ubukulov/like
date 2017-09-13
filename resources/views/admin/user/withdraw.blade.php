@@ -42,7 +42,7 @@
                                     {{ getUserData($item->id_user)->firstname . " " .getUserData($item->id_user)->lastname }}
                                 </td>
                                 <td>
-                                    {{ $item->amount }}
+                                    {{ $item->amount }} тг.
                                 </td>
                                 <td>
                                     @if($item->status == '0')
@@ -57,8 +57,8 @@
                                     {{ $item->created_at }}
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-warning">Редактировать</a>
-                                    <button class="btn btn-danger">Удалить</button>
+                                    <a @if($item->status == '1') href="#" disabled="disabled" @else href="{{ url('admin/withdraw/'.$item->id) }}" @endif class="btn btn-warning">Одобрить</a>
+                                    <a @if($item->status == '1') href="#" disabled="disabled" @else href="{{ url('admin/withdraw/cancel/'.$item->id) }}" @endif class="btn btn-danger">Отменить</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
