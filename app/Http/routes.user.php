@@ -25,6 +25,9 @@ Route::group(['namespace' => 'Usr', 'prefix' => 'user'], function(){
         # вывод средство
         Route::post('/account/withdraw', 'IndexController@withdraw'); // снят со счета
 
+        # тариф Бизнес
+        Route::get('/business', 'IndexController@business'); // страница для бизнес тарифа
+        Route::post('/business/set', 'IndexController@business_set');
     });
 
 });

@@ -69,4 +69,16 @@ class IndexController extends Controller
             return 0;
         }
     }
+
+    # тариф бизнес
+    public function business(){
+        return view('user/business');
+    }
+
+    public function business_set(Request $request){
+        DB::table('business_store')->insertGetId([
+            'id_user' => $this->id_user, 'tarif' => $request->tariff, 'store_name' => $request->store_name, 'created_at' => date("Y-m-d H:i:s")
+        ]);
+        return redirect()->back()->with('message', 'Успешно отправлено. Ждите!');
+    }
 }

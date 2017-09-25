@@ -45,7 +45,14 @@
 .special{
     color: #f16144;
 }
-
+.rowtsk-bkg
+{
+    border: solid 1px #d7d7d7;
+    border-radius: 5px;
+    padding: 25px 25px 25px 25px;
+    background-image: url(../img/noise.png);
+    margin-bottom: 30px;
+}
 
 /*=================================================
 ||              1. Imports

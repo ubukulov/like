@@ -10,6 +10,8 @@ use App\Category;
 use App\Partner;
 use Illuminate\Support\Facades\DB;
 use App\CertView;
+use Cache;
+use SSH;
 
 class IndexController extends Controller
 {
@@ -21,8 +23,14 @@ class IndexController extends Controller
     }
 
     public function welcome(){
-        $tree = $this->getTree($this->getCat());
-        $cat_menu = $this->showCat($tree);
+        if(Cache::has('cat_menu')){
+            $cat_menu = Cache::get('cat_menu');
+        }else{
+            $tree = $this->getTree($this->getCat());
+            $cat_menu = $this->showCat($tree);
+            Cache::put('cat_menu', $cat_menu, 30);
+        }
+
         $certs = Cert::get();
         $cats = $this->cats;
         return view('welcome', compact('certs', 'cats', 'cat_menu'));
@@ -177,5 +185,19 @@ class IndexController extends Controller
             $string .= $this->tplMenu($item);
         }
         return $string;
+    }
+
+    public function market(){
+        if(Cache::has('cat_menu')){
+            $cat_menu = Cache::get('cat_menu');
+        }else{
+            $tree = $this->getTree($this->getCat());
+            $cat_menu = $this->showCat($tree);
+            Cache::put('cat_menu', $cat_menu, 30);
+        }
+
+        $certs = Cert::get();
+        $cats = $this->cats;
+        return view('welcome2', compact('certs', 'cats', 'cat_menu'));
     }
 }

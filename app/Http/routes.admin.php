@@ -75,6 +75,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         # Вывод средств
         Route::get('/withdraw', 'UserController@withdraw');
         Route::get('/withdraw/{id}', 'UserController@withdraw_set');
+        # Бизнес
+        Route::get('/business', 'IndexController@business');
+        Route::get('/business/up/{id}', 'IndexController@up');
     });
 
     # Привилегии для менеджера

@@ -23,7 +23,18 @@
     <link rel="stylesheet" href="{{ asset('lib/flipclock/flipclock.css') }}">
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
-{{--    <script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+        $.fn.bsModal = $.fn.modal.noConflict();
+    </script>
+    <script type="text/javascript">
+        $("#button_semantic").on("click", function(){
+            $("#modal_semantic").modal("show");
+        });
+        $("#button_bootstrap").on("click", function(){
+            $("#modal_bootstrap").bsModal("show");
+        });
+    </script>
 </head>
 <body>
 <div id="wrap">

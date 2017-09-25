@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('lib/jquery_ui/jquery-ui.min.css') }}">
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </head>
 <body>
 <div id="wrap">

@@ -148,6 +148,7 @@ a:hover{
     font-weight: 200;
     letter-spacing: 5px;
     background-image: url('../img/logo_white.png');
+    /*background-image: url('../img/logo.png');*/
     min-width: 170px;
     min-height: 70px;
 }
@@ -830,6 +831,11 @@ a .rss:hover
         text-align: center;
     }
     .navbar-default .navbar-brand
+    {
+        margin-left: 15px;
+        background-image: url('../img/logo.png');
+    }
+    .navbar-default2 .navbar-brand2
     {
         margin-left: 15px;
         background-image: url('../img/logo.png');

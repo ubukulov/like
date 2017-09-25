@@ -109,6 +109,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <a href="{{ url('user/business') }}" class="active item" style="background: none;">
+                                    Тарифы Бизнес
+                                </a>
                             </div>
                         </div>
                     </div>

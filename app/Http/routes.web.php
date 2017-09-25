@@ -31,3 +31,10 @@ Route::get('/cart/count/{id}/{qty}', 'CartController@count'); // пересчи�
 Route::get('/cart/add/{id}', 'CartController@add_to_cart'); // положить товар в корзину
 Route::post('/cart/order', 'CartController@order'); //
 ### Конец ###
+Route::get('/market', 'IndexController@market');
+Route::group(['as' => 'subdomain', 'domain' => '{account}.like.loc'], function () {
+    Route::get('user/{id}', function ($account, $id) {
+        $user = \App\User::find($id);
+        dd($user);
+    });
+});

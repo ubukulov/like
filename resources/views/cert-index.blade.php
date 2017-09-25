@@ -165,9 +165,7 @@
                         <th>Купили</th>
                         <th>Осталось</th>
                         <th>Доход</th>
-                        @if(Auth::check())
                         <th>Действие</th>
-                        @endif
                         @endif
                     </thead>
                     <tbody>
@@ -197,12 +195,10 @@
                                     }
                                     ?></font>
                             </td>
-                            @if(Auth::check())
                             <td>
-                                <a class="btn btn-danger" href="{{ url('/cart/offer/'.$sub->id) }}">Купить сейчас</a>
+                                <a style="margin-bottom: 10px;" class="btn btn-danger" @if(Auth::check()) href="{{ url('/cart/offer/'.$sub->id) }}" @else href="#" @endif>Купить сейчас</a><br>
                                 <button type="button" onclick="addToCart({{ $sub->id }});" class="btn btn-danger">Добавить в корзину</button>
                             </td>
-                            @endif
                         </tr>
                     @endforeach
                     </tbody>
