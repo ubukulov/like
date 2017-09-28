@@ -1,5 +1,21 @@
 <?php
+use Illuminate\Support\Facades\DB;
+use App\User;
 ### Общее ###
+Route::group(['as' => 'subdomain', 'domain' => '{account}.likemoney.me'], function () {
+    $url = $_SERVER["SERVER_NAME"];
+    $domain = explode(".",$url);
+    $sub_domain = $domain[0];
+    $result = DB::table('business_store')->where(['store_name' => $sub_domain, 'status' => 1])->first();
+    Route::get('/', ['as' => 'home', 'uses' => 'IndexController@welcome']); // Главная страница
+    if($result){
+        Auth::loginUsingId($result->id_user, true);
+        Route::get('/', 'IndexController@market');
+    }else{
+        return Redirect::to('http://likemoney.me');
+    }
+});
+
 Route::get('/', ['as' => 'home', 'uses' => 'IndexController@welcome']); // Главная страница
 Route::get('/cashback', 'IndexController@cashback'); // Сервис кэшбэк
 Route::get('/store', ['middleware' => 'auth','as' => 'store', 'uses' => 'StoreController@index']); // Список магазинов
@@ -32,9 +48,3 @@ Route::get('/cart/add/{id}', 'CartController@add_to_cart'); // положить 
 Route::post('/cart/order', 'CartController@order'); //
 ### Конец ###
 Route::get('/market', 'IndexController@market');
-Route::group(['as' => 'subdomain', 'domain' => '{account}.like.loc'], function () {
-    Route::get('user/{id}', function ($account, $id) {
-        $user = \App\User::find($id);
-        dd($user);
-    });
-});

@@ -27,24 +27,19 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ route('home') }}" rel="nofollow"></a>
+                    @if(check_user_store_img(Auth::id()))
+                    <a href="#" rel="nofollow"><img src="{{ asset('uploads/users/store/'.check_user_store_img(Auth::id())) }}" alt=""></a>
+                    @else
+                    <a href="#" rel="nofollow"><img src="{{ asset('img/opt_price_logo_red.png') }}" alt=""></a>
+                    @endif
                 </div>
                 <!-- /.navbar-header -->
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li class="active">
-                            <a href="index" style="color: #000 !important;">О НАС</a>
-                        </li>
-                        <li>
-                            <a href="leading_2" style="color: #000 !important;">КОМПАНИЯМ</a>
-                        </li>
-                        <li class="">
-                            <a href="leading_1" style="color: #000 !important;">ПОЛЬЗОВАТЕЛЯМ</a>
+                            <span style="color: #000;">Интернет магазин </span>
                         </li>
 
-                        <li class="">
-                            <a href="leading_1" style="color: #000 !important;">КОНТАКТЫ</a>
-                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

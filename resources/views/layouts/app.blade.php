@@ -27,7 +27,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ route('home') }}" rel="nofollow"></a>
+                    <a class="navbar-brand" href="#" rel="nofollow"></a>
                 </div>
                 <!-- /.navbar-header -->
                 <div class="collapse navbar-collapse">

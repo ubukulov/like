@@ -43,6 +43,16 @@
                 </div>
             </div>
             <br>
+            <div class="inline fields">
+                <div class="eight wide field">
+                    <div id="image1">
+                        <img src="{{ asset('img/no_thumb.png') }}" height="100" name="image1">
+                    </div>
+                    <br>
+                    <button id="upload1" class="blue">Выбрать логотип</button>
+                </div>
+            </div>
+            <br>
             <button type="submit" class="btn btn-success">Отправить заявку!</button>
             </form>
         </div>

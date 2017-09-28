@@ -198,6 +198,6 @@ class IndexController extends Controller
 
         $certs = Cert::get();
         $cats = $this->cats;
-        return view('welcome2', compact('certs', 'cats', 'cat_menu'));
+        return view('store', compact('certs', 'cats', 'cat_menu'));
     }
 }

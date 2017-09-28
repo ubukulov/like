@@ -401,3 +401,16 @@ function get_post_return_array($action, $data) {
     return $array;
 }
 ### PAYBOX ###
+# проверить у пользователя есть ли картинка
+function check_user_store_img($id_user){
+    $result = DB::table('business_store')->where(['id_user' => $id_user])->first();
+    if($result){
+        if(!empty($result->store_img)){
+            return $result->store_img;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
