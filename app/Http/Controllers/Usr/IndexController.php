@@ -73,29 +73,60 @@ class IndexController extends Controller
 
     # тариф бизнес
     public function business(){
-        return view('user/business');
+        $business_store = DB::table('business_store')->where(['id_user' => $this->id_user])->first();
+        return view('user/business', compact('business_store'));
     }
 
     public function business_set(Request $request){
         $data = $request->all();
-        if(!empty($data['photo1'])){
-            $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['photo1'];
-            $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/users/store/'.$data['photo1'];
-            $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/users/store/'.$data['image'];
+        $business_store = DB::table('business_store')->where(['id_user' => $this->id_user])->first();
+        if($business_store){
+            if(!empty($data['photo1'])){
+                $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['photo1'];
+                $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/users/store/'.$data['photo1'];
+                $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/users/store/'.$data['photo1'];
 
-            // Вызываем класс
-            $img = new SimpleImage();
-            $img->load($from);
-            $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
-            $img->save($to);
-            $img->adaptive_resize(141, 65);
-            $img->save($to_mini);
-            unlink($from);
+                // Вызываем класс
+                $img = new SimpleImage();
+                $img->load($from);
+                $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
+                $img->save($to);
+                $img->adaptive_resize(141, 65);
+                $img->save($to_mini);
+                unlink($from);
+            }
+            $path_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/users/store/';
+            if(file_exists($path_mini.$business_store->store_img) && !empty($business_store->store_img)){
+                unlink($path_mini.$business_store->store_img);
+            }
+
+            DB::table('business_store')
+                ->where('id', $business_store->id)
+                ->update([
+                'id_user' => $this->id_user, 'tarif' => $request->tariff, 'store_name' => $request->store_name, 'created_at' => date("Y-m-d H:i:s"),
+                'store_img' => $data['photo1']
+            ]);
+            return redirect()->back()->with('message', 'Успешно отправлено. Ждите!');
+        }else{
+            if(!empty($data['photo1'])){
+                $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['photo1'];
+                $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/users/store/'.$data['photo1'];
+                $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/users/store/'.$data['photo1'];
+
+                // Вызываем класс
+                $img = new SimpleImage();
+                $img->load($from);
+                $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
+                $img->save($to);
+                $img->adaptive_resize(141, 65);
+                $img->save($to_mini);
+                unlink($from);
+            }
+            DB::table('business_store')->insertGetId([
+                'id_user' => $this->id_user, 'tarif' => $request->tariff, 'store_name' => $request->store_name, 'created_at' => date("Y-m-d H:i:s"),
+                'store_img' => $data['photo1']
+            ]);
+            return redirect()->back()->with('message', 'Успешно отправлено. Ждите!');
         }
-        DB::table('business_store')->insertGetId([
-            'id_user' => $this->id_user, 'tarif' => $request->tariff, 'store_name' => $request->store_name, 'created_at' => date("Y-m-d H:i:s"),
-            'store_img' => $data['image']
-        ]);
-        return redirect()->back()->with('message', 'Успешно отправлено. Ждите!');
     }
 }

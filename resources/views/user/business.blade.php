@@ -18,19 +18,19 @@
                 <label for="fruit">Выберите тариф:</label>
                 <div class="field">
                     <div class="ui radio checkbox" style="font-size: 15px;">
-                        <input type="radio" name="tariff" tabindex="0" class="hidden" value="1">
+                        <input type="radio" name="tariff" tabindex="0" @if($business_store->tarif == 1) checked="checked" @endif class="hidden" value="1">
                         <label>Business Silver</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox" style="font-size: 15px;">
-                        <input type="radio" name="tariff" tabindex="0" class="hidden" value="2">
+                        <input type="radio" name="tariff" tabindex="0" @if($business_store->tarif == 2) checked="checked" @endif class="hidden" value="2">
                         <label>Business Gold</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox" style="font-size: 15px;">
-                        <input type="radio" name="tariff" tabindex="0" class="hidden" value="3">
+                        <input type="radio" name="tariff" tabindex="0" @if($business_store->tarif == 3) checked="checked" @endif class="hidden" value="3">
                         <label>Business Premium</label>
                     </div>
                 </div>
@@ -39,14 +39,18 @@
             <div class="inline fields">
                 <div class="eight wide field">
                     <label>Придумайте названия будущего магазина:</label>
-                    <input type="text" placeholder="alizhan" required="required" name="store_name">
+                    <input type="text" placeholder="alizhan" value="{{ $business_store->store_name }}" required="required" name="store_name">
                 </div>
             </div>
             <br>
             <div class="inline fields">
                 <div class="eight wide field">
                     <div id="image1">
+                        @if(!empty($business_store->store_img))
+                        <img src="{{ asset('uploads/users/store/'.$business_store->store_img) }}" height="100" name="image1">
+                        @else
                         <img src="{{ asset('img/no_thumb.png') }}" height="100" name="image1">
+                        @endif
                     </div>
                     <br>
                     <button id="upload1" class="blue">Выбрать логотип</button>
