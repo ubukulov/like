@@ -35,7 +35,8 @@ class CertController extends Controller
         $cat = Category::get();
         $partner = Partner::all();
         $pod_cat = DB::select("SELECT * FROM pod_cat");
-        return view('admin/cert/cert-create', compact('cat','partner','pod_cat'));
+        $cats = DB::table('cats')->where(['parent' => 0])->get();
+        return view('admin/cert/cert-create', compact('cat','partner','pod_cat', 'cats'));
     }
 
     /**
@@ -59,7 +60,8 @@ class CertController extends Controller
             'date_end' => strtotime($request->input('date_end')), 'meta_description' => $request->input('meta_description'),
             'meta_keywords' => $request->input('meta_keywords'), 'sort' => $request->input('sort'),
             'cert_type' => $request->input('cert_type'), 'article_code' => $request->input('article_code'),
-            'b1' => $request->input('b1'), 'b2' => $request->input('b2'), 'b3' => $request->input('b3')
+            'b1' => $request->input('b1'), 'b2' => $request->input('b2'), 'b3' => $request->input('b3'),
+            'prime_cost' => $request->input('prime_cost')
         ];
         if(!empty($data['image'])){
             $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image'];
@@ -130,7 +132,8 @@ class CertController extends Controller
         $cat = Category::get();
         $partner = Partner::all();
         $pod_cat = DB::select("SELECT * FROM pod_cat");
-        return view('admin/cert/cert-show', compact('cert', 'cat', 'partner', 'pod_cat'));
+        $cats = DB::table('cats')->where(['parent' => 0])->get();
+        return view('admin/cert/cert-show', compact('cert', 'cat', 'partner', 'pod_cat', 'cats'));
     }
 
     /**
@@ -155,7 +158,8 @@ class CertController extends Controller
             'date_end' => strtotime($request->input('date_end')), 'meta_description' => $request->input('meta_description'),
             'meta_keywords' => $request->input('meta_keywords'), 'sort' => $request->input('sort'),
             'cert_type' => $request->input('cert_type'), 'article_code' => $request->input('article_code'),
-            'b1' => $request->input('b1'), 'b2' => $request->input('b2'), 'b3' => $request->input('b3')
+            'b1' => $request->input('b1'), 'b2' => $request->input('b2'), 'b3' => $request->input('b3'),
+            'prime_cost' => $request->input('prime_cost')
         ];
 
         $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/';
@@ -256,5 +260,11 @@ class CertController extends Controller
         }
         Cert::destroy($id);
         return redirect()->back()->with('message', 'Задания удален успешно');
+    }
+
+    # получить список под категории
+    public function get_cats($id_cat){
+        $result = DB::table('cats')->where(['parent' => $id_cat])->get();
+        return json_encode($result);
     }
 }

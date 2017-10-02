@@ -17,6 +17,38 @@
 </head>
 <body>
 <div id="wrap">
+    <div class="top-header">
+        <div class="container">
+            <div class="col-sm-8 nopad">
+                <nav class="top_menu">
+                    <li class="main-li"><a href="/">Главная</a></li>
+                    <li class="#"><a href="#">Новости</a></li>
+                    <li class="#"><a href="#">Все о нас</a></li>
+                    <li class="#"><a href="#">Партнерам</a></li>
+                </nav>
+            </div>
+            <div class="col-sm-4 text-right nopad">
+                <span class="kabinet">
+                    @if(Auth::check())
+                        <a style="color: #fff; cursor: pointer; float: left;" href="{{ url('user/account') }}">
+                                    @if (!empty(Auth::user()->avatar))
+                                <img class="my_avatar_small" src="{{ asset('uploads/users/small/'.Auth::user()->avatar) }}" alt="user-photo">
+                            @else
+                                <img class="my_avatar_small" src="{{ asset('img/blank_avatar_220.png') }}" alt="user-photo">
+                            @endif
+                            &nbsp;
+                            {{ Auth::user()->firstname }}
+                            &nbsp;
+                                    <font color="#619F05">{{ __decode(Auth::user()->fm, env('KEY')) }} тг</font>
+                                </a>
+                    @else
+                    <i class="user icon"></i>
+                    <a style="color: #ffffff; text-decoration: none;" href="{{ url('user/login') }}">Личный кабинет</a>
+                    @endif
+                </span>
+            </div>
+        </div>
+    </div>
     <div class="header">
         <nav class="navbar navbar-default">
             <div class="container">
@@ -31,44 +63,26 @@
                 </div>
                 <!-- /.navbar-header -->
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li class="active">
-                            <a href="index">О НАС</a>
-                        </li>
-                        <li>
-                            <a href="leading_2">КОМПАНИЯМ</a>
-                        </li>
-                        <li class="">
-                            <a href="leading_1">ПОЛЬЗОВАТЕЛЯМ</a>
-                        </li>
-                        <li class="login_button">
-                            {{--<a style="color: #fff; cursor: pointer;" data-toggle="modal" data-target="#loginModal">--}}
-                                {{--<i class="fa fa-male"></i>&nbsp;&nbsp;ЛИЧНЫЙ КАБИНЕТ--}}
-                            {{--</a>--}}
-                            @if(Auth::check())
-                                <?php if(isset($_SESSION['cart']) AND !empty($_SESSION['cart'])) :?>
-                                <a href="{{ url('/cart') }}" style="float: left; padding: 0px; top: -2px;"><img src="{{ asset('img/basket2.png') }}" alt=""> <?=$_SESSION['total_quantity']?> товар(-ов)</a>
-                                <?php endif; ?>
-                                <a style="color: #fff; cursor: pointer; float: left;" href="{{ url('user/account') }}">
-                                    @if (!empty(Auth::user()->avatar))
-                                        <img class="my_avatar_small" src="{{ asset('uploads/users/small/'.Auth::user()->avatar) }}" alt="user-photo">
-                                    @else
-                                        <img class="my_avatar_small" src="{{ asset('img/blank_avatar_220.png') }}" alt="user-photo">
-                                    @endif
-                                    &nbsp;
-                                    {{ Auth::user()->firstname }}
-                                    &nbsp;
-                                    <font color="#619F05">{{ __decode(Auth::user()->fm, env('KEY')) }} тг</font>
-                                </a>
-                                <br>
-                            @else
-                                <a style="color: #fff; cursor: pointer;" href="{{ url('user/login') }}">
-                                    <i class="fa fa-male"></i>&nbsp;&nbsp;ЛИЧНЫЙ КАБИНЕТ
-                                </a>
-                                <br>
-                            @endif
-                        </li>
-                    </ul>
+                    <div class="col-sm-8" style="font-size: 12px; padding-top: 20px;">
+                        <div class="col-sm-4">
+                            Прием заказов по WhatsApp <br>
+                            <i class="fa fa-whatsapp">&nbsp; &nbsp; +7(777) 447-77-04</i>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="ui action input">
+                                <input type="text" style="width: 350px;">
+                                <button class="ui button">Поиск</button>
+                            </div>
+                        </div>
+                    </div>
+                    <?php if(isset($_SESSION['cart']) AND !empty($_SESSION['cart'])) :?>
+                    <div class="col-sm-2" style="padding-top: 10px; float: right;">
+                    <span class="korsina">
+                        Корзина <img src="{{ asset('img/shopping-cart.png') }}" alt="cart">
+                        <sup><?=$_SESSION['total_quantity']?></sup>
+                    </span>
+                    </div>
+                    <?php endif; ?>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
@@ -78,7 +92,7 @@
             <div class="header-table">
                 <div class="header-wrapper">
                     <h1 class="header-title">Зарабатывать<br>с нами - легко!</h1>
-                    <button type="button" class="main_button">Выполняй задания и зарабатывай</button>
+                    <button type="button" class="main_button">Хочу интернет магазин - бесплатно!</button>
                 </div>
                 <!-- /.header-wrapper -->
             </div>
@@ -91,11 +105,11 @@
         <div class="content section-wrapper">
             <div class="row">
                 <div class="col-md-6">
-                    <h2><small><font color="#62A005" size="5"><i class="fa fa-thumbs-up"></i></font>&nbsp; Выполнено заданий за сегодня: 0</small></h2>
+                    <h2><small><font color="#62A005" size="5"><i class="fa fa-thumbs-up"></i></font>&nbsp; Сделок за день: 0</small></h2>
                 </div>
 
                 <div class="col-md-6">
-                    <h2><small><font color="#62A005" size="5"><i class="fa fa-credit-card-alt"></i></font>&nbsp; Заработали сегодня исполнители: 0 тг.</small></h2>
+                    <h2><small><font color="#62A005" size="5"><i class="fa fa-credit-card-alt"></i></font>&nbsp; Лучший доход за день: 0 тг.</small></h2>
                 </div>
             </div>
 

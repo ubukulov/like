@@ -959,3 +959,62 @@ a .rss:hover
     border: 1px solid #fff;
     border-radius: 50%;
 }
+/*
+** Стили для интернет магазин
+*/
+.top-header {
+    background-color: #333333;
+    height: 45px;
+}
+.cont, .nopad {
+    padding: 0;
+}
+.top-header nav li {
+    display: inline-block;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+li.main-li {
+    background-color: #1C1C1C;
+}
+.top_menu a{
+    padding: 10px; color: #ffffff;
+}
+.top_menu a:hover{
+    text-decoration: none; background-color: #1C1C1C;padding-top: 12px;
+    padding-bottom: 12px;
+}
+.text-right {
+    text-align: right;
+}
+.top-header span.kabinet {
+    float: right;
+    cursor: pointer;
+    font-family: 'Proxima Nova Regular';
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+    /*top: 14px;*/
+    /*height: 37px;*/
+    padding: 3px;
+}
+span.korsina {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    width: 150px;
+    height: 50px;
+    float: right;
+    color: #fff;
+    text-transform: uppercase;
+    background-color: #303030;
+    font-size: 14px;
+    padding: 15px;
+    font-family: 'Proxima Nova Regular';
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 0px 3px 5px 0 #ccc;
+}
+span.korsina {
+    display: block;
+}

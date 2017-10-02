@@ -6,20 +6,6 @@
                 {!! $cat_menu !!}
             </ul>
         </div>
-        {{--<br>--}}
-        {{--<div class="menu-filter">--}}
-            {{--<ul id="menu-filter">--}}
-                {{--<li class="main_filter">--}}
-                    {{--<a href="{{ route('home') }}" style="padding-left: 0px;">Все ({{ count($certs) }})</a>--}}
-                {{--</li>--}}
-                {{--@foreach($cats as $cat)--}}
-                    {{--<li class="main_filter">--}}
-                        {{--<a href="{{ url('/cert/cat/'.$cat->id) }}">{{ $cat->title }} ({{ count_certs_main_cat($cat->id) }})</a>--}}
-                    {{--</li>--}}
-                {{--@endforeach--}}
-            {{--</ul>--}}
-            {{--<!-- /.nav -->--}}
-        {{--</div>--}}
         <hr>
         <div class="row">
             @foreach($certs as $key=>$cert)
@@ -30,7 +16,7 @@
                             <a href="{{ url('/cert/'.$cert->id) }}">
 
                                 <div class="portfolio-img" style="height: 160px; cursor: pointer;">
-                                    <img @if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/small/'.$cert->image)) src="{{ asset('uploads/certs/small/'.$cert->image) }}" @else src="{{ asset('img/no_photo227x140.png') }}" @endif alt="port-1" class="port-item">
+                                    <img @if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/small/'.$cert->image) && !empty($cert->image)) src="{{ asset('uploads/certs/small/'.$cert->image) }}" @else src="{{ asset('img/no_photo227x140.png') }}" @endif alt="port-1" class="port-item">
                                     <div class="portfolio-img-hover">
 
                                     </div>

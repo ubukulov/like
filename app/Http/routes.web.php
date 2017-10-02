@@ -9,7 +9,7 @@ Route::group(['as' => 'subdomain', 'domain' => '{account}.likemoney.me'], functi
     $result = DB::table('business_store')->where(['store_name' => $sub_domain, 'status' => 1])->first();
     Route::get('/', ['as' => 'home', 'uses' => 'IndexController@welcome']); // Главная страница
     if($result){
-        Auth::loginUsingId($result->id_user, true);
+//        Auth::loginUsingId($result->id_user, true);
         Route::get('/', 'IndexController@market');
     }else{
         return Redirect::to('http://likemoney.me');

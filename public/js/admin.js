@@ -46,6 +46,17 @@ $(function(){
     });
     $("#phone").mask("+7 (999)-999-99-99");
     $("#card_number").mask("99999999");
+    $('#id_main_cat').change(function(){
+        var id_cat = $(this).val();
+        $.get('/admin/cert/get/cats/'+id_cat, function(data){
+            data = JSON.parse(data);
+            var html = '';
+            for(var i=0; i<data.length; i++){
+                html = html + '<option value="'+data[i].id+'">'+data[i].title+'</option>';
+            }
+            $('#id_pod_cat').html(html);
+        });
+    });
 });
 
 function delete_opt_partner(id) {

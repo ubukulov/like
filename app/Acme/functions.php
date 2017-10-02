@@ -414,3 +414,20 @@ function check_user_store_img($id_user){
         return false;
     }
 }
+# проверить у пользователя какой тариф магазина
+function check_user_store_tarif($id_user){
+    $result = DB::table('business_store')->where(['id_user' => $id_user])->first();
+    if($result){
+        $tarif = $result->tarif;
+        return $tarif;
+    }else{
+        return false;
+    }
+}
+# по ид пользователя получить название магазина
+function get_user_store_name($id_user){
+    $result = DB::table('business_store')->where(['id_user' => $id_user])->first();
+    if($result){
+        return $result->store_name.".likemoney.me";
+    }
+}

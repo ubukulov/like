@@ -17,10 +17,29 @@
 </head>
 <body>
 <div id="wrap">
+    <div class="top-header">
+        <div class="container">
+            <div class="col-sm-8 nopad">
+                <nav class="top_menu">
+                    <li class="main-li"><a href="/">Главная</a></li>
+                    <li class="#"><a href="#">Новости</a></li>
+                    <li class="#"><a href="#">Все о нас</a></li>
+                    <li class="#"><a href="#">Партнерам</a></li>
+                    <li class="#"><a href="#">+ Предложить свой товар</a></li>
+                </nav>
+            </div>
+            <div class="col-sm-4 text-right nopad">
+                <span class="kabinet">
+                    <i class="user icon"></i>
+                    <a style="color: #ffffff; text-decoration: none;" href="{{ url('user/login') }}">Личный кабинет</a>
+                </span>
+            </div>
+        </div>
+    </div>
     <div class="header2">
         <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
+            <div class="container cont">
+                <div class="col-sm-2">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -28,58 +47,36 @@
                         <span class="icon-bar"></span>
                     </button>
                     @if(check_user_store_img(Auth::id()))
-                    <a href="#" rel="nofollow"><img src="{{ asset('uploads/users/store/'.check_user_store_img(Auth::id())) }}" alt=""></a>
+                        <a href="#" rel="nofollow"><img src="{{ asset('uploads/users/store/'.check_user_store_img(Auth::id())) }}" alt=""></a>
                     @else
-                    <a href="#" rel="nofollow"><img src="{{ asset('img/opt_price_logo_red.png') }}" alt=""></a>
+                        <a href="#" rel="nofollow"><img src="{{ asset('img/opt_price_logo_red.png') }}" alt=""></a>
                     @endif
                 </div>
-                <!-- /.navbar-header -->
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li class="active">
-                            <span style="color: #000;">Интернет магазин </span>
-                        </li>
-
-                    </ul>
+                <div class="col-sm-9">
+                    <div class="col-sm-4">
+                        Прием заказов по WhatsApp <br>
+                        <i class="fa fa-whatsapp">&nbsp; &nbsp; +7(777) 447-77-04</i>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="ui action input">
+                            <input type="text" style="width: 350px;">
+                            <button class="ui button">Поиск</button>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.navbar-collapse -->
+                <div class="col-sm-1">
+                    <span class="korsina">
+                        Корзина <img src="{{ asset('img/shopping-cart.png') }}" alt="cart">
+                        <sup>0</sup>
+                    </span>
+                </div>
             </div>
         </nav><!-- /.nav -->
     </div>
     <!-- /.header -->
 
     <div id="content" class="ui container">
-        <div class="content section-wrapper">
-            <!-- /.section-title -->
-            {{--<div class="task-menu" id="task-menu">--}}
-                {{--<ul class="main_menu navbar-nav navbar-left">--}}
-                    {{--<li class="active-task">--}}
-                        {{--<a href="{{ route('home') }}" class="active">Offline cashback</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a class="link_a" href="#">--}}
-                            {{--Online Cashback--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a class="link_a" href="#">--}}
-                            {{--OptPrice--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-
-                    {{--<li>--}}
-                        {{--<a class="link_a" href="#">Магазин</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a class="link_a" href="{{ route('task') }}">Task</a>--}}
-                    {{--</li>--}}
-                    {{--<li>--}}
-                        {{--<a class="link_a" href="https://admotionz.com" rel="nofollow">Зарабатывай онлайн</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-                {{--<!-- /.nav -->--}}
-            {{--</div>--}}
-
+        <div class="content section-wrapper" style="padding-top: 0px;">
             @yield('content')
         </div>
     </div>

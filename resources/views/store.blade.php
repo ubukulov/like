@@ -34,16 +34,22 @@
                                                 <!-- Бизнес -->
                                                 @if(empty($cert->special3) AND $cert->special3 == 0)
                                                     <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
-                                                    <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ $cert->special2 }}</b></font></small></td>
+                                                    <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ $cert->special2 }} тг.</b></font></small></td>
                                                 @else
-                                                <td width="130">
-                                                    <span style="text-decoration: line-through; font-size: 12px;">{{ $cert->special2 }} тг</span><br>
-                                                    <span style="color: green; font-weight: bold;">{{ $cert->special3 }} тг</span>
-                                                </td>
+                                                    <td width="130">
+                                                        <span style="text-decoration: line-through; font-size: 12px;">{{ $cert->special2 }} тг</span><br>
+                                                        <span style="color: green; font-weight: bold;">{{ $cert->special3 }} тг</span>
+                                                    </td>
                                                 @endif
                                                 @if(is_tariff(Auth::id()))
                                                     <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
-                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ $cert->special1 }}</b></font></small></td>
+                                                    @if(check_user_store_tarif(Auth::id()) == '1')
+                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ $cert->b1 }} тг.</b></font></small></td>
+                                                    @elseif(check_user_store_tarif(Auth::id()) == '2')
+                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ $cert->b2 }} тг.</b></font></small></td>
+                                                    @else(check_user_store_tarif(Auth::id()) == '3')
+                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ $cert->b3 }} тг.</b></font></small></td>
+                                                    @endif
                                                 @else
                                                 <td align="right">
                                                     <a href="{{ url('/cert/'.$cert->id) }}" class="hidden-xs taskbutton">Подробнее</a>

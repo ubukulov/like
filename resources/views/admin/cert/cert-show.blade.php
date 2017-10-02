@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label>Список категории</label>
                             <select class="form-control select2" style="width: 100%;" id="id_main_cat" name="id_main_cat">
-                                @foreach($cat as $c)
+                                @foreach($cats as $c)
                                     @if($cert->id_main_cat == $c->id)
                                     <option value="{{ $c->id }}" selected="selected">{{ $c->title }}</option>
                                     @else
@@ -74,19 +74,23 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="b1">Бизнес1</label>
-                            <input type="text" class="form-control" id="b1" name="b1" value="{{ $cert->b1 }}" placeholder="Бизнес1" />
+                            <label for="special3">Себестоимость товара</label>
+                            <input type="text" class="form-control" id="prime_cost" value="{{ $cert->prime_cost }}" name="prime_cost" placeholder="Себестоимость товара" />
                         </div>
 
                         <div class="form-group">
-                            <label for="b2">Бизнес2</label>
-                            <input type="text" class="form-control" id="b2" name="b2" value="{{ $cert->b2 }}" placeholder="Бизнес2" />
+                            <label>Список партнеров</label>
+                            <select class="form-control select2" style="width: 100%;" name="id_partner">
+                                @foreach($partner as $pt)
+                                    @if($cert->partner_id == $pt->id)
+                                        <option value="{{ $pt->id }}" selected="selected">{{ $pt->name }}</option>
+                                    @else
+                                        <option value="{{ $pt->id }}">{{ $pt->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="b3">Бизнес3</label>
-                            <input type="text" class="form-control" id="b3" name="b3" value="{{ $cert->b3 }}" placeholder="Бизнес3" />
-                        </div>
 
                     </div>
                     <!-- /.box-body -->
@@ -100,6 +104,21 @@
                         <div class="form-group">
                             <label for="article_code">Код товара</label>
                             <input type="text" class="form-control" id="article_code" name="article_code" value="{{ $cert->article_code }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="b1">Бизнес1</label>
+                            <input type="text" class="form-control" id="b1" name="b1" value="{{ $cert->b1 }}" placeholder="Бизнес1" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="b2">Бизнес2</label>
+                            <input type="text" class="form-control" id="b2" name="b2" value="{{ $cert->b2 }}" placeholder="Бизнес2" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="b3">Бизнес3</label>
+                            <input type="text" class="form-control" id="b3" name="b3" value="{{ $cert->b3 }}" placeholder="Бизнес3" />
                         </div>
 
                         <div class="form-group">
@@ -135,19 +154,6 @@
                         <div class="form-group">
                             <label for="meta_keywords">Ключевые слова</label>
                             <input type="text" class="form-control" id="meta_keywords" value="{{ $cert->meta_keywords }}" name="meta_keywords" placeholder="meta_keywords" />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Список партнеров</label>
-                            <select class="form-control select2" style="width: 100%;" name="id_partner">
-                                @foreach($partner as $pt)
-                                    @if($cert->partner_id == $pt->id)
-                                    <option value="{{ $pt->id }}" selected="selected">{{ $pt->name }}</option>
-                                    @else
-                                    <option value="{{ $pt->id }}">{{ $pt->name }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
                         </div>
 
                     </div>

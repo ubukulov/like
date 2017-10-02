@@ -30,7 +30,8 @@
                         <div class="form-group">
                             <label>Список категории</label>
                             <select class="form-control select2" style="width: 100%;" id="id_main_cat" name="id_main_cat">
-                                @foreach($cat as $c)
+                                <option value="">-- Выберите --</option>
+                                @foreach($cats as $c)
                                     <option value="{{ $c->id }}">{{ $c->title }}</option>
                                 @endforeach
                             </select>
@@ -39,9 +40,7 @@
                         <div class="form-group">
                             <label>Список под категории</label>
                             <select class="form-control select2" style="width: 100%;" id="id_pod_cat" name="id_pod_cat">
-                                @foreach($pod_cat as $pc)
-                                    <option value="{{ $pc->id }}">{{ $pc->title }}</option>
-                                @endforeach
+
                             </select>
                         </div>
 
@@ -66,18 +65,17 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="b1">Бизнес1</label>
-                            <input type="text" class="form-control" id="b1" name="b1" placeholder="Бизнес1" />
+                            <label for="special3">Себестоимость товара</label>
+                            <input type="text" class="form-control" id="prime_cost" name="prime_cost" placeholder="Себестоимость товара" />
                         </div>
 
                         <div class="form-group">
-                            <label for="b2">Бизнес2</label>
-                            <input type="text" class="form-control" id="b2" name="b2" placeholder="Бизнес2" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="b3">Бизнес3</label>
-                            <input type="text" class="form-control" id="b3" name="b3" placeholder="Бизнес3" />
+                            <label>Список партнеров</label>
+                            <select class="form-control select2" style="width: 100%;" name="id_partner">
+                                @foreach($partner as $pt)
+                                    <option value="{{ $pt->id }}">{{ $pt->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                     </div>
@@ -92,6 +90,21 @@
                     <div class="form-group">
                         <label for="article_code">Код товара</label>
                         <input type="text" class="form-control" id="article_code" name="article_code">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="b1">Бизнес1</label>
+                        <input type="text" class="form-control" id="b1" name="b1" placeholder="Бизнес1" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="b2">Бизнес2</label>
+                        <input type="text" class="form-control" id="b2" name="b2" placeholder="Бизнес2" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="b3">Бизнес3</label>
+                        <input type="text" class="form-control" id="b3" name="b3" placeholder="Бизнес3" />
                     </div>
 
                     <div class="form-group">
@@ -127,15 +140,6 @@
                     <div class="form-group">
                         <label for="meta_keywords">Ключевые слова</label>
                         <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="meta_keywords" />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Список партнеров</label>
-                        <select class="form-control select2" style="width: 100%;" name="id_partner">
-                            @foreach($partner as $pt)
-                                <option value="{{ $pt->id }}">{{ $pt->name }}</option>
-                            @endforeach
-                        </select>
                     </div>
 
                 </div>

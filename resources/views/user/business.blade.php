@@ -1,6 +1,12 @@
 @extends('user/layout/user')
 @section('content')
     <div class="rowtsk-bkg">
+        @if(check_user_store_tarif(Auth::id()))
+        <div class="alert alert-success alert-dismissable">
+            Интернет магазин успешно создано! <br>
+            Доступен по адресу: <a href="http://{{ get_user_store_name(Auth::id()) }}" target="_blank">{{ get_user_store_name(Auth::id()) }}</a>
+        </div>
+        @endif
         <p style="font-size: 16px;">
             Подключите тариф "Business" и начните зарабатывать на продаже интересных предложений с супер скидками до 100%.
         </p>
