@@ -37,7 +37,9 @@
                                         {{ $cert->id }}
                                     </td>
                                     <td>
-                                        <img src="{{ asset('uploads/certs/small/'.$cert->image) }}" alt="" height="40" width="60" />{{ $cert->partner }}
+                                        @if(!empty($cert->image) AND file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/'.$cert->image))
+                                        <img src="{{ asset('uploads/certs/'.$cert->image) }}" alt="" height="40" width="60" />{{ $cert->partner }}
+                                        @endif
                                     </td>
                                     <td>
                                         {{ $cert->title }}

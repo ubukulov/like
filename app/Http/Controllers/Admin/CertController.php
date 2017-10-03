@@ -162,55 +162,47 @@ class CertController extends Controller
             'prime_cost' => $request->input('prime_cost')
         ];
 
-        $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/';
-
         if(!empty($data['image'])){
-            if(file_exists($from.$data['image'])){
-                $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image'];
-                $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$data['image'];
-                $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/small/'.$data['image'];
+            $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image'];
+            $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$data['image'];
+            $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/small/'.$data['image'];
 
-                // Вызываем класс
-                $img = new SimpleImage();
-                $img->load($from);
-                $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
-                $img->save($to);
-                $img->adaptive_resize(227, 140);
-                $img->save($to_mini);
-                unlink($from);
-            }
+            // Вызываем класс
+            $img = new SimpleImage();
+            $img->load($from);
+            $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
+            $img->save($to);
+            $img->adaptive_resize(227, 140);
+            $img->save($to_mini);
+            unlink($from);
         }
         if(!empty($data['image2'])){
-            if(file_exists($from.$data['image2'])){
-                $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image2'];
-                $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$data['image2'];
-                $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/small/'.$data['image2'];
+            $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image2'];
+            $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$data['image2'];
+            $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/small/'.$data['image2'];
 
-                // Вызываем класс
-                $img = new SimpleImage();
-                $img->load($from);
-                $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
-                $img->save($to);
-                $img->adaptive_resize(227, 140);
-                $img->save($to_mini);
-                unlink($from);
-            }
+            // Вызываем класс
+            $img = new SimpleImage();
+            $img->load($from);
+            $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
+            $img->save($to);
+            $img->adaptive_resize(227, 140);
+            $img->save($to_mini);
+            unlink($from);
         }
         if(!empty($data['image3'])){
-            if(file_exists($from.$data['image3'])){
-                $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image3'];
-                $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$data['image3'];
-                $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/small/'.$data['image3'];
+            $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image3'];
+            $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$data['image3'];
+            $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/small/'.$data['image3'];
 
-                // Вызываем класс
-                $img = new SimpleImage();
-                $img->load($from);
-                $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
-                $img->save($to);
-                $img->adaptive_resize(227, 140);
-                $img->save($to_mini);
-                unlink($from);
-            }
+            // Вызываем класс
+            $img = new SimpleImage();
+            $img->load($from);
+            $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
+            $img->save($to);
+            $img->adaptive_resize(227, 140);
+            $img->save($to_mini);
+            unlink($from);
         }
         $cert = Cert::find($id);
         $cert->update($data);

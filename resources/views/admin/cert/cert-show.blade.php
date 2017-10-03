@@ -171,10 +171,10 @@
                             <div class="form-group">
                                 <div id="image1">
                                     @if(!empty($cert->image))
-                                    <img  src="{{ asset('uploads/certs/small/'.$cert->image) }}" height="100">
+                                    <img  src="{{ asset('uploads/certs/'.$cert->image) }}" height="100">
                                     <input type="hidden" name="photo1" value="{{ $cert->image }}" />
                                     @else
-                                    <img src="{{ asset('img/no_thumb.png') }}"  height="100">
+                                    <img src="{{ asset('img/no_thumb.png') }}" height="100">
                                     @endif
                                 </div>
                                 <br>
@@ -186,7 +186,7 @@
                             <div class="form-group">
                                 <div id="image2">
                                     @if(!empty($cert->image2))
-                                        <img  src="{{ asset('uploads/certs/small/'.$cert->image2) }}" height="100">
+                                        <img  src="{{ asset('uploads/certs/'.$cert->image2) }}" height="100">
                                         <input type="hidden" name="photo2" value="{{ $cert->image2 }}" />
                                     @else
                                         <img src="{{ asset('img/no_thumb.png') }}"  height="100">
@@ -201,7 +201,7 @@
                             <div class="form-group">
                                 <div id="image3">
                                     @if(!empty($cert->image3))
-                                        <img  src="{{ asset('uploads/certs/small/'.$cert->image3) }}" height="100">
+                                        <img  src="{{ asset('uploads/certs/'.$cert->image3) }}" height="100">
                                         <input type="hidden" name="photo3" value="{{ $cert->image3 }}" />
                                     @else
                                         <img src="{{ asset('img/no_thumb.png') }}"  height="100">

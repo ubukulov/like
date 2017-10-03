@@ -138,6 +138,21 @@ $(document).ready(function(){
     $('#vyvod_amount').keyup(function () {
         account.vyvod_calc();
     });
+
+    // корзина
+    $('#btn_cureer').click(function(){
+        $('#btn_cureer').removeClass('cart_btn2 cart_btn_left2').addClass('cart_btn cart_btn_left');
+        $('#my_self').removeClass('cart_btn cart_btn_left').addClass('cart_btn2 cart_btn_left2');
+        $('#dostavka_kurerom').show();
+        $('#samo_vivoz').hide();
+    });
+    $('#my_self').click(function(){
+        $('#my_self').removeClass('cart_btn2 cart_btn_left').addClass('cart_btn cart_btn_left2');
+        $('#btn_cureer').removeClass('cart_btn cart_btn_left2').addClass('cart_btn2 cart_btn_left');
+        $('#dostavka_kurerom').hide();
+        $('#samo_vivoz').show();
+    });
+    // корзина
 });
 
 function taskButton_money(){

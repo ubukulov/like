@@ -7,12 +7,6 @@
     <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    {{--<link rel="stylesheet" href="{{ asset('components/popup.min.css') }}">--}}
-    {{--<link rel="stylesheet" href="{{ asset('components/menu.min.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('components/dropdown.min.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('components/transition.min.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('components/icon.min.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('components/modal.min.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
@@ -77,10 +71,12 @@
                     </div>
                     <?php if(isset($_SESSION['cart']) AND !empty($_SESSION['cart'])) :?>
                     <div class="col-sm-2" style="padding-top: 10px; float: right;">
-                    <span class="korsina">
-                        Корзина <img src="{{ asset('img/shopping-cart.png') }}" alt="cart">
-                        <sup><?=$_SESSION['total_quantity']?></sup>
-                    </span>
+                        <a href="{{ url('cart') }}">
+                            <span class="korsina">
+                            Корзина <img src="{{ asset('img/shopping-cart.png') }}" alt="cart">
+                            <sup><?=$_SESSION['total_quantity']?></sup>
+                        </span>
+                        </a>
                     </div>
                     <?php endif; ?>
                 </div>

@@ -1061,3 +1061,6 @@ a .rss:hover
     background: #0099CC;
     color: #ffffff;
 }
+.td{
+    padding: 20px !important;
+}

@@ -1,8 +1,8 @@
 //Создаем массив с картинками
 var images =  Array();
 $(function(){
-    //Загрузка первого изображения
-    if($("div").is("#image1")){
+    if($("div").is("#image1")) {
+        //Загрузка первого изображения
         var status1=$('#image1');
         new AjaxUpload($('#upload1'), {
             action: '/js/upload-file.php',
@@ -34,8 +34,8 @@ $(function(){
             }
         });
     }
-
-    if($("div").is("#image2")){
+    
+    if($("div").is("#image2")) {
         //Загрузка второго изображения
         var status2=$('#image2');
         new AjaxUpload($('#upload2'), {
@@ -68,7 +68,6 @@ $(function(){
             }
         });
     }
-
 
     if($("div").is("#image3")) {
         //Загрузка третего изображения

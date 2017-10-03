@@ -2,85 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Likemoney.me</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.1, maximum-scale=1.0, minimum-scale=0.25,  user-scalable=yes">
+    <title>Likemoney.me</title>
     <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/partner.css') }}">
-    <link rel="stylesheet" href="{{ asset('lib/jquery_ui/jquery-ui.min.css') }}">
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/semantic.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 <div id="wrap">
-    <nav id="mainNavigation" class="navbar navbar-default" role="navigation">
+    <div class="top-header">
         <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ route('home') }}"></a>
+            <div class="col-sm-8 nopad">
+                <nav class="top_menu">
+                    <li class="main-li"><a href="/">Главная</a></li>
+                    <li class="#"><a href="#">Новости</a></li>
+                    <li class="#"><a href="#">Все о нас</a></li>
+                    <li class="#"><a href="#">Партнерам</a></li>
+                    <li class="#"><a href="#">+ Предложить свой товар</a></li>
+                </nav>
             </div>
-            <!-- /.navbar-header -->
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="active">
-                        <a href="index">О НАС</a>
-                    </li>
-                    <li>
-                        <a href="leading_2">КОМПАНИЯМ</a>
-                    </li>
-                    <li class="">
-                        <a href="leading_1">ПОЛЬЗОВАТЕЛЯМ</a>
-                    </li>
-                    <li class="login_button">
-                        @if(Auth::check())
-                            <?php if(isset($_SESSION['cart']) AND !empty($_SESSION['cart'])) :?>
-                            <a href="{{ url('/cart') }}" style="float: left; padding: 0px; top: -2px;"><img src="{{ asset('img/basket2.png') }}" alt=""> <?=$_SESSION['total_quantity']?> товар(-ов) в корзине</a>
-                            <?php endif; ?>
-                            <a style="color: #000; cursor: pointer; float: left;" href="{{ url('user/account') }}">
-                                @if (!empty(Auth::user()->avatar))
-                                    <img class="my_avatar_small" src="{{ asset('uploads/users/small/'.Auth::user()->avatar) }}" alt="user-photo">
-                                @else
-                                    <img class="my_avatar_small" src="{{ asset('img/blank_avatar_220.png') }}" alt="user-photo">
-                                @endif
-                                &nbsp;
-                                {{ Auth::user()->firstname }}
-                                &nbsp;
-                                <font color="#619F05">{{ __decode(Auth::user()->fm, env('KEY')) }} тг</font>
-                            </a>
-                            <br>
-                        @else
-                            <a style="color: #000; cursor: pointer;" href="{{ url('user/login') }}">
-                                <i class="fa fa-male"></i>&nbsp;&nbsp;ЛИЧНЫЙ КАБИНЕТ
-                            </a>
-                            <br>
-                        @endif
-                    </li>
-                </ul>
+            <div class="col-sm-4 text-right nopad">
+                <span class="kabinet">
+                    <i class="user icon"></i>
+                    <a style="color: #ffffff; text-decoration: none;" href="{{ url('user/login') }}">Личный кабинет</a>
+                </span>
             </div>
-            <div class="clearfix"></div>
-            <!-- /.navbar-collapse -->
         </div>
-    </nav><!-- /.nav -->
+    </div>
+    <div class="header2">
+        <nav class="navbar navbar-default">
+            <div class="container cont">
+                <div class="col-sm-2">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" rel="nofollow"><img src="{{ asset('img/logo.png') }}" alt="logo"></a>
+                </div>
+                <div class="col-sm-9">
+                    <div class="col-sm-4">
+                        Прием заказов по WhatsApp <br>
+                        <i class="fa fa-whatsapp">&nbsp; &nbsp; +7(777) 447-77-04</i>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="ui action input">
+                            <input type="text" style="width: 350px;">
+                            <button class="ui button">Поиск</button>
+                        </div>
+                    </div>
+                </div>
+                @if(isset($_SESSION['total_quantity']))
+                <div class="col-sm-1">
+                    <span class="korsina">
+                        Корзина <img src="{{ asset('img/shopping-cart.png') }}" alt="cart">
+                        <sup>{{ $_SESSION['total_quantity'] }}</sup>
+                    </span>
+                </div>
+                @endif
+            </div>
+        </nav><!-- /.nav -->
+    </div>
     <!-- /.header -->
 
     <div id="content" class="ui container">
-        <section class="blog-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        @yield('content')
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <div class="content section-wrapper" style="padding-top: 0px;">
+            @yield('content')
+        </div>
     </div>
-
     @include('pattern.footer')
 </div>
 </body>
-<script src="{{ asset('lib/jquery_ui/jquery-ui.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+{{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
+<script src="{{ asset('js/semantic.min.js') }}"></script>
+<script src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 </html>

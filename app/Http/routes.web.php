@@ -46,5 +46,6 @@ Route::get('/cart/delete/{id}', 'CartController@delete'); // удаление т
 Route::get('/cart/count/{id}/{qty}', 'CartController@count'); // пересчитать корзину
 Route::get('/cart/add/{id}', 'CartController@add_to_cart'); // положить товар в корзину
 Route::post('/cart/order', 'CartController@order'); //
+Route::get('/cart/checkout', 'CartController@checkout'); // оформление заказа
 ### Конец ###
 Route::get('/market', 'IndexController@market');

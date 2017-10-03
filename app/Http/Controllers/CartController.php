@@ -245,4 +245,9 @@ class CartController extends Controller
         $balance = $result[0]->balance + $sum;
         DB::update("UPDATE business_account SET `balance` = '$balance' WHERE id=1");
     }
+
+    # оформление заказа
+    public function checkout(){
+        return view('cart/checkout');
+    }
 }
