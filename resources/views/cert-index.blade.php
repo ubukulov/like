@@ -12,17 +12,17 @@
                     <div class="carousel-inner" role="listbox">
                         @if(!empty($cert->image))
                         <div class="item active">
-                            <img width="400" src="{{ asset('uploads/certs/'.$cert->image) }}" alt="foto">
+                            <img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image) }}" alt="foto">
                         </div>
                         @endif
                         @if(!empty($cert->image2))
                         <div class="item">
-                            <img width="400" src="{{ asset('uploads/certs/'.$cert->image2) }}" alt="foto">
+                            <img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image2) }}" alt="foto">
                         </div>
                         @endif
                         @if(!empty($cert->image3))
                         <div class="item">
-                            <img width="400" src="{{ asset('uploads/certs/'.$cert->image3) }}" alt="foto">
+                            <img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image3) }}" alt="foto">
                         </div>
                         @endif
                     </div>
@@ -196,7 +196,7 @@
                                     ?></font>
                             </td>
                             <td>
-                                <a style="margin-bottom: 10px;" class="btn btn-danger" @if(Auth::check()) href="{{ url('/cart/offer/'.$sub->id) }}" @else href="#" @endif>Купить сейчас</a><br>
+                                <a style="margin-bottom: 10px;" class="btn btn-danger" @if(Auth::check()) href="{{ url('/cart/offer/'.$sub->id) }}" @else href="{{ url('/user/login') }}" @endif>Купить сейчас</a><br>
                                 <button type="button" onclick="addToCart({{ $sub->id }});" class="btn btn-danger">Добавить в корзину</button>
                             </td>
                         </tr>

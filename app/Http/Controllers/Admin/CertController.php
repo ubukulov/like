@@ -11,6 +11,7 @@ use App\Category;
 use App\Partner;
 use Illuminate\Support\Facades\DB;
 use App\SimpleImage;
+use Intervention\Image\Facades\Image as Image;
 
 class CertController extends Controller
 {
@@ -168,13 +169,16 @@ class CertController extends Controller
             $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/small/'.$data['image'];
 
             // Вызываем класс
-            $img = new SimpleImage();
-            $img->load($from);
-            $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
-            $img->save($to);
-            $img->adaptive_resize(227, 140);
-            $img->save($to_mini);
-            unlink($from);
+//            $img = new SimpleImage();
+//            $img->load($from);
+//            $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
+//            $img->save($to);
+//            $img->adaptive_resize(227, 140);
+//            $img->save($to_mini);
+//            unlink($from);
+//            $img = Image::make($from)->resize(400, 252);
+            $img = Image::make($from);
+            $img->fit(400,252)->save($to, 90);
         }
         if(!empty($data['image2'])){
             $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image2'];
@@ -182,13 +186,16 @@ class CertController extends Controller
             $to_mini = $_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/small/'.$data['image2'];
 
             // Вызываем класс
-            $img = new SimpleImage();
-            $img->load($from);
-            $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
-            $img->save($to);
-            $img->adaptive_resize(227, 140);
-            $img->save($to_mini);
-            unlink($from);
+//            $img = new SimpleImage();
+//            $img->load($from);
+//            $img->fit_to_width(900); // В аргумент ширину картинки, которая нужна(Она пропорц. уменьш.)
+//            $img->save($to);
+//            $img->adaptive_resize(227, 140);
+//            $img->save($to_mini);
+//            unlink($from);
+//            $img = Image::make($from)->resize(400, 252);
+            $img = Image::make($from);
+            $img->fit(400,252)->save($to, 90);
         }
         if(!empty($data['image3'])){
             $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image3'];

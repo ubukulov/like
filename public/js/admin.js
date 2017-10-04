@@ -186,3 +186,17 @@ function search_by_card() {
         user_content.html(html);
     });
 }
+// одобрение магазина
+function confirm_store(id) {
+    var del = confirm('Вы действительно хотите одобрить?');
+    if(del){
+        window.location = '/admin/business/up/'+id;
+    }
+}
+// отказ магазина
+function cancel_store(id) {
+    var del = confirm('Вы действительно хотите отменить?');
+    if(del){
+        window.location = '/admin/business/down/'+id;
+    }
+}

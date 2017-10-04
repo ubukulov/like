@@ -79,6 +79,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         # Бизнес
         Route::get('/business', 'IndexController@business');
         Route::get('/business/up/{id}', 'IndexController@up');
+        Route::get('/business/down/{id}', 'IndexController@down');
     });
 
     # Привилегии для менеджера

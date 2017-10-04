@@ -16,7 +16,7 @@
                             <a href="{{ url('/cert/'.$cert->id) }}">
 
                                 <div class="portfolio-img" style="height: 160px; cursor: pointer;">
-                                    <img @if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/small/'.$cert->image) && !empty($cert->image)) src="{{ asset('uploads/certs/small/'.$cert->image) }}" @else src="{{ asset('img/no_photo227x140.png') }}" @endif alt="port-1" class="port-item">
+                                    <img @if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/'.$cert->image) && !empty($cert->image)) src="{{ asset('uploads/certs/'.$cert->image) }}" @else src="{{ asset('img/no_photo227x140.png') }}" @endif alt="port-1" class="port-item">
                                     <div class="portfolio-img-hover">
 
                                     </div>

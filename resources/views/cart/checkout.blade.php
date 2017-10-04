@@ -44,16 +44,15 @@
                     <button type="button" id="my_self" class="cart_btn2 cart_btn_left2" style="float: left;">Самовывоз</button>
                     <br><br>
                     <div id="dostavka_kurerom">
-                        <p style="margin-top: 20px;">Условия доставки <br>
-                            Завтра, <?=date("d")?> октября, в любое время, 290 ₽</p>
+                        <p style="margin-top: 20px;">
+                            Сегодня или завтра, в любое время, <strong>500тг</strong></p>
+                        <p>Для точности с Вами свяжется наш оператор</p>
                     </div>
                     <div id="samo_vivoz" style="display: none;">
                         <p style="margin-top: 20px;">
                             Пункт выдачи <br>
-                            <strong>Москва, МКАД 25км вл1</strong> <br>
-
-                            <i class="wait icon"></i>&nbsp;&nbsp;10:00 – 21:00, без выходных <br>
-                            Можно забрать 4 – 6 октября, <strong>бесплатно</strong>
+                            <strong>г. Алматы</strong>, Гоголя 13, уг. Барибаева, 1 подъезд, цокольный этаж<br>
+                            С 9:00 – 21:00, без выходных <br>
                         </p>
                     </div>
                     <br>
@@ -63,14 +62,6 @@
             </div><!-- Checkout / End -->
             <!-- Payment and Delivery -->
             <div class="box">
-                    <div class="well text-center">
-                        <?php if(isset($_GET['coupon'])) :?>
-                        <span style="color: red;">Вы получите на свой телефон sms купон. Предъявите его партнёру для получения скидки.</span>
-                        <?php else :?>
-                        <span style="color: red;">Клиент получит SMS с кодом для активации сертификата. <br>
-                Указывайте верные данные</span>
-                        <?php endif;?>
-                    </div>
                     <div class="row">
                         <div class="col-md-8 col-md-push-3">
                             <div class="form-group">
@@ -106,6 +97,14 @@
                                     <label style="font-size: 13px;">Наличными при получении</label>
                                 </div>
                             </div>
+
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="status" value="5" checked="checked" onchange="payment(5);">
+                                    <label style="font-size: 13px;">Оплата в офисе</label>
+                                </div>
+                            </div>
+
                             <div class="field">
                                 <div class="ui radio checkbox">
                                     <input type="radio" name="status" value="2" checked="checked" onchange="payment(2);">
@@ -118,12 +117,7 @@
                                     <label style="font-size: 13px;">Visa/Mastercard</label>
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="status" value="5" checked="checked" onchange="payment(5);">
-                                    <label style="font-size: 13px;">Оплата в офисе</label>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     {{--<div class="row marginBottom40">--}}

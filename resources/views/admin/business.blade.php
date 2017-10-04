@@ -64,8 +64,8 @@
                                     {{ $item->created_at }}
                                 </td>
                                 <td>
-                                    <a href="{{ url('/admin/business/up/'.$item->id) }}" class="btn btn-warning">Одобрить</a>
-                                    <button type="button" class="btn btn-danger">Отменить</button>
+                                    <button type="button" @if($item->status == '1') title="Уже одобрено" disabled="disabled" @endif onclick="confirm_store({{ $item->id }});" class="btn btn-warning">Одобрить</button>
+                                    <button type="button" @if($item->status == '1') title="Уже одобрено" disabled="disabled" @endif onclick="cancel_store({{ $item->id }});" class="btn btn-danger">Отменить</button>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
