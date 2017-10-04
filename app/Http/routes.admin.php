@@ -80,6 +80,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('/business', 'IndexController@business');
         Route::get('/business/up/{id}', 'IndexController@up');
         Route::get('/business/down/{id}', 'IndexController@down');
+        # Новости
+        Route::get('/news', 'NewsController@index');
+        Route::get('/news/create', 'NewsController@create');
+        Route::post('/news/store', 'NewsController@store');
+        Route::get('/news/{id}', 'NewsController@edit');
+        Route::post('/news/{id}', 'NewsController@update');
+        Route::get('/news/delete/{id}', 'NewsController@destroy');
     });
 
     # Привилегии для менеджера

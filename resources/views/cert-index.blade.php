@@ -84,7 +84,7 @@
                 </div>
                 <hr>
                 <div class="cert_statistics" style="padding-bottom: 10px;">
-                    <font style="color:#d7d7d7"> <i class="fa fa-thumbs-up fa-2"></i></font>&nbsp;&nbsp;Уже купили:  чел.<br /><font style="color:#d7d7d7"><i class="fa fa-eye fa-2"></i></font>&nbsp;&nbsp;Посмотрели задание: <?= $cert->views ?> чел.
+                    <font style="color:#d7d7d7"> <i class="fa fa-thumbs-up fa-2"></i></font>&nbsp;&nbsp;Уже купили:  чел.<br /><font style="color:#d7d7d7"><i class="fa fa-eye fa-2"></i></font>&nbsp;&nbsp;Заинтересовались: <?= $cert->views ?> чел.
                 </div>
                 <hr>
                 <div class="cert_social">
@@ -112,8 +112,8 @@
         <br><br>
         <div id="tabs">
             <ul>
-                <li><a href="#tabs-1">Задание</a></li>
-                <li><a href="#tabs-2">Описание</a></li>
+                <li><a href="#tabs-1">Описание</a></li>
+                <li><a href="#tabs-2">Характеристики</a></li>
                 <li><a href="#tabs-3">Отзывы ()</a></li>
             </ul>
             <div id="tabs-1">

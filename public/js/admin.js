@@ -200,3 +200,10 @@ function cancel_store(id) {
         window.location = '/admin/business/down/'+id;
     }
 }
+// удаление новости
+function delete_news(id) {
+    var del = confirm('Вы действительно хотите удалить?');
+    if(del){
+        window.location = '/admin/news/delete/'+id;
+    }
+}
