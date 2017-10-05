@@ -54,14 +54,14 @@
                                 <td>
                                     {{ $new->created_at }}
                                 </td>
+
                                 <td>
                                     <a href="{{ url('admin/news/'.$new->id) }}" class="btn btn-warning">Редактировать</a>
+                                    @if(check_admin_users_role(Auth::guard('admin')->user()->role))
+                                    <button onclick="delete_news({{ $new->id }});" class="btn btn-danger">Удалить</button>
+                                    @endif
                                 </td>
-                                @if(check_admin_users_role(Auth::guard('admin')->user()->role))
-                                    <td>
-                                        <button onclick="delete_news({{ $new->id }});" class="btn btn-danger">Удалить</button>
-                                    </td>
-                                @endif
+
                             </tr>
                             <?php endforeach; ?>
                             </tbody>

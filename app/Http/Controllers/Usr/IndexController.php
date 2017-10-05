@@ -129,4 +129,24 @@ class IndexController extends Controller
             return redirect()->back()->with('message', 'Успешно отправлено. Ждите!');
         }
     }
+
+    public function bank(Request $request){
+        $image = $request->input('image');
+        $user = User::find($this->id_user);
+        if(!empty($image)){
+            $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$image;
+            $to = $_SERVER['DOCUMENT_ROOT'] . '/uploads/users/bank/'.$image;
+
+            // Вызываем класс
+            $img = new SimpleImage();
+            $img->load($from);
+            $img->adaptive_resize(227, 140);
+            $img->save($to);
+            unlink($from);
+        }
+        $user->update([
+            'bank_card' => $image
+        ]);
+        return 0;
+    }
 }

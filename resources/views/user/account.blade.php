@@ -19,6 +19,21 @@
             <div class="field">
                 <img src="{{ asset('img/card.png') }}" alt="card_likemone.me" align="right" class="img-responsive">
             </div>
+
+            <div class="field" style="text-align: center;">
+                <input type="hidden" id="token" value="{{ csrf_token() }}">
+                <span>Для вывода средств необходима Ваша карта любого банка, загрузите фото лицевой части</span>
+                <div id="image1">
+                    @if(!empty(Auth::user()->bank_card))
+                        <img  src="{{ asset('uploads/users/bank/'.Auth::user()->bank_card) }}">
+                    @else
+                        <img src="{{ asset('img/no_photo227x140.png') }}" alt="">
+                    @endif
+                </div>
+                <br>
+                <button type="button" style="width: 50%; margin-left: 20%;" id="upload5" class="btn btn-success">Загрузить</button>
+                <div id="msg" class="hidden"></div>
+            </div>
         </div>
     </div>
 

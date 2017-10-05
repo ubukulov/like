@@ -71,7 +71,7 @@
 
                         <div class="form-group">
                             <label for="description">Полные описание</label>
-                            <textarea id="description" class="form-control wysiwyg" name="text"></textarea>
+                            <textarea id="description" class="form-control wysiwyg" name="content"></textarea>
                         </div>
 
                         <div class="box-footer">

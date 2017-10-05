@@ -169,6 +169,7 @@
 <script src="{{ asset('lib/froala/js/froala_editor.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('lib/froala/js/languages/ru.js') }}"></script>
 <script src="{{ asset('js/ajaxupload.js') }}"></script>
-<script src="{{ asset('js/upload_image.js') }}"></script>
+{{--<script src="{{ asset('js/upload_image.js') }}"></script>--}}
+<script src="{{ asset('js/upload.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 </html>

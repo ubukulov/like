@@ -153,6 +153,9 @@ $(document).ready(function(){
         $('#samo_vivoz').show();
     });
     // корзина
+    $('.main_button').click(function(){
+        window.location = '/user/login';
+    });
 });
 
 function taskButton_money(){

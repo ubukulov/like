@@ -14,6 +14,7 @@ Route::group(['namespace' => 'Usr', 'prefix' => 'user'], function(){
         Route::get('/logout', 'IndexController@logout');
         Route::get('/setting', 'IndexController@setting_form');
         Route::post('/setting', 'IndexController@setting_save');
+        Route::post('/account/bank', 'IndexController@bank');
         # Task
         Route::get('/task', 'TaskController@index'); // список задании
         Route::get('/task/commits/{id}', 'TaskController@commits'); // 

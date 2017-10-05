@@ -36,8 +36,8 @@
                                     <font color="#619F05">{{ __decode(Auth::user()->fm, env('KEY')) }} тг</font>
                                 </a>
                     @else
-                    <i class="user icon"></i>
-                    <a style="color: #ffffff; text-decoration: none;" href="{{ url('user/login') }}">Личный кабинет</a>
+                        <i class="user icon"></i>
+                        <a style="color: #ffffff; text-decoration: none;" href="{{ url('user/login') }}">Личный кабинет</a>
                     @endif
                 </span>
             </div>
@@ -99,46 +99,6 @@
 
     <div id="content" class="ui container">
         <div class="content section-wrapper">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2><small><font color="#62A005" size="5"><i class="fa fa-thumbs-up"></i></font>&nbsp; Сделок за день: 0</small></h2>
-                </div>
-
-                <div class="col-md-6">
-                    <h2><small><font color="#62A005" size="5"><i class="fa fa-credit-card-alt"></i></font>&nbsp; Лучший доход за день: 0 тг.</small></h2>
-                </div>
-            </div>
-
-            <hr class="hidden-sm hidden-xs">
-            <!-- /.section-title -->
-            <div class="task-menu" id="task-menu">
-                <ul class="main_menu navbar-nav navbar-left">
-                    <li class="active-task">
-                        <a href="{{ route('home') }}" class="active">Offline cashback</a>
-                    </li>
-                    <li>
-                        <a class="link_a" href="#">
-                            Online Cashback
-                        </a>
-                    </li>
-                    <li>
-                        <a class="link_a" href="#">
-                            OptPrice
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="link_a" href="#">Магазин</a>
-                    </li>
-                    <li>
-                        <a class="link_a" href="{{ route('task') }}">Task</a>
-                    </li>
-                    <li>
-                        <a class="link_a" href="https://admotionz.com" rel="nofollow">Зарабатывай онлайн</a>
-                    </li>
-                </ul>
-                <!-- /.nav -->
-            </div>
 
             @yield('content')
         </div>
