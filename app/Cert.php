@@ -44,4 +44,47 @@ class Cert extends Model
     public static function countCertOfPartner($id_partner){
         return count(Cert::where(['partner_id' => $id_partner])->get());
     }
+
+    // Подсчитываем общую сумму
+    public static function get_offer($arr){
+        $total_sum = 0;
+        $str = implode(",", array_keys($arr));
+        $sql = "SELECT * FROM certs WHERE id IN($str)";
+        $result = DB::select($sql);
+        if(count($result) > 0){
+            foreach($result as $key=>$val){
+                $_SESSION['cart'][$result[$key]->id]['title'] = $result[$key]->title;
+                $_SESSION['cart'][$result[$key]->id]['price'] = $result[$key]->special2;
+                $_SESSION['cart'][$result[$key]->id]['img']   = $result[$key]->image;
+                $_SESSION['cart'][$result[$key]->id]['id']    = $result[$key]->id;
+                $total_sum += $_SESSION['cart'][$result[$key]->id]['qty'] * $result[$key]->special2;
+            }
+            return $total_sum;
+        }
+    }
+
+    # пересчитаем корзину
+    public static function counted_cart_bus($id_item, $qty){
+        $qty = $qty - $_SESSION['cart'][$id_item]['qty'];
+        if(array_key_exists($id_item, $_SESSION['cart'])){
+            $_SESSION['cart'][$id_item]['qty'] += $qty;
+        }else{
+            $_SESSION['cart'][$id_item]['qty'] = 1;
+        }
+        self::total_quantity();
+        $_SESSION['total_sum'] = self::get_offer($_SESSION['cart']);
+        return 1;
+    }
+
+    # Кол-во товаров в корзине
+    public static function total_quantity(){
+        $_SESSION['total_quantity'] = 0;
+        foreach($_SESSION['cart'] as $key=>$value){
+            if(isset($value['price'])){
+                $_SESSION['total_quantity'] += $value['qty'];
+            }else{
+                unset($_SESSION['cart'][$key]);
+            }
+        }
+    }
 }

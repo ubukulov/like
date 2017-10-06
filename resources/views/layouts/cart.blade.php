@@ -54,14 +54,18 @@
                         </div>
                     </div>
                 </div>
-                @if(isset($_SESSION['total_quantity']))
                 <div class="col-sm-1">
+                    <a href="{{ url('/cart') }}">
                     <span class="korsina">
-                        Корзина <img src="{{ asset('img/shopping-cart.png') }}" alt="cart">
-                        <sup>{{ $_SESSION['total_quantity'] }}</sup>
+                    Корзина <img src="{{ asset('img/shopping-cart.png') }}" alt="cart">
+                        @if(isset($_SESSION['total_quantity']))
+                            <sup id="sup">{{ $_SESSION['total_quantity'] }}</sup>
+                        @else
+                            <sup id="sup">0</sup>
+                        @endif
                     </span>
+                    </a>
                 </div>
-                @endif
             </div>
         </nav><!-- /.nav -->
     </div>

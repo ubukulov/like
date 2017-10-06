@@ -22,7 +22,7 @@
             <div class="col-sm-8 nopad">
                 <nav class="top_menu">
                     <li class="main-li"><a href="/">Главная</a></li>
-                    <li class="#"><a href="#">Новости</a></li>
+                    <li class="#"><a href="/news">Новости</a></li>
                     <li class="#"><a href="#">Все о нас</a></li>
                     <li class="#"><a href="#">Партнерам</a></li>
                     <li class="#"><a href="#">+ Предложить свой товар</a></li>
@@ -47,9 +47,9 @@
                         <span class="icon-bar"></span>
                     </button>
                     @if(check_user_store_img(Auth::id()))
-                        <a href="#" rel="nofollow"><img src="{{ asset('uploads/users/store/'.check_user_store_img(Auth::id())) }}" alt=""></a>
+                        <a href="/" rel="nofollow"><img src="{{ asset('uploads/users/store/'.check_user_store_img(Auth::id())) }}" alt=""></a>
                     @else
-                        <a href="#" rel="nofollow"><img src="{{ asset('img/opt_price_logo_red.png') }}" alt=""></a>
+                        <a href="/" rel="nofollow"><img src="{{ asset('img/opt_price_logo_red.png') }}" alt=""></a>
                     @endif
                 </div>
                 <div class="col-sm-9">
@@ -65,10 +65,16 @@
                     </div>
                 </div>
                 <div class="col-sm-1">
+                    <a href="{{ url('/cart') }}">
                     <span class="korsina">
-                        Корзина <img src="{{ asset('img/shopping-cart.png') }}" alt="cart">
-                        <sup>0</sup>
+                    Корзина <img src="{{ asset('img/shopping-cart.png') }}" alt="cart">
+                        @if(isset($_SESSION['total_quantity']))
+                            <sup id="sup">{{ $_SESSION['total_quantity'] }}</sup>
+                        @else
+                            <sup id="sup">0</sup>
+                        @endif
                     </span>
+                    </a>
                 </div>
             </div>
         </nav><!-- /.nav -->

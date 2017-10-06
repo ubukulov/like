@@ -1,9 +1,9 @@
 @extends('layouts.cart')
 @section('content')
-    <div class="" style="width: 60%; margin: 20px auto;">
+    <div class="" style="width: 80%; margin: 20px auto;">
 
         <?php if(isset($_SESSION['cart']) AND !empty($_SESSION['cart'])) :?>
-        <form method="post" action="{{ url('/cart/order') }}">
+        <form method="post" action="{{ url('/store/order') }}">
             {{ csrf_field() }}
             <div class="checkout-holder">
                 <div class="table-responsive table-checkout">
@@ -15,12 +15,19 @@
                         <?php foreach($_SESSION['cart'] as $key=>$val) :?>
                         <tr>
                             <td class="col-lg-5 td">
-                                <a href="#"><span class="product-desc-alt"><?=$val['name'];?></span></a>
+                                <a href="{{ url('/item/'.$val['id']) }}">
+                                    @if(file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$val['img']) AND !empty($val['img']))
+                                        <img class="cart_img" width="100" src="{{ asset('uploads/certs/'.$val['img']) }}" alt="">
+                                    @else
+                                        <img class="cart_img" width="100" src="{{ asset('img/no_photo227x140.png') }}" alt="">
+                                    @endif
+                                </a>
+                                <a href="{{ url('/item/'.$val['id']) }}"><span class="product-desc-alt"><?=$val['title'];?></span></a>
                             </td>
 
                             <td class="td">
                                 <div class="quantity">
-                                    <input style="width: 80px; text-align: center;" class="input-text qty text form-control cart_input" id="qty<?=$key;?>" type="text" value="<?=$val['qty'];?>">
+                                    <input style="width: 80px; text-align: center;" class="input-text qty text form-control cart_input2" id="qty<?=$key;?>" type="text" value="<?=$val['qty'];?>">
                                 </div>
                             </td>
 
@@ -40,6 +47,7 @@
                     <br>
                     <h3><strong>Способ получения</strong></h3>
                     <hr>
+                    <input type="hidden" id="delivery" name="delivery" value="1">
                     <button type="button" id="btn_cureer" class="cart_btn cart_btn_left" style="float: left;">Доставка курьером</button>
                     <button type="button" id="my_self" class="cart_btn2 cart_btn_left2" style="float: left;">Самовывоз</button>
                     <br><br>
@@ -56,29 +64,28 @@
                         </p>
                     </div>
                     <br>
-                    <h3><strong>Данные покупателя</strong></h3>
-                    <hr><br>
                 </div>
-            </div><!-- Checkout / End -->
-            <!-- Payment and Delivery -->
-            <div class="box">
-                    <div class="row">
-                        <div class="col-md-8 col-md-push-3">
-                            <div class="form-group">
-                                <input class="form-control centered-form" id="inputEmail" name="email" placeholder="E-mail" type="email">
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-md-push-3">
-                            <div class="form-group">
-                                <input class="form-control centered-form phone" id="phone" name="phone" required="required" placeholder="Моб. Телефон" type="text">
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-md-push-3">
-                            <div class="form-group">
-                                <textarea name="address" class="form-control" id="address" cols="30" rows="3" placeholder="Адрес доставки"></textarea>
-                            </div>
+                <h3><strong>Данные покупателя</strong></h3>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control centered-form" id="inputEmail" name="email" placeholder="E-mail" type="email">
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control centered-form phone" id="phone" name="phone" required="required" placeholder="Моб. Телефон" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea name="address" class="form-control" id="address" cols="30" rows="3" placeholder="Адрес доставки"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Checkout / End -->
+
                     <div class="">
                         <h3><strong>Способ оплаты</strong></h3>
                     </div>
@@ -179,7 +186,6 @@
                             8. Совершайте покупки со скидкой от 50 до 100%.
                         </pre-pay>
                     </div>
-            </div>
         </form>
         <?php elseif(isset($_SESSION['order'])) :?>
         <div style="width: 700px; margin: 0 auto;">

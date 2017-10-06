@@ -1304,3 +1304,6 @@ span.korsina {
 .news_date{
     font-size: 13px;
 }
+.cart_img{
+    float: left; margin-right: 5px;
+}

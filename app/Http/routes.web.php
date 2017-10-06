@@ -47,9 +47,13 @@ Route::get('/cart/count/{id}/{qty}', 'CartController@count'); // пересчи�
 Route::get('/cart/add/{id}', 'CartController@add_to_cart'); // положить товар в корзину
 Route::post('/cart/order', 'CartController@order'); //
 Route::get('/cart/checkout', 'CartController@checkout'); // оформление заказа
-
 # новости
 Route::get('/news', 'NewsController@index'); // список новостей
 Route::get('/news/{id}', 'NewsController@show');
+
+# магазин
+Route::get('/item/{id}', 'StoreController@item');
+Route::get('/cart/put/{id}', 'StoreController@add_to_cart'); // положить товар в корзину
+Route::get('/store/count/{id}/{qty}', 'StoreController@count'); // пересчитать корзину
+Route::post('/store/order', 'StoreController@order');
 ### Конец ###
-Route::get('/market', 'IndexController@market');

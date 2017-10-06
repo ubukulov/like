@@ -1,6 +1,6 @@
 @extends('layouts.cart')
 @section('content')
-    <div class="" style="width: 60%; margin: 20px auto;">
+    <div class="" style="width: 80%; margin: 20px auto;">
 
         <?php if(isset($_SESSION['cart']) AND !empty($_SESSION['cart'])) :?>
         <form method="post" action="{{ url('/cart/order') }}">
@@ -20,7 +20,14 @@
                         <?php foreach($_SESSION['cart'] as $key=>$val) :?>
                         <tr>
                             <td class="col-lg-5 td">
-                                <a href="#"><span class="product-desc-alt"><?=$val['name'];?></span></a>
+                                <a href="{{ url('/item/'.$val['id']) }}">
+                                @if(file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$val['img']) AND !empty($val['img']))
+                                    <img class="cart_img" width="100" src="{{ asset('uploads/certs/'.$val['img']) }}" alt="">
+                                @else
+                                    <img class="cart_img" width="100" src="{{ asset('img/no_photo227x140.png') }}" alt="">
+                                @endif
+                                </a>
+                                <a href="{{ url('/item/'.$val['id']) }}"><span class="product-desc-alt"><?=$val['title'];?></span></a>
                             </td>
 
                             <td class="td">

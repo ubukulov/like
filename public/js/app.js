@@ -131,6 +131,31 @@ $(document).ready(function(){
             }
         });
     });
+    $(".cart_input2").each(function () {
+        var qty_start = $(this).val();
+        $(this).change(function () {
+            var qty = $(this).val();
+            var res = confirm("Пересчитать корзину?");
+            if(res){
+                var id = $(this).attr("id");
+                id = id.substr(3);
+                if(!parseInt(qty)){
+                    qty = qty_start;
+                }
+                $.get("/store/count/"+id+"/"+qty, function (data) {
+                    data = JSON.parse(data);
+                    if(data == 1){
+                        window.location = '/cart';
+                    }else{
+                        alert("Пересчитать корзину по каким то причинам не получилось");
+                        window.location = '/cart';
+                    }
+                });
+            }else{
+                $(this).val(qty_start);
+            }
+        });
+    });
     $('.phone').each(function(){
         $(this).mask("+7 (999)-999-99-99");
     });
@@ -145,12 +170,14 @@ $(document).ready(function(){
         $('#my_self').removeClass('cart_btn cart_btn_left').addClass('cart_btn2 cart_btn_left2');
         $('#dostavka_kurerom').show();
         $('#samo_vivoz').hide();
+        $('#delivery').val(1);
     });
     $('#my_self').click(function(){
         $('#my_self').removeClass('cart_btn2 cart_btn_left').addClass('cart_btn cart_btn_left2');
         $('#btn_cureer').removeClass('cart_btn cart_btn_left2').addClass('cart_btn2 cart_btn_left');
         $('#dostavka_kurerom').hide();
         $('#samo_vivoz').show();
+        $('#delivery').val(2);
     });
     // корзина
     $('.main_button').click(function(){
@@ -454,6 +481,15 @@ function addToCart(offer_id){
             var html = '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><h4>Товар добавлен в корзину</h4></div>';
             $('#positive').html(html).removeClass('hidden');
         }
+    });
+}
+// добавить товар в корзину
+function addToCartItem(id_cert){
+    var id_cert = parseInt(id_cert);
+    $.get("/cart/put/"+id_cert, function(data){
+        var html = '<div><span style="font-size: 10px; color: green;">Товар добавлен в корзину</span></div>';
+        $('#msg').html(html).removeClass('hidden');
+        $('#sup').html(data);
     });
 }
 

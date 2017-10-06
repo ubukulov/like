@@ -195,9 +195,9 @@ class IndexController extends Controller
             $cat_menu = $this->showCat($tree);
             Cache::put('cat_menu', $cat_menu, 30);
         }
-
-        $certs = Cert::get();
+        $mk_date = time();
+        $certs = DB::select("SELECT * FROM certs WHERE date_end > '$mk_date' AND cert_type='2' ORDER BY sort,id DESC");
         $cats = $this->cats;
-        return view('store', compact('certs', 'cats', 'cat_menu'));
+        return view('store/index', compact('certs', 'cats', 'cat_menu'));
     }
 }
