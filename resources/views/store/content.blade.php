@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="cert_button" style="padding-bottom: 10px;">
-                            <a @if(Auth::check()) href="{{ url('/cart/offer/'.$cert->id) }}" @else href="{{ url('/user/login') }}" @endif class="btn btn-danger">Купить</a>
+                            <a @if(Auth::check()) href="{{ url('/store/item/'.$cert->id) }}" @else href="{{ url('/user/login') }}" @endif class="btn btn-danger">Купить</a>
                             <button type="button" onclick="addToCartItem({{ $cert->id }});" class="btn btn-danger">Добавить в корзину</button>
                         </div>
                         <div id="msg" class="hidden"></div>

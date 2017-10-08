@@ -87,6 +87,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('/news/{id}', 'NewsController@edit');
         Route::post('/news/{id}', 'NewsController@update');
         Route::get('/news/delete/{id}', 'NewsController@destroy');
+        # заказы
+        Route::get('/orders', 'OrderController@index');
+        Route::get('/order/{id}/status/{status}', 'OrderController@setStatus');
+        Route::get('/order/{id}', 'OrderController@show');
     });
 
     # Привилегии для менеджера

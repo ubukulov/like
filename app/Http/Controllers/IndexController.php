@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\CertView;
 use Cache;
 use SSH;
+use App\Page;
 
 class IndexController extends Controller
 {
@@ -199,5 +200,10 @@ class IndexController extends Controller
         $certs = DB::select("SELECT * FROM certs WHERE date_end > '$mk_date' AND cert_type='2' ORDER BY sort,id DESC");
         $cats = $this->cats;
         return view('store/index', compact('certs', 'cats', 'cat_menu'));
+    }
+
+    public function partner(){
+        $for_partner = Page::find(13)->text;
+        return view('for-partner', compact('for_partner'));
     }
 }

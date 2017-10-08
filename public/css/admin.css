@@ -4,3 +4,13 @@
 .uploadPrice{
     margin-bottom: 20px;
 }
+.yellow{
+    background: yellow;
+}
+.yellow td{
+    border: 1px solid yellow;
+}
+.yellow:hover {
+    background: yellow;
+}
+.bg-red

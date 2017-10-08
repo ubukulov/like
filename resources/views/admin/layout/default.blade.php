@@ -450,6 +450,15 @@
                     </span>
                     </a>
                 </li>
+
+                <li @if(request_uri('orders')) class="active" @endif>
+                    <a href="{{ url('admin/orders') }}">
+                        <i class="fa fa-inbox" aria-hidden="true"></i> <span>Список заказов</span>
+                <span class="pull-right-container">
+                    <span class="label label-primary pull-right"></span>
+                </span>
+                    </a>
+                </li>
                 @endif
             </ul>
         </section>

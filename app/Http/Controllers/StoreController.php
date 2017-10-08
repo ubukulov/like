@@ -10,6 +10,8 @@ use App\Cert;
 use App\CertView;
 use App\CertSub;
 use App\Partner;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 class StoreController extends Controller
 {
@@ -146,13 +148,66 @@ class StoreController extends Controller
 
     public function order(Request $request){
         $delivery = $request->input('delivery');
+        $client_name = $request->input('client_name');
         $email = $request->input('email');
         $phone = $request->input('phone');
         $address = $request->input('address');
         $status = $request->input('status');
         $url = $_SERVER["SERVER_NAME"];
         $domain = explode(".",$url);
-        $sub_domain = $domain[0];
-        
+        $sub_domain = $domain[0].".likemoney.me";
+
+        DB::transaction(function() use ($email, $phone, $status, $address, $delivery, $sub_domain, $client_name){
+            $customer_id = $this->setBusinessCustomers($email, $phone, $client_name);
+            $client_ip = $_SERVER['REMOTE_ADDR'];
+            $current_date = date("Y-m-d H:i:s");
+            if($customer_id){
+                foreach($_SESSION['cart'] as $key=>$val){
+                    $id_cert = $val['id'];
+                    $title = rtrim($val['title']);
+                    $qty   = $val['qty'];
+                    $price = $val['price'];
+
+                    DB::table('business_orders')->insertGetId([
+                        'id_customer' => $customer_id, 'id_agent' => Auth::id(), 'id_cert' => $id_cert, 'title' => $title,
+                        'qty' => $qty, 'price' => $price, 'payment_type' => $status, 'ip' => $client_ip, 'address' => $address,
+                        'delivery' => $delivery, 'store_name' => $sub_domain, 'status' => '0', 'created_at' => $current_date
+                    ]);
+                }
+            }
+        });
+        unset($_SESSION['total_quantity']);
+        unset($_SESSION['cart']);
+        return redirect('/cart')->with('message', 'Заявка оформлено.');
+    }
+
+    # Сохраняем данные клиента cart
+    public function setBusinessCustomers($email, $phone, $client_name){
+        $current_date = date("Y-m-d H:i:s");
+        $customer = $this->is_business_customer($phone);
+        if($customer){
+            return $customer;
+        }else {
+            $lastInsertId = DB::table('business_customers')->insertGetId([
+                'client_email' => $email, 'client_phone' => $phone, 'created_at' => $current_date, 'updated_at' => $current_date,
+                'client_name' => $client_name
+            ]);
+            if($lastInsertId){
+                return $lastInsertId;
+            }else{
+                dd("По каким то причинам не удалось сохранить");
+            }
+        }
+    }
+
+    # Определить клиента на предыдующего обращение. Если клиент уже есть в базе возращаем его идентификатора
+    # Проверка осуществляется по телефон номеру
+    public function is_business_customer($phone){
+        $result = DB::select("SELECT * FROM business_customers WHERE client_phone='$phone'");
+        if(count($result) > 0){
+            return $result[0]->id;
+        }else{
+            return false;
+        }
     }
 }

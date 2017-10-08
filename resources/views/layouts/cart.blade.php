@@ -11,25 +11,7 @@
 </head>
 <body>
 <div id="wrap">
-    <div class="top-header">
-        <div class="container">
-            <div class="col-sm-8 nopad">
-                <nav class="top_menu">
-                    <li class="main-li"><a href="/">Главная</a></li>
-                    <li class="#"><a href="#">Новости</a></li>
-                    <li class="#"><a href="#">Все о нас</a></li>
-                    <li class="#"><a href="#">Партнерам</a></li>
-                    <li class="#"><a href="#">+ Предложить свой товар</a></li>
-                </nav>
-            </div>
-            <div class="col-sm-4 text-right nopad">
-                <span class="kabinet">
-                    <i class="user icon"></i>
-                    <a style="color: #ffffff; text-decoration: none;" href="{{ url('user/login') }}">Личный кабинет</a>
-                </span>
-            </div>
-        </div>
-    </div>
+    @include('pattern.top_menu')
     <div class="header2">
         <nav class="navbar navbar-default">
             <div class="container cont">

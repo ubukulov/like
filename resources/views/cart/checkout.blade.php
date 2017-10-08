@@ -68,12 +68,17 @@
                 <h3><strong>Данные покупателя</strong></h3>
                 <hr>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input class="form-control centered-form" id="client_name" name="client_name" placeholder="Имя" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <input class="form-control centered-form" id="inputEmail" name="email" placeholder="E-mail" type="email">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <input class="form-control centered-form phone" id="phone" name="phone" required="required" placeholder="Моб. Телефон" type="text">
                         </div>
@@ -94,7 +99,7 @@
                         <div class="inline fields">
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="status" value="1" checked="checked" onchange="payment(1);">
+                                    <input type="radio" name="status" value="1" onchange="payment(1);">
                                     <label style="font-size: 13px;">Со счета Likemoney</label>
                                 </div>
                             </div>
@@ -107,20 +112,20 @@
 
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="status" value="5" checked="checked" onchange="payment(5);">
+                                    <input type="radio" name="status" value="5" onchange="payment(5);">
                                     <label style="font-size: 13px;">Оплата в офисе</label>
                                 </div>
                             </div>
 
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="status" value="2" checked="checked" onchange="payment(2);">
+                                    <input type="radio" name="status" value="2" onchange="payment(2);">
                                     <label style="font-size: 13px;">QIWI терминалы</label>
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui radio checkbox">
-                                    <input type="radio" name="status" value="3" checked="checked" onchange="payment(3);">
+                                    <input type="radio" name="status" value="3" onchange="payment(3);">
                                     <label style="font-size: 13px;">Visa/Mastercard</label>
                                 </div>
                             </div>

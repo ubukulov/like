@@ -207,3 +207,11 @@ function delete_news(id) {
         window.location = '/admin/news/delete/'+id;
     }
 }
+// подтвердить статус заказа
+function confirm_store_order(id) {
+    var del = confirm('Вы действительно хотите подтвердить?');
+    if(del){
+        var status = $('#status'+id+' :selected').val();
+        window.location = '/admin/order/'+id+'/status/'+status;
+    }
+}
