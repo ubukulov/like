@@ -46,16 +46,20 @@ $(function(){
     });
     $("#phone").mask("+7 (999)-999-99-99");
     $("#card_number").mask("99999999");
-    $('#id_main_cat').change(function(){
-        var id_cat = $(this).val();
-        $.get('/admin/cert/get/cats/'+id_cat, function(data){
-            data = JSON.parse(data);
-            var html = '';
-            for(var i=0; i<data.length; i++){
-                html = html + '<option value="'+data[i].id+'">'+data[i].title+'</option>';
-            }
-            $('#id_pod_cat').html(html);
-        });
+
+    // стоимость доставки
+    $('#id_cost_delivery').change(function(){
+        if($(this).val() == 1){
+            $('#delivery').show();
+        }else{
+            $('#delivery').hide();
+            $('#cost_delivery').val('');
+        }
+    });
+
+    // только цифры
+    $('.int').on('input', function () {
+        this.value = this.value.replace(/^\.|[^\d\.]|\.(?=.*\.)|^-1+(?=\d)/g, '');
     });
 });
 
@@ -213,5 +217,66 @@ function confirm_store_order(id) {
     if(del){
         var status = $('#status'+id+' :selected').val();
         window.location = '/admin/order/'+id+'/status/'+status;
+    }
+}
+// учитывать стоимость доставки
+function cost_delivery(id_order){
+    var cost_delivery = $('#cost_delivery').val();
+    var id_cost_delivery = $('#id_cost_delivery :selected').val();
+    if(id_cost_delivery == 0){
+        // доставка бесплатно
+        $.get('/admin/order/'+id_order+'/delivery/', function(data){
+            if(data == 0){
+                alert("Изменение успешно принят!");
+                window.location = '/admin/order/'+id_order;
+            }
+            if(data == 400){
+                alert("Произошло не предвиденная ошибка!");
+                window.location = '/admin/order/'+id_order;
+            }
+        });
+    }else{
+        // доставка платно
+        if(cost_delivery < 500){
+            // минимальная стоимость доставки - 500 тг
+            alert("Минимальная стоимость доставки - 500тг.");
+            $('#cost_delivery').focus();
+        }else{
+            // иначе
+            $.get('/admin/order/'+id_order+'/delivery/'+cost_delivery, function(data){
+                if(data == 0){
+                    alert("Изменение успешно принят!");
+                    window.location = '/admin/order/'+id_order;
+                }
+                if(data == 400){
+                    alert("Произошло не предвиденная ошибка!");
+                    window.location = '/admin/order/'+id_order;
+                }
+            });
+        }
+    }
+
+}
+// список категории
+function get_cats(id1, id2){
+    if(id1 == 'id_pod_cat1'){
+        $('#id_pod_cat').val($('#'+id1+' :selected').val());
+    }
+    if(id1 == 'id_pod_cat2'){
+        $('#id_pod_cat').val($('#'+id1+' :selected').val());
+    }
+    if(id1 == 'id_pod_cat3'){
+        $('#id_pod_cat').val($('#'+id1+' :selected').val());
+    }else{
+        var id_cat = $('#'+id1).val();
+        $.get('/admin/cert/get/cats/'+id_cat, function(data){
+            data = JSON.parse(data);
+            var html = '<option value="">-- Выберите --</option>';
+            for(var i=0; i<data.length; i++){
+                html = html + '<option value="'+data[i].id+'">'+data[i].title+'</option>';
+            }
+            $('#'+id2).html(html);
+
+        });
     }
 }

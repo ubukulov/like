@@ -59,7 +59,7 @@
                         @endif
                     </div>
                     <br>
-                    <button id="upload1" class="blue">Выбрать логотип</button>
+                    <button type="button" id="upload5" class="blue">Выбрать логотип</button>
                 </div>
             </div>
             <br>

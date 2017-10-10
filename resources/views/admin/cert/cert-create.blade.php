@@ -10,6 +10,55 @@
     <form action="{{ url('admin/cert/store') }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <input type="hidden" name="id_pod_cat" id="id_pod_cat" value="0">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Список категории</label>
+                                <select class="form-control select2" onchange="get_cats('id_main_cat','id_pod_cat1');" style="width: 100%;" id="id_main_cat" name="id_main_cat">
+                                    <option value="">-- Выберите --</option>
+                                    @foreach($cats as $c)
+                                        <option value="{{ $c->id }}">{{ $c->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>1-уровень категории</label>
+                                <select class="form-control select2" style="width: 100%;" id="id_pod_cat1" onchange="get_cats('id_pod_cat1','id_pod_cat2');">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>2-уровень категории</label>
+                                <select class="form-control select2" style="width: 100%;" id="id_pod_cat2" onchange="get_cats('id_pod_cat2','id_pod_cat3');" >
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>3-уровень категории</label>
+                                <select class="form-control select2" style="width: 100%;" id="id_pod_cat3" onchange="get_cats('id_pod_cat3');" >
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
         <div class="col-md-6">
             <div class="box box-primary">
                 <!-- /.box-header -->
@@ -25,23 +74,6 @@
                         <div class="form-group">
                             <label for="title">Наименование</label>
                             <input type="text" class="form-control" id="title" required="required" name="title" placeholder="Введите название">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Список категории</label>
-                            <select class="form-control select2" style="width: 100%;" id="id_main_cat" name="id_main_cat">
-                                <option value="">-- Выберите --</option>
-                                @foreach($cats as $c)
-                                    <option value="{{ $c->id }}">{{ $c->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Список под категории</label>
-                            <select class="form-control select2" style="width: 100%;" id="id_pod_cat" name="id_pod_cat">
-
-                            </select>
                         </div>
 
                         <div class="form-group">
@@ -107,10 +139,10 @@
                         <input type="text" class="form-control" id="b3" name="b3" placeholder="Бизнес3" />
                     </div>
 
-                    <div class="form-group">
-                        <label for="special1">Вознаграждение</label>
-                        <input type="text" class="form-control" id="special1" name="special1" placeholder="Введите вознаграждение">
-                    </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label for="special1">Вознаграждение</label>--}}
+                        {{--<input type="text" class="form-control" id="special1" name="special1" placeholder="Введите вознаграждение">--}}
+                    {{--</div>--}}
 
                     <div class="form-group">
                         <label for="special4">special4</label>

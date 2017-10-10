@@ -112,15 +112,15 @@
         </div>
     </div>
     <br><br>
-    <div class="row_tsk">
+    {{--<div class="row_tsk">--}}
 
-        <div  class="task_map">
-            <div id="map" style="height: 300px" class="blog-heading">
-                <h3>Задание на карте</h3>
+        {{--<div  class="task_map">--}}
+            {{--<div id="map" style="height: 300px" class="blog-heading">--}}
+                {{--<h3>Задание на карте</h3>--}}
 
-            </div>
+            {{--</div>--}}
 
-        </div>
+        {{--</div>--}}
 
-    </div>
+    {{--</div>--}}
 @stop

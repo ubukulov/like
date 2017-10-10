@@ -674,15 +674,15 @@
 </div>
 <!-- ./wrapper -->
 <!-- jQuery 2.2.3 -->
-<script src="{{ asset('themes/admin/admin_lte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+{{--<script src="{{ asset('themes/admin/admin_lte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>--}}
 {{--<script src="{{ asset('js/jquery-1.11.2.min.js') }}"></script>--}}
 <!-- jQuery UI 1.11.4 -->
 {{--<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>--}}
 {{--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--}}
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-{{--<script>--}}
-    {{--$.widget.bridge('uibutton', $.ui.button);--}}
-{{--</script>--}}
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{ asset('themes/admin/admin_lte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('themes/admin/admin_lte/bootstrap/js/bootstrap.min.js') }}"></script>

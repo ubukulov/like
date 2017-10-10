@@ -155,29 +155,29 @@
 <script src="{{ asset('js/upload_image.js') }}"></script>
 <script src="{{ asset('lib/flipclock/flipclock.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
-<script type="text/javascript">
-    ymaps.ready(init);
-    function init() {
-        var myMap = new ymaps.Map("map", {
-                center: [{{ $partner->coords }}],
-                zoom: 14
-            }),
-            // Создаем метку с помощью вспомогательного класса.
-            myPlacemark1 = new ymaps.Placemark([{{ $partner->coords }}], {
-                // Свойства.
-                // Содержимое иконки, балуна и хинта.
-                iconContent: '',
-                balloonContent: '{{ $partner->address }}',
-                hintContent: '{{ $partner->name }}'
-            }, {
-                // Опции.
-                // Стандартная фиолетовая иконка.
-                preset: 'twirl#violetIcon'
-            });
-        // Добавляем все метки на карту.
-        myMap.geoObjects
-            .add(myPlacemark1);
-    }
-</script>
+{{--<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>--}}
+{{--<script type="text/javascript">--}}
+    {{--ymaps.ready(init);--}}
+    {{--function init() {--}}
+        {{--var myMap = new ymaps.Map("map", {--}}
+                {{--center: [{{ $partner->coords }}],--}}
+                {{--zoom: 14--}}
+            {{--}),--}}
+            {{--// Создаем метку с помощью вспомогательного класса.--}}
+            {{--myPlacemark1 = new ymaps.Placemark([{{ $partner->coords }}], {--}}
+                {{--// Свойства.--}}
+                {{--// Содержимое иконки, балуна и хинта.--}}
+                {{--iconContent: '',--}}
+                {{--balloonContent: '{{ $partner->address }}',--}}
+                {{--hintContent: '{{ $partner->name }}'--}}
+            {{--}, {--}}
+                {{--// Опции.--}}
+                {{--// Стандартная фиолетовая иконка.--}}
+                {{--preset: 'twirl#violetIcon'--}}
+            {{--});--}}
+        {{--// Добавляем все метки на карту.--}}
+        {{--myMap.geoObjects--}}
+            {{--.add(myPlacemark1);--}}
+    {{--}--}}
+{{--</script>--}}
 </html>

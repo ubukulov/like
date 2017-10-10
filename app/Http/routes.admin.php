@@ -91,6 +91,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('/orders', 'OrderController@index');
         Route::get('/order/{id}/status/{status}', 'OrderController@setStatus');
         Route::get('/order/{id}', 'OrderController@show');
+        Route::get('/order/{id_order}/delivery/{cost_delivery}', 'OrderController@cost_delivery');
+        Route::get('/order/{id_order}/delivery', 'OrderController@delivery');
     });
 
     # Привилегии для менеджера

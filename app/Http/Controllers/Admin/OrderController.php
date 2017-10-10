@@ -31,9 +31,30 @@ class OrderController extends Controller
             ->join('business_customers', 'business_customers.id', '=', 'business_orders.id_customer')
             ->join('certs', 'certs.id', '=', 'business_orders.id_cert')
             ->join('partners', 'partners.id', '=', 'certs.partner_id')
-            ->select('business_orders.*', 'business_customers.client_phone', 'partners.name', 'partners.mphone', 'partners.address AS p_address', 'business_customers.client_name')
+            ->select('business_orders.*', 'business_customers.client_phone', 'partners.name', 'partners.mphone', 'partners.address AS p_address', 'business_customers.client_name', 'certs.prime_cost')
             ->where(['business_orders.id' => $id])
             ->first();
         return view('admin/order-show', compact('order'));
+    }
+
+    # стоимость доставки
+    public function cost_delivery($id_order, $cost_delivery){
+        $order = DB::table('business_orders')->where(['id' => $id_order])->first();
+        if($order){
+            DB::update("UPDATE business_orders SET cost_delivery='$cost_delivery', id_delivery='1' WHERE id='$id_order'");
+            return 0;
+        }else{
+            return 400;
+        }
+    }
+
+    public function delivery($id_order){
+        $order = DB::table('business_orders')->where(['id' => $id_order])->first();
+        if($order){
+            DB::update("UPDATE business_orders SET cost_delivery=NULL, id_delivery='0' WHERE id='$id_order'");
+            return 0;
+        }else{
+            return 400;
+        }
     }
 }

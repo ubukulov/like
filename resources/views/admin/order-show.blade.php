@@ -2,7 +2,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Информация по заказу
+            Подробнее информация по заказу
         </h1>
     </section>
     <section class="content">
@@ -28,7 +28,7 @@
 
                         <div class="form-group">
                             <label for="title">Сумма</label>
-                            <input type="text" readonly class="form-control" value="{{ $order->qty * $order->price }}">
+                            <input type="text" readonly class="form-control" value="@if(empty($order->cost_delivery) OR $order->cost_delivery == 0) {{  $order->qty * $order->price }} @else {{ $order->qty * $order->price + $order->cost_delivery }} (с платной доставкой) @endif">
                         </div>
 
                         <div class="form-group">
@@ -45,6 +45,8 @@
                             <label for="title">Адрес покупателя</label>
                             <input type="text" readonly class="form-control" value="{{ $order->p_address }}">
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -72,6 +74,28 @@
                         <div class="form-group">
                             <label for="title">Адрес</label>
                             <input type="text" readonly class="form-control" value="{{ $order->address }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">Цена поставщика (Себестоимость)</label>
+                            <input type="text" readonly class="form-control" value="{{ $order->prime_cost }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">Доставка</label>
+                            <select name="id_cost_delivery" style="cursor: pointer;" id="id_cost_delivery" class="form-control">
+                                <option @if($order->id_delivery == '0') selected="selected" @endif value="0">Бесплатно</option>
+                                <option @if($order->id_delivery == '1') selected="selected" @endif value="1">Платно</option>
+                            </select>
+                        </div>
+
+                        <div id="delivery" @if(empty($order->cost_delivery) OR $order->cost_delivery == 0) style="display: none;" @endif class="form-group">
+                            <label for="title">Стоимость доставки</label>
+                            <input type="text" class="form-control int" id="cost_delivery" value="{{ $order->cost_delivery }}">
+                        </div>
+
+                        <div id="btn_delivery" class="form-group">
+                            <button type="button" onclick="cost_delivery({{ $order->id }});" class="btn btn-warning">Учитывать расходы на доставки</button>
                         </div>
                     </div>
                 </div>
