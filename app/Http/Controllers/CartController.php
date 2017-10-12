@@ -88,7 +88,7 @@ class CartController extends Controller
         if($customer_id){
             $this->setBusinessCustomerOrder($_SESSION['cart'], $customer_id, $data);
             unset($_SESSION['cart']);
-            return redirect('/cart')->with('message', 'Заявка оформлено.');
+            return redirect('/cart')->with('message', 'Поздравляем! Ваш заказ оформлен!');
         }
     }
 

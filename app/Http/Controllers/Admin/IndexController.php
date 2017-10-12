@@ -75,4 +75,15 @@ class IndexController extends Controller
         DB::update("UPDATE business_store SET status='2' WHERE id='$id'");
         return redirect()->back()->with('message', 'Заявка на открытие магазина успешно отменен!');
     }
+
+    # Предложение
+    public function suggest($id = 0){
+        if($id != 0){
+            DB::update("UPDATE suggests SET status='1' WHERE id='$id'");
+            return redirect()->back()->with('message', 'Предложение закрыт!');
+        }else{
+            $suggests = DB::table('suggests')->orderBy('id', 'DESC')->paginate(20);
+            return view('admin/suggest', compact('suggests'));
+        }
+    }
 }

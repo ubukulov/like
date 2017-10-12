@@ -206,4 +206,25 @@ class IndexController extends Controller
         $for_partner = Page::find(13)->text;
         return view('for-partner', compact('for_partner'));
     }
+
+    # Предложить свой товар - страница
+    public function suggest(){
+        return view('suggest');
+    }
+    # Предложить свой товар - сохранение
+    public function suggest_store(Request $request){
+        if($request->input('captcha') == 43){
+            $lastInsertID = DB::table('suggests')->insertGetId([
+                'name' => $request->input('name'), 'phone' => $request->input('phone'), 'suggest' => $request->input('suggest'),
+                'created_at' => date('Y-m-d H:i:s')
+            ]);
+            if($lastInsertID){
+                return redirect('/suggest')->with('message', 'Успешно отправлено!');
+            }else{
+                return redirect('/suggest')->with('message', 'Ошибка! Попробуйте еще раз!')->withInput();
+            }
+        }else{
+            return redirect('/suggest')->with('message', 'Ошибка! Вы не правильно посчитали!')->withInput();
+        }
+    }
 }

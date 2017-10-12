@@ -52,7 +52,7 @@ Route::get('/news', 'NewsController@index'); // список новостей
 Route::get('/news/{id}', 'NewsController@show');
 
 # магазин
-Route::get('/item/{id}', 'StoreController@item');
+Route::get('/item/{id}', 'StoreController@item')/*->middleware('store');*/;
 Route::get('/cart/put/{id}', 'StoreController@add_to_cart'); // положить товар в корзину
 Route::get('/store/count/{id}/{qty}', 'StoreController@count'); // пересчитать корзину
 Route::post('/store/order', 'StoreController@order');
@@ -60,4 +60,8 @@ Route::get('/store/item/{id}', 'StoreController@add');
 
 # партнерам
 Route::get('/for-partner', 'IndexController@partner');
+
+# Предложить свой товар
+Route::get('/suggest', 'IndexController@suggest');
+Route::post('/suggest', 'IndexController@suggest_store');
 ### Конец ###

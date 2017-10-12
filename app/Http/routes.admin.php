@@ -93,6 +93,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('/order/{id}', 'OrderController@show');
         Route::get('/order/{id_order}/delivery/{cost_delivery}', 'OrderController@cost_delivery');
         Route::get('/order/{id_order}/delivery', 'OrderController@delivery');
+        # Предложение
+        Route::get('/suggests', 'IndexController@suggest');
+        Route::get('/suggest/{id}', 'IndexController@suggest');
     });
 
     # Привилегии для менеджера

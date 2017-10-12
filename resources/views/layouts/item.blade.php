@@ -149,11 +149,12 @@
 <script src="{{ asset('lib/jquery_ui/jquery-ui.min.js') }}"></script>
 {{--<script src="{{ asset('lib/tinymce/tinymce.min.js') }}"></script>--}}
 <script src="{{ asset('lib/froala/js/froala_editor.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('lib/froala/js/languages/ru.js') }}"></script>
+{{--<script type="text/javascript" src="{{ asset('lib/froala/js/languages/ru.js') }}"></script>--}}
 {{--<script src="{{ asset('lib/tinymce/config.js') }}"></script>--}}
 <script src="{{ asset('js/ajaxupload.js') }}"></script>
 <script src="{{ asset('js/upload_image.js') }}"></script>
-<script src="{{ asset('lib/flipclock/flipclock.js') }}"></script>
+{{--<script src="{{ asset('lib/flipclock/flipclock.js') }}"></script>--}}
+<script src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 {{--<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>--}}
 {{--<script type="text/javascript">--}}

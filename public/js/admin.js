@@ -280,3 +280,10 @@ function get_cats(id1, id2){
         });
     }
 }
+// закрыт статус предложение
+function close_suggest(id) {
+    var del = confirm('Вы действительно хотите закрыть?');
+    if(del){
+        window.location = '/admin/suggest/'+id;
+    }
+}

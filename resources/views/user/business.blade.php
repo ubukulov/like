@@ -3,7 +3,7 @@
     <div class="rowtsk-bkg">
         @if(check_user_store_tarif(Auth::id()))
         <div class="alert alert-success alert-dismissable">
-            Интернет магазин успешно создано! <br>
+            Ваш интернет магазин успешно создан! <br>
             Доступен по адресу: <a href="http://{{ get_user_store_name(Auth::id()) }}" target="_blank">{{ get_user_store_name(Auth::id()) }}</a>
         </div>
         @endif

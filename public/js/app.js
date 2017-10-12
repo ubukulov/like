@@ -160,6 +160,10 @@ $(document).ready(function(){
         $(this).mask("+7 (999)-999-99-99");
     });
 
+    $('.phone2').each(function(){
+        $(this).mask("+7 999 999 9999",{placeholder:" "});
+    });
+
     $('#vyvod_amount').keyup(function () {
         account.vyvod_calc();
     });
@@ -182,6 +186,17 @@ $(document).ready(function(){
     // корзина
     $('.main_button').click(function(){
         window.location = '/user/login';
+    });
+    // купить в 1 клик
+    $('#buy_one').focus(function(){
+        $('#buy_one').attr({'style' : 'border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; border-left: 1px solid #ccc;'});
+    });
+    $('#buy_one').on('keyup', function(){
+        if($.trim($('#buy_one').val()).length == 15){
+            $('#btn_buy_one').addClass('btn btn-danger').prop('disabled', false);
+        }else{
+            $('#btn_buy_one').removeClass('btn btn-danger').prop('disabled', true);
+        }
     });
 });
 

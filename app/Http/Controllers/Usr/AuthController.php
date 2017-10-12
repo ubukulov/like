@@ -85,8 +85,12 @@ class AuthController extends Controller
     public function authenticate(Request $request){
         if (Auth::attempt(['mphone' => $request->get('username'), 'password' => $request->get('password')])) {
             $this->checkPartnerAuth();
-            if(Cookie::has('cert')){
-                return redirect(Cookie::get('cert'));
+//            if(Cookie::has('store')){
+////                return redirect(Cookie::get('cert'));
+//                return redirect('/cart');
+//            }
+            if(isset($_SESSION['REQUEST_URI'])){
+                return redirect('/store'.$_SESSION['REQUEST_URI']);
             }
             return redirect()->intended('user/account');
 

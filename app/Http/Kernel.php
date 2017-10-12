@@ -54,5 +54,6 @@ class Kernel extends HttpKernel
         'adm' => \App\Http\Middleware\RedirectIfNotAdmin::class,
         'crt' => \App\Http\Middleware\MiddlewareCert::class,
         'manager' => \App\Http\Middleware\AdminManagerMiddleware::class,
+        'store' => \App\Http\Middleware\Store::class,
     ];
 }

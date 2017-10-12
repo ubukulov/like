@@ -75,7 +75,7 @@ class StoreController extends Controller
         if(!$id){
             $id = 3;
         }
-
+        $_SESSION['REQUEST_URI'] = $_SERVER['REQUEST_URI'];
         $cert = Cert::getByIdCertData($id);
         $ip = $_SERVER['REMOTE_ADDR']; // Ип адрес пользователя
         $current_date = date("Y-m-d H:i:s"); // текущая время

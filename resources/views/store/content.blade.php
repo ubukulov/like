@@ -44,6 +44,9 @@
                         <div class="price">
                             <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Цена:<br /><font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $cert->special2 ?> тг.</font>
                         </div>
+                        <div style="margin-top: 15px;">
+                            <span style="color: green; margin-left: 30px;">Есть в наличии</span>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="cert_button" style="padding-bottom: 10px;">
@@ -51,6 +54,22 @@
                             <button type="button" onclick="addToCartItem({{ $cert->id }});" class="btn btn-danger">Добавить в корзину</button>
                         </div>
                         <div id="msg" class="hidden"></div>
+                        <div class="row" style="margin-top: 15px;">
+                            <div class="col-sm-6">
+                                <input type="text" class="phone2" id="buy_one" placeholder="Ваш телефон">
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" disabled="disabled" id="btn_buy_one" class="" style="font-size: 11px; border: none; border-radius: 0; padding: 6px;">Купить в 1 клик</button>
+                            </div>
+                            <style>
+                                .phone2:hover{
+                                    border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; border-left: 1px solid #ccc;
+                                }
+                                .phone2{
+                                    width: 141px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; border-left: 1px solid #ccc; font-size: 11px; padding: 5px;
+                                }
+                            </style>
+                        </div>
                     </div>
                 </div>
                 <hr>

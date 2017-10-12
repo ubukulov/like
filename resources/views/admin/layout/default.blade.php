@@ -459,6 +459,15 @@
                 </span>
                     </a>
                 </li>
+
+                <li @if(request_uri('suggest')) class="active" @endif>
+                    <a href="{{ url('admin/suggests') }}">
+                        <i class="fa fa-inbox" aria-hidden="true"></i> <span>Список предложение</span>
+                        <span class="pull-right-container">
+                <span class="label label-primary pull-right"></span>
+            </span>
+                    </a>
+                </li>
                 @endif
             </ul>
         </section>

@@ -6,7 +6,7 @@
                 <li class="#"><a href="{{ url('/news') }}">Новости</a></li>
                 <li class="#"><a href="#">Все о нас</a></li>
                 <li class="#"><a href="{{ url('/for-partner') }}">Партнерам</a></li>
-                <li class="#"><a href="#">+ Предложить свой товар</a></li>
+                <li class="#"><a href="{{ url('/suggest') }}">+ Предложить свой товар</a></li>
             </nav>
         </div>
         <div class="col-sm-4 text-right nopad">
