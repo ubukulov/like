@@ -15,14 +15,14 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="row">
-                            <input type="hidden" name="id_pod_cat" id="id_pod_cat" value="0">
+                            <input type="hidden" name="id_pod_cat" id="id_pod_cat" value="{{ $cert->pod_cat }}">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Список категории</label>
                                     <select class="form-control select2" onchange="get_cats('id_main_cat','id_pod_cat1');" style="width: 100%;" id="id_main_cat" name="id_main_cat">
                                         <option value="">-- Выберите --</option>
                                         @foreach($cats as $c)
-                                            @if($cert->id_main_cat == $c->id)
+                                            @if($cert->category_id == $c->id)
                                                 <option value="{{ $c->id }}" selected="selected">{{ $c->title }}</option>
                                             @else
                                                 <option value="{{ $c->id }}">{{ $c->title }}</option>

@@ -53,7 +53,10 @@
     background-image: url(../img/noise.png);
     margin-bottom: 30px;
 }
-
+#content {
+    width: 1180px;
+    margin: 15px auto;
+}
 /*=================================================
 ||              1. Imports
 ==================================================*/

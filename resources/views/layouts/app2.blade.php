@@ -7,12 +7,6 @@
     <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    {{--<link rel="stylesheet" href="{{ asset('components/popup.min.css') }}">--}}
-    {{--<link rel="stylesheet" href="{{ asset('components/menu.min.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('components/dropdown.min.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('components/transition.min.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('components/icon.min.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('components/modal.min.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>

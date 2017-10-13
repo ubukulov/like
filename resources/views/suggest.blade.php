@@ -26,9 +26,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="captcha">Капча: </label>
-                    15 + 28 =
-                    <input type="text" name="captcha" id="captcha" class="form-control" required="required">
+                    {{--<label for="captcha">Капча: </label>--}}
+                    {{--15 + 28 =--}}
+                    {{--<input type="text" name="captcha" id="captcha" class="form-control" required="required">--}}
+                    <div class="g-recaptcha" data-sitekey="6LcZVjQUAAAAAOOysmsCZtkt142d4g2jP_7tI6-2"></div>
                 </div>
 
                 <div class="form-group">

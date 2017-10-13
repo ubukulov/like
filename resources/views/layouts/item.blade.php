@@ -7,12 +7,10 @@
     <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/partner.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('lib/froala/css/froala_editor.min.css') }}">
-    {{--    <link rel="stylesheet" href="{{ asset('lib/froala/css/froala_editor.min.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('lib/jquery_ui/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('lib/flipclock/flipclock.css') }}">
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
@@ -75,71 +73,34 @@
                 </div>
             </div>
         </nav><!-- /.nav -->
-
-        {{--<header class="page-head">--}}
-            {{--<div class="header-wrapper">--}}
-                {{--<div class="container">--}}
-                    {{--<div class="row">--}}
-                        {{--<div class="col-md-3">--}}
-                            {{--<img class="my_avatar" align="right" @if(!empty($partner->image)) src="{{ asset('uploads/partners/small/'.$partner->image) }}" @else src="{{ asset('img/blank_avatar_220.png') }}" @endif alt="user-photo">--}}
-                        {{--</div>--}}
-                        {{--<div class="col-md-9">--}}
-                            {{--<br>--}}
-                            {{--<font style="color:#FFF;"><h2>{{ $partner->name }}</h2><font style="font-size:20px;">--}}
-                                    {{--Статус:--}}
-                                    {{--<b>Компания - партнер</b>--}}
-                                {{--</font>&nbsp;<font color="#C63B3C"><i class="fa fa-question-circle"></i></font></font>--}}
-                            {{--<br />--}}
-                            {{--<br />--}}
-
-
-                            {{--<div>--}}
-                                {{--<div style="margin-top:70px; width: 1000px;">--}}
-                                    {{--<ul class="nav nav-pills" style="margin-left: 0px;">--}}
-                                        {{--<li>--}}
-                                            {{--<a href="#"><i class="fa fa-angle-left fa-2"></i>&nbsp;&nbsp;&nbsp;Все задания партнера</a>--}}
-                                        {{--</li>--}}
-                                    {{--</ul>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<!-- /.container -->--}}
-            {{--</div>--}}
-            {{--<!-- /.header-wrapper -->--}}
-        {{--</header>--}}
-        <!-- /.page-head -->
     </div>
     <!-- /.header -->
 
     <div id="content" class="ui container">
-        <section class="blog-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <!-- begin twitter widget -->
-                        <div style="line-height:2em;">
-                            <h3>Информация</h3>
+        <div class="row">
+            <div class="col-md-3">
+                <!-- begin twitter widget -->
+                <div style="line-height:2em;">
+                    <h3>Информация</h3>
 
 
-                            <i class="marker icon"></i>&nbsp;{{ $partner->address }}
-                            <br />
-                            <i class="call square icon"></i>&nbsp;{{ $partner->phone }}
-                            <br />
-                            <i class="mail outline icon"></i>&nbsp;{{ $partner->email }}
-                            <br />
+                    <i class="marker icon"></i>&nbsp;{{ $partner->address }}
+                    <br />
+                    <i class="call square icon"></i>&nbsp;{{ $partner->phone }}
+                    <br />
+                    <i class="mail outline icon"></i>&nbsp;{{ $partner->email }}
+                    <br />
 
-                            <i class="wait icon"></i>&nbsp;{{ $partner->hours }}
-                            <br />
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        @yield('content')
-                    </div>
+                    <i class="wait icon"></i>&nbsp;{{ $partner->hours }}
+                    <br />
                 </div>
             </div>
-        </section>
+            <div class="col-md-9">
+                <div class="content section-wrapper" style="padding-top: 0px;">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
 
     </div>
 

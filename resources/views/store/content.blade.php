@@ -7,7 +7,7 @@
         <hr />
         <div class="row">
             <div class="col-md-5">
-                <div style="width: 400px" id="myCarousel" class="carousel slide" data-ride="carousel">
+                <div style="width: 350px" id="myCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         @if(!empty($cert->image) AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image))
@@ -50,16 +50,16 @@
                     </div>
                     <div class="col-md-6">
                         <div class="cert_button" style="padding-bottom: 10px;">
-                            <a @if(Auth::check()) href="{{ url('/store/item/'.$cert->id) }}" @else href="{{ url('/user/login') }}" @endif class="btn btn-danger">Купить</a>
-                            <button type="button" onclick="addToCartItem({{ $cert->id }});" class="btn btn-danger">Добавить в корзину</button>
+                            <a style="width: 60px; font-size: 12px;" @if(Auth::check()) href="{{ url('/store/item/'.$cert->id) }}" @else href="{{ url('/user/login') }}" @endif class="btn btn-danger">Купить</a>
+                            <button style="font-size: 12px;" type="button" onclick="addToCartItem({{ $cert->id }});" class="btn btn-danger">Добавить в корзину</button>
                         </div>
                         <div id="msg" class="hidden"></div>
                         <div class="row" style="margin-top: 15px;">
-                            <div class="col-sm-6">
-                                <input type="text" class="phone2" id="buy_one" placeholder="Ваш телефон">
+                            <div class="col-sm-5">
+                                <input style="width: 105px;" type="text" class="phone2" id="buy_one" placeholder="Ваш телефон">
                             </div>
-                            <div class="col-sm-6">
-                                <button type="button" disabled="disabled" id="btn_buy_one" class="" style="font-size: 11px; border: none; border-radius: 0; padding: 6px;">Купить в 1 клик</button>
+                            <div class="col-sm-7">
+                                <button type="button" disabled="disabled" id="btn_buy_one" class="" style="font-size: 11px; border: none; border-radius: 0; padding: 6px; width: 95px;">Купить в 1 клик</button>
                             </div>
                             <style>
                                 .phone2:hover{
