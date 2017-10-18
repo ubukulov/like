@@ -86,4 +86,19 @@ class IndexController extends Controller
             return view('admin/suggest', compact('suggests'));
         }
     }
+
+    # Купить в 1 клик
+    public function buy_one_click($id = 0){
+        if($id != 0){
+            DB::update("UPDATE buy_1_click SET status='1' WHERE id='$id'");
+            return redirect()->back()->with('message', 'Заявка закрыт!');
+        }else{
+            $clicks = DB::table('buy_1_click')
+                ->join('certs', 'certs.id', '=', 'buy_1_click.id_item')
+                ->select('buy_1_click.*', 'certs.title', 'certs.image', 'certs.special2', 'certs.id AS cert_id')
+                ->orderBy('id', 'DESC')
+                ->paginate(20);
+            return view('admin/click', compact('clicks'));
+        }
+    }
 }

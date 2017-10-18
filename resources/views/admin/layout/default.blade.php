@@ -468,6 +468,14 @@
             </span>
                     </a>
                 </li>
+                {{--<li @if(request_uri('buy_one_clicks')) class="active" @endif>--}}
+                    {{--<a href="{{ url('admin/buy_one_clicks') }}">--}}
+                        {{--<i class="fa fa-inbox" aria-hidden="true"></i> <span>Купить в 1 клик</span>--}}
+                    {{--<span class="pull-right-container">--}}
+            {{--<span class="label label-primary pull-right"></span>--}}
+        {{--</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 @endif
             </ul>
         </section>

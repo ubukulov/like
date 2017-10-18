@@ -1,9 +1,18 @@
 @extends('layouts.item')
 @section('content')
     <div class="row_tsk">
-        <div class="blog-heading">
-            <h3><?= $cert->title; ?></h3>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="blog-heading">
+                    <h3><?= $cert->title; ?></h3>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <span style="color: forestgreen; font-weight: 600;">Код товара: @if(!empty($cert->article_code)) {{ $cert->article_code }} @else {{ $cert->id }} @endif</span>
+            </div>
         </div>
+
         <hr />
         <div class="row">
             <div class="col-md-5">
@@ -50,22 +59,23 @@
                     </div>
                     <div class="col-md-6">
                         <div class="cert_button" style="padding-bottom: 10px;">
-                            <a style="width: 60px; font-size: 12px;" @if(Auth::check()) href="{{ url('/store/item/'.$cert->id) }}" @else href="{{ url('/user/login') }}" @endif class="btn btn-danger">Купить</a>
-                            <button style="font-size: 12px;" type="button" onclick="addToCartItem({{ $cert->id }});" class="btn btn-danger">Добавить в корзину</button>
+                            <a style="width: 100px; font-size: 14px;" @if(Auth::check()) href="{{ url('/store/item/'.$cert->id) }}" @else href="{{ url('/user/login') }}" @endif class="btn btn-danger">Купить</a>
+                            <button style="font-size: 14px; width: 100px;" type="button" onclick="addToCartItem({{ $cert->id }});" class="btn btn-danger">В корзину</button>
                         </div>
                         <div id="msg" class="hidden"></div>
                         <div class="row" style="margin-top: 15px;">
                             <div class="col-sm-5">
-                                <input style="width: 105px;" type="text" class="phone2" id="buy_one" placeholder="Ваш телефон">
+                                <input type="hidden" name="_token" id="buy_token" value="{{ csrf_token() }}">
+                                <input style="width: 105px;" type="text" class="phone3" id="buy_one" placeholder="Ваш телефон">
                             </div>
                             <div class="col-sm-7">
-                                <button type="button" disabled="disabled" id="btn_buy_one" class="" style="font-size: 11px; border: none; border-radius: 0; padding: 6px; width: 95px;">Купить в 1 клик</button>
+                                <button type="button" onclick="buy_1_click({{ $cert->id }});" disabled="disabled" id="btn_buy_one" class="" style="font-size: 11px; border: none; border-radius: 0; padding: 6px; width: 95px;">1 клик</button>
                             </div>
                             <style>
-                                .phone2:hover{
+                                .phone3:hover{
                                     border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; border-left: 1px solid #ccc;
                                 }
-                                .phone2{
+                                .phone3{
                                     width: 141px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; border-left: 1px solid #ccc; font-size: 11px; padding: 5px;
                                 }
                             </style>
@@ -76,12 +86,12 @@
                 <div class="last_time" style="padding: 10px;">
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Хочешь получить скидку? <br> 10%</label>
+                            <label>Хочешь получить скидку? <br> от 500 до 2000тг</label>
                         </div>
                         <div class="col-md-6">
-                            <button type="button" class="playbutton">
+                            <a href="{{ url('/task') }}" class="playbutton">
                                 <i class="fa fa-play fa-2"></i>&nbsp;&nbsp;&nbsp;Посмотреть задания
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -131,6 +141,7 @@
         </div>
     </div>
     <br><br>
+
     {{--<div class="row_tsk">--}}
 
         {{--<div  class="task_map">--}}

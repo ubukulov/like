@@ -210,4 +210,43 @@ class StoreController extends Controller
             return false;
         }
     }
+
+    # купить в 1 клик
+    public function buy_one_click(Request $request){
+        $phone = $request->input('phone');
+        $id_item = $request->input('id_item');
+//        $result = DB::table('buy_1_click')->where(['phone' => $phone, 'id_item' => $id_item])->first();
+//        if($result){
+//            return 101; // уже отправили
+//        }else{
+//            $lastInsertId = DB::table('buy_1_click')->insertGetId([
+//                'phone' => $phone, 'id_item' => $id_item, 'created_at' => date('Y-m-d H:i:s')
+//            ]);
+//            if($lastInsertId){
+//                return 0; // успешно
+//            }else{
+//                return 100; // не успешно
+//            }
+//        }
+        $customer_id = $this->setBusinessCustomers('', $phone, '');
+        if($customer_id){
+            $result = DB::table('business_orders')->where(['id_cert' => $id_item, 'id_customer' => $customer_id])->first();
+            if($result){
+                return 101;
+            }else{
+                $url = $_SERVER["SERVER_NAME"];
+                $domain = explode(".",$url);
+                $sub_domain = $domain[0].".likemoney.me";
+
+                $client_ip = $_SERVER['REMOTE_ADDR'];
+                $current_date = date("Y-m-d H:i:s");
+                DB::table('business_orders')->insertGetId([
+                    'id_customer' => $customer_id, 'id_agent' => Auth::id(), 'id_cert' => $id_item, 'ip' => $client_ip,
+                    'store_name' => $sub_domain, 'status' => '0', 'created_at' => $current_date
+                ]);
+                return 0;
+            }
+        }
+        return 100;
+    }
 }

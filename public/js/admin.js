@@ -61,6 +61,53 @@ $(function(){
     $('.int').on('input', function () {
         this.value = this.value.replace(/^\.|[^\d\.]|\.(?=.*\.)|^-1+(?=\d)/g, '');
     });
+
+    // деактивировать поля
+    $("#deactivated").on('click', function(){
+        $(".deactivated").each(function(){
+            $(this).prop('readonly', false);
+            $(this).prop('disabled', false);
+        });
+        $(this).prop('disabled', true);
+        $("#activated").prop('disabled', false);
+    });
+    // сохранить некоторые данные заказов
+    $("#activated").on('click', function(){
+        var count = $("#cnt").val();
+        var pay   = $("#tp :selected").val();
+        var id_item = $("#id_item").val();
+        if(count == 0){
+            alert("Нужно указать количество");
+            $("#cnt").focus();
+        }
+        if(pay == 0){
+            alert("Нужно выбрать тип оплаты");
+            $("#tp").focus();
+        }
+        var form = new FormData();
+        form.append('_token',$('#_token').val());
+        form.append('count', count);
+        form.append('pay', pay);
+        form.append('id_item', id_item);
+        $.ajax({
+            type: 'post',
+            url: '/admin/order/'+id_item,
+            cache: false,
+            data: form,
+            contentType:false,
+            processData:false,
+            success: function(res){
+                if(res == 0){
+                    alert("Данные успешно сохранен");
+                    window.location = '/admin/order/'+id_item;
+                }
+                if(res == 101){
+                    alert("Ошибка! Попробуйте позже");
+                    window.location = '/admin/orders';
+                }
+            }
+        });
+    });
 });
 
 function delete_opt_partner(id) {
@@ -285,5 +332,12 @@ function close_suggest(id) {
     var del = confirm('Вы действительно хотите закрыть?');
     if(del){
         window.location = '/admin/suggest/'+id;
+    }
+}
+// закрыт купить в 1 клик
+function close_buy_1_click(id) {
+    var del = confirm('Вы действительно хотите закрыть?');
+    if(del){
+        window.location = '/admin/buy_one_click/'+id;
     }
 }

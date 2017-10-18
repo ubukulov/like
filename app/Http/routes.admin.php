@@ -93,9 +93,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('/order/{id}', 'OrderController@show');
         Route::get('/order/{id_order}/delivery/{cost_delivery}', 'OrderController@cost_delivery');
         Route::get('/order/{id_order}/delivery', 'OrderController@delivery');
+        Route::post('/order/{id}', 'OrderController@setOrderData');
         # Предложение
         Route::get('/suggests', 'IndexController@suggest');
         Route::get('/suggest/{id}', 'IndexController@suggest');
+        # Купить в 1 клик
+        Route::get('/buy_one_clicks', 'IndexController@buy_one_click');
+        Route::get('/buy_one_click/{id}', 'IndexController@buy_one_click');
     });
 
     # Привилегии для менеджера

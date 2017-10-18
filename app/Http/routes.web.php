@@ -57,6 +57,7 @@ Route::get('/cart/put/{id}', 'StoreController@add_to_cart'); // положить
 Route::get('/store/count/{id}/{qty}', 'StoreController@count'); // пересчитать корзину
 Route::post('/store/order', 'StoreController@order');
 Route::get('/store/item/{id}', 'StoreController@add');
+Route::post('/item/buy_one_click', 'StoreController@buy_one_click');
 
 # партнерам
 Route::get('/for-partner', 'IndexController@partner');

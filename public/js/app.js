@@ -164,6 +164,10 @@ $(document).ready(function(){
         $(this).mask("+7 999 999 9999",{placeholder:" "});
     });
 
+    $('.phone3').each(function(){
+        $(this).mask("+7 (999)-999-99-99",{placeholder:" "});
+    });
+
     $('#vyvod_amount').keyup(function () {
         account.vyvod_calc();
     });
@@ -192,7 +196,7 @@ $(document).ready(function(){
         $('#buy_one').attr({'style' : 'border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; border-left: 1px solid #ccc;'});
     });
     $('#buy_one').on('keyup', function(){
-        if($.trim($('#buy_one').val()).length == 15){
+        if($.trim($('#buy_one').val()).length == 18){
             $('#btn_buy_one').addClass('btn btn-danger').prop('disabled', false);
         }else{
             $('#btn_buy_one').removeClass('btn btn-danger').prop('disabled', true);
@@ -557,4 +561,35 @@ var account = {
             $('#vyvod_amount').focus();
         }
     }
+}
+// купить в 1 клик
+function buy_1_click(id_item){
+    var buy_one = $('#buy_one').val();
+    var _buy_token = $('#buy_token').val();
+    var form = new FormData();
+    form.append('_token',_buy_token);
+    form.append('phone', buy_one);
+    form.append('id_item', id_item);
+    $.ajax({
+        type: 'post',
+        url: '/item/buy_one_click',
+        cache: false,
+        data: form,
+        contentType:false,
+        processData:false,
+        success: function(res){
+            if(res == 0){
+                $('#buy_res').html('Успешно отправлено');
+                $('#buy_div').show().fadeOut(3000);
+            }
+            if(res == 101){
+                $('#buy_res').html('Вы уже отправили! ');
+                $('#buy_div').show().fadeOut(3000);
+            }
+            if(res == 100){
+                $('#buy_res').html('Ошибка! Попробуйте позже ');
+                $('#buy_div').show().fadeOut(3000);
+            }
+        }
+    });
 }

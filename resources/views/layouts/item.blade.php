@@ -58,6 +58,13 @@
                             {{--<button class="ui button">Поиск</button>--}}
                         {{--</div>--}}
                     {{--</div>--}}
+                    <div class="col-sm-5">
+                        <div id="buy_div" style="display: none; padding: 15px; border-radius: 10px; width: 350px;" class="alert alert-success alert-dismissable">
+                            <a style="right: -13px !important; top: -16px !important;" href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <span id="buy_res"></span>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="col-sm-1">
                     <a href="{{ url('/cart') }}">

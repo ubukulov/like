@@ -11,6 +11,8 @@
                 <div class="box box-primary">
                     <!-- /.box-header -->
                     <div class="box-body">
+                        <input type="hidden" id="id_item" value="{{ $order->id }}">
+                        <input type="hidden" id="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="title">Наименование</label>
                             <input type="text" readonly class="form-control" value="{{ $order->title }}">
@@ -18,7 +20,7 @@
 
                         <div class="form-group">
                             <label for="title">Количество</label>
-                            <input type="text" readonly class="form-control" value="{{ $order->qty }}">
+                            <input type="text" id="cnt" readonly class="form-control deactivated int" value="{{ $order->qty }}">
                         </div>
 
                         <div class="form-group">
@@ -46,7 +48,16 @@
                             <input type="text" readonly class="form-control" value="{{ $order->p_address }}">
                         </div>
 
-
+                        <div class="form-group">
+                            <label for="title">Интернет магазин</label>
+                            <input type="text" readonly class="form-control" value="{{ $order->store_name }}">
+                        </div>
+                        @if(empty($order->qty) AND empty($order->price))
+                        <div class="form-group">
+                            <button type="button" class="btn btn-danger" id="deactivated">Деактивировать поля</button>
+                            <button type="button" disabled="disabled" class="btn btn-success" id="activated">Сохранить данные</button>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -57,8 +68,14 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="title">Вид оплаты</label>
-                            <input type="text" readonly class="form-control"
-                            value="@if($order->payment_type == 1) Со счета Likemoney @endif @if($order->payment_type == 2) QIWI терминалы @endif @if($order->payment_type == 3) Visa/Mastercard @endif @if($order->payment_type == 4) Наличными при получении @endif @if($order->payment_type == 5) Оплата в офисе @endif ">
+                            <select id="tp" class="form-control deactivated" disabled="disabled">
+                                <option @if(empty($order->payment_type)) selected="selected" @endif value="0">Укажите вид оплаты</option>
+                                <option @if($order->payment_type == 1) selected="selected" @endif value="1">Со счета Likemoney</option>
+                                <option @if($order->payment_type == 2) selected="selected" @endif value="2">QIWI терминалы</option>
+                                <option @if($order->payment_type == 3) selected="selected" @endif value="3">Visa/Mastercard</option>
+                                <option @if($order->payment_type == 4) selected="selected" @endif value="4">Наличными при получении</option>
+                                <option @if($order->payment_type == 5) selected="selected" @endif value="5">Оплата в офисе</option>
+                            </select>
                         </div>
 
                         <div class="form-group">

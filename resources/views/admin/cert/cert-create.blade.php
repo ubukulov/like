@@ -109,6 +109,29 @@
                                 @endforeach
                             </select>
                         </div>
+                        <hr>
+                        <h3>Настройки оптовой цены</h3>
+                        <div class="row certPrice">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="special3">От</label>
+                                    <input type="text" class="form-control int" id="min_count" name="min_count"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="special3">До</label>
+                                    <input type="text" class="form-control int" id="min_count" name="min_count"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="special3">Оптовая цена</label>
+                                    <input type="text" class="form-control int" id="min_opt_price" name="min_opt_price"/>
+                                </div>
+                            </div>
+                        </div>
+
 
                     </div>
                     <!-- /.box-body -->
