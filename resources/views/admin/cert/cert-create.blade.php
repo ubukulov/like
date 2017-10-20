@@ -97,8 +97,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="special3">Себестоимость товара</label>
+                            <label for="prime_cost">Себестоимость товара</label>
                             <input type="text" class="form-control" id="prime_cost" name="prime_cost" placeholder="Себестоимость товара" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="count">Количество товара</label>
+                            <input type="text" class="form-control" id="count" name="count" placeholder="Количество товара" />
                         </div>
 
                         <div class="form-group">
@@ -111,24 +116,37 @@
                         </div>
                         <hr>
                         <h3>Настройки оптовой цены</h3>
-                        <div class="row certPrice">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="special3">От</label>
-                                    <input type="text" class="form-control int" id="min_count" name="min_count"/>
-                                </div>
+                        <input type="hidden" id="cnt" value="1" name="cnt"/>
+                        <div class="row uploadPrice" id="uploadPrice1">
+
+                            <div class="col-md-2">
+                                <label for="number1">№</label>
+                                <span class="form-control">1</span>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="special3">До</label>
-                                    <input type="text" class="form-control int" id="min_count" name="min_count"/>
-                                </div>
+
+                            <div class="col-md-2">
+                                <label for="from">от</label>
+                                <input type="text" id="from1" class="form-control int" name="from1" required>
                             </div>
+
+                            <div class="col-md-2">
+                                <label for="to1">до</label>
+                                <input type="text" id="to1" class="form-control int" name="to1" required>
+                            </div>
+
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="special3">Оптовая цена</label>
-                                    <input type="text" class="form-control int" id="min_opt_price" name="min_opt_price"/>
-                                </div>
+                                <label for="sum1">сумма</label>
+                                <input type="text" id="sum1" class="form-control int" name="sum1" required>
+                            </div>
+
+                            <div class="col-md-2">
+
+                            </div>
+
+                        </div>
+                        <div id="createUploadButton" class="row" style="margin-top: 40px;">
+                            <div class="col-md-12" style="border-top: 1px solid #ccc;">
+                                <button type="button" style="margin-top: 10px;" class="btn btn-bitbucket" onclick="createOptom();">еще добавить</button>
                             </div>
                         </div>
 

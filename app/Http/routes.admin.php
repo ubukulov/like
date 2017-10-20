@@ -18,6 +18,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::post('/cert/{id}', 'CertController@update');
         Route::get('/cert/delete/{id}', 'CertController@destroy');
         Route::get('/cert/get/cats/{id}', 'CertController@get_cats');
+        Route::get('/cert/opt/{id}', 'CertController@delete_opt');
         # Маршруты для "карты"
         Route::get('/cards', 'CardController@index'); // Список всех карт
         Route::get('/cards_vip', 'CardController@vip'); // Список вип карт

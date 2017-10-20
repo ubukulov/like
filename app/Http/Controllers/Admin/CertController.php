@@ -48,6 +48,11 @@ class CertController extends Controller
      */
     public function store(Request $request)
     {
+        $count = $request->input('cnt');
+        if ($count < 1) {
+            $count = 1;
+        }
+
         $data = [
             'title' => $request->input('title'), 'category_id' => $request->input('id_main_cat'),
             'pod_cat' => $request->input('id_pod_cat'), 'conditions' => $request->input('conditions'),
@@ -62,7 +67,7 @@ class CertController extends Controller
             'meta_keywords' => $request->input('meta_keywords'), 'sort' => $request->input('sort'),
             'cert_type' => $request->input('cert_type'), 'article_code' => $request->input('article_code'),
             'b1' => $request->input('b1'), 'b2' => $request->input('b2'), 'b3' => $request->input('b3'),
-            'prime_cost' => $request->input('prime_cost')
+            'prime_cost' => $request->input('prime_cost'), 'count' => $request->input('count')
         ];
         if(!empty($data['image'])){
             $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image'];
@@ -106,7 +111,14 @@ class CertController extends Controller
             $img->save($to_mini);
             unlink($from);
         }
-        Cert::create($data);
+        $lastInsertId = Cert::create($data)->id;
+        for ($i = 1; $i <= $count; $i++) {
+            $from = $request->get('from' . $i);
+            $to   = $request->get('to' . $i);
+            $sum   = $request->get('sum' . $i);
+            $current_time = date("Y-m-d H:i:s");
+            DB::insert("INSERT INTO cert_opt (id_cert,nach,kon,summa,created_at) VALUES('$lastInsertId','$from','$to', '$sum', '$current_time')");
+        }
         return redirect('admin/certs')->with('message', "Задания успешно добавлен");
     }
 
@@ -134,7 +146,8 @@ class CertController extends Controller
         $partner = Partner::all();
         $pod_cat = DB::select("SELECT * FROM pod_cat");
         $cats = DB::table('cats')->where(['parent' => 0])->get();
-        return view('admin/cert/cert-show', compact('cert', 'cat', 'partner', 'pod_cat', 'cats'));
+        $opt = DB::table('cert_opt')->where(['id_cert' => $id])->get();
+        return view('admin/cert/cert-show', compact('cert', 'cat', 'partner', 'pod_cat', 'cats', 'opt'));
     }
 
     /**
@@ -146,6 +159,7 @@ class CertController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $count = $request->input('cnt');
         $data = [
             'title' => $request->input('title'), 'category_id' => $request->input('id_main_cat'),
             'pod_cat' => $request->input('id_pod_cat'), 'conditions' => $request->input('conditions'),
@@ -160,7 +174,7 @@ class CertController extends Controller
             'meta_keywords' => $request->input('meta_keywords'), 'sort' => $request->input('sort'),
             'cert_type' => $request->input('cert_type'), 'article_code' => $request->input('article_code'),
             'b1' => $request->input('b1'), 'b2' => $request->input('b2'), 'b3' => $request->input('b3'),
-            'prime_cost' => $request->input('prime_cost')
+            'prime_cost' => $request->input('prime_cost'), 'count' => $request->input('count')
         ];
 
         if(!empty($data['image'])){
@@ -214,6 +228,27 @@ class CertController extends Controller
         }
         $cert = Cert::find($id);
         $cert->update($data);
+        if($count != 0){
+            for ($i = 1; $i <= $count; $i++) {
+                $from = $request->get('from' . $i);
+                $to   = $request->get('to' . $i);
+                $sum   = $request->get('sum' . $i);
+                $current_time = date("Y-m-d H:i:s");
+                DB::insert("INSERT INTO cert_opt (id_cert,nach,kon,summa,created_at) VALUES('$id','$from','$to', '$sum', '$current_time')");
+            }
+        }
+
+        if(isset($_SESSION['opt'])){
+            unset($_SESSION['opt']['is']);
+            for($i = 0; $i<count($_SESSION['opt']); $i++){
+                $n = $_SESSION['opt'][$i];
+                $from = $request->get('from' . $n);
+                $to   = $request->get('to' . $n);
+                $sum   = $request->get('sum' . $n);
+                DB::update("UPDATE cert_opt SET nach='$from', kon='$to', summa='$sum' WHERE id='$n'");
+            }
+        }
+
         return redirect('admin/certs')->with('message', 'Задания успешно обновлен');
     }
 
@@ -266,5 +301,13 @@ class CertController extends Controller
     public function get_cats($id_cat){
         $result = DB::table('cats')->where(['parent' => $id_cat])->get();
         return json_encode($result);
+    }
+
+    public function delete_opt($id){
+        if(isset($_SESSION['opt'][$id])){
+            unset($_SESSION['opt'][$id]);
+        }
+        DB::table('cert_opt')->where('id', '=', $id)->delete();
+        return 0;
     }
 }

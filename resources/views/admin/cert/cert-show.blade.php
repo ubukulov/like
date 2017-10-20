@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label>1-уровень категории</label>
                                     <select class="form-control select2" style="width: 100%;" id="id_pod_cat1" onchange="get_cats('id_pod_cat1','id_pod_cat2');">
-
+                                        <option value="0">{{ check_pod_cat1($cert->pod_cat) }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label>2-уровень категории</label>
                                     <select class="form-control select2" style="width: 100%;" id="id_pod_cat2" onchange="get_cats('id_pod_cat2','id_pod_cat3');" >
-
+                                        <option value="0">{{ check_pod_cat2($cert->pod_cat) }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -131,6 +131,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="count">Количество товара</label>
+                            <input type="text" class="form-control" id="count" value="{{ $cert->count }}" name="count" placeholder="Количество товара" />
+                        </div>
+
+                        <div class="form-group">
                             <label>Список партнеров</label>
                             <select class="form-control select2" style="width: 100%;" name="id_partner">
                                 @foreach($partner as $pt)
@@ -141,6 +146,52 @@
                                     @endif
                                 @endforeach
                             </select>
+                        </div>
+
+                        <h3>Настройки оптовой цены</h3>
+                        <input type="hidden" id="cnt" value="0" name="cnt"/>
+                        @foreach($opt as $item)
+                        <div class="row uploadPrice" id="uploadPrice1">
+                            <?php
+                                if(!isset($_SESSION['opt']['is'])){
+                                    $_SESSION['opt']['is'] = 1;
+                                    $_SESSION['opt'][] = $item->id;
+                                }else{
+                                    $_SESSION['opt'][] = $item->id;
+                                }
+                            ?>
+                            <div class="col-md-2">
+                                <label for="number{{ $item->id }}">ID</label>
+                                <span class="form-control">{{ $item->id }}</span>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="from{{ $item->id }}">от</label>
+                                <input type="text" id="from{{ $item->id }}" class="form-control int" value="{{ $item->nach }}" name="from{{ $item->id }}" required>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="to{{ $item->id }}">до</label>
+                                <input type="text" id="to{{ $item->id }}" class="form-control int" value="{{ $item->kon }}" name="to{{ $item->id }}" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="sum{{ $item->id }}">сумма</label>
+                                <input type="text" id="sum{{ $item->id }}" class="form-control int" value="{{ $item->summa }}" name="sum{{ $item->id }}" required>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="col-md-2">
+                                    <label for="number1">удалить</label>
+                                    <button type="button" onclick="deleteOptomBD({{ $item->id }}, {{ $cert->id }});" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        <div id="createUploadButton" class="row" style="margin-top: 40px;">
+                            <div class="col-md-12" style="border-top: 1px solid #ccc;">
+                                <button type="button" style="margin-top: 10px;" class="btn btn-bitbucket" onclick="createOptom();">еще добавить</button>
+                            </div>
                         </div>
 
 

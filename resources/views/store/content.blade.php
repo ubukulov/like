@@ -69,7 +69,7 @@
                                 <input style="width: 105px;" type="text" class="phone3" id="buy_one" placeholder="Ваш телефон">
                             </div>
                             <div class="col-sm-7">
-                                <button type="button" onclick="buy_1_click({{ $cert->id }});" disabled="disabled" id="btn_buy_one" class="" style="font-size: 11px; border: none; border-radius: 0; padding: 6px; width: 95px;">1 клик</button>
+                                <button type="button" onclick="buy_1_click({{ $cert->id }});" disabled="disabled" id="btn_buy_one" class="" style="font-size: 11px; border: none; border-radius: 0; padding: 6px; width: 95px;">В 1 клик</button>
                             </div>
                             <style>
                                 .phone3:hover{

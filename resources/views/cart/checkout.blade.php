@@ -34,6 +34,16 @@
                             <td class="td">
                                 <strong><?=$val['price'];?> тг</strong>
                             </td>
+
+                            <td>
+                                <div class="inline field" style="padding-top: 5px;">
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" id="opt" tabindex="0" class="hidden">
+                                        <label style="font-size: 14px;">Оптом</label>
+                                    </div>
+                                </div>
+                            </td>
+
                             <td class="td">
                                 <div class="text-center" style="color: navy">
                                     {{--<a href="{{ url('/cart/delete/'.$key) }}" style="color: navy"><img src="{{ asset('img/delete_icon.png') }}" alt="delete"></a>--}}
@@ -85,7 +95,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <textarea name="address" class="form-control" id="address" cols="30" rows="3" placeholder="Адрес доставки"></textarea>
+                            <textarea name="address" class="form-control" id="address" cols="30" rows="3" placeholder="Адрес доставки и комментарии к заказу"></textarea>
                         </div>
                     </div>
                 </div>

@@ -202,6 +202,15 @@ $(document).ready(function(){
             $('#btn_buy_one').removeClass('btn btn-danger').prop('disabled', true);
         }
     });
+
+    // оптом
+    $("#opt").on('change', function(){
+        if($(this).prop('checked')){
+            alert("OK");
+        }else{
+            alert("NO");
+        }
+    });
 });
 
 function taskButton_money(){
@@ -579,7 +588,7 @@ function buy_1_click(id_item){
         processData:false,
         success: function(res){
             if(res == 0){
-                $('#buy_res').html('Успешно отправлено');
+                $('#buy_res').html('Ваш заказ успешно принят! С Вами свяжется наш оператор.');
                 $('#buy_div').show().fadeOut(3000);
             }
             if(res == 101){

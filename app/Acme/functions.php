@@ -450,3 +450,37 @@ function russian_date($date){
     }
     return $date[0]." ".$m." ".$date[2];
 }
+#
+function check_pod_cat($id,$lvl){
+    $level = 0;
+    $result1 = DB::table('cats')->where(['id' => $id])->where('parent', '!=', 0)->first();
+    if($result1){
+        $level += 1;
+    }
+    $result2 = DB::table('cats')->where(['id' => $result1->parent])->where('parent', '!=', 0)->first();
+    if($result2){
+        $level += 1;
+    }
+    $result3 = DB::table('cats')->where(['id' => $result2->parent])->where('parent', '!=', 0)->first();
+    if($result3){
+        $level += 1;
+    }
+
+    switch($lvl){
+        case 1:
+
+            break;
+    }
+
+    if($result3->parent == 0){
+        return $result1->title;
+    }
+}
+function check_pod_cat1($id){
+    $result1 = DB::table('cats')->where(['id' => $id])->first();
+    $result2 = DB::table('cats')->where(['id' => $result1->parent])->first();
+    $result3 = DB::table('cats')->where(['id' => $result2->parent])->first();
+    if($result2->parent == 0){
+        return $result1->title;
+    }
+}
