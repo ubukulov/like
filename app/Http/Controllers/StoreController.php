@@ -109,6 +109,9 @@ class StoreController extends Controller
 
     # пересчитать корзину
     public function count($id_item, $qty){
+        if(isset($_SESSION['cart'][$id_item]['opt_price'])){
+            $this->op_tom($id_item);
+        }
         $result = Cert::counted_cart_bus($id_item, $qty);
         return json_encode($result);
     }
@@ -248,5 +251,43 @@ class StoreController extends Controller
             }
         }
         return 100;
+    }
+
+    public function op_tom($id){
+        if(array_key_exists($id, $_SESSION['cart'])){
+            // если товар есть в корзине
+            if($this->is_interval($id,$_SESSION['cart'][$id]['qty'])){
+                // подходить к оптовом ценам, пересчитаем сумму
+                return $this->count($id, $_SESSION['cart'][$id]['qty']);
+            }else{
+                // кол-во товара не подходить к оптовом ценам
+                return 402;
+            }
+        }else{
+            return 401; // такой товар в корзине не существует
+        }
+    }
+
+    public function is_interval($id, $count){
+        $result = DB::select("SELECT OP.summa FROM cert_opt OP WHERE OP.id_cert='$id' AND OP.nach<='$count' AND OP.kon>='$count' LIMIT 1");
+        if($result){
+            $_SESSION['cart'][$id]['opt_price'] = $result[0]->summa;
+            return true;
+        }else{
+            return false; // кол-во не входит в интервал
+        }
+    }
+
+    public function op_tom_down($id){
+        if(array_key_exists($id, $_SESSION['cart'])){
+            if(isset($_SESSION['cart'][$id]['opt_price'])){
+                unset($_SESSION['cart'][$id]['opt_price']);
+                return $this->count($id, $_SESSION['cart'][$id]['qty']);
+            }else{
+                return 403;
+            }
+        }else{
+            return 401; // такой товар в корзине не существует
+        }
     }
 }

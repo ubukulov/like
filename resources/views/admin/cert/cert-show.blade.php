@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label>1-уровень категории</label>
                                     <select class="form-control select2" style="width: 100%;" id="id_pod_cat1" onchange="get_cats('id_pod_cat1','id_pod_cat2');">
-                                        <option value="0">{{ check_pod_cat1($cert->pod_cat) }}</option>
+{{--                                        <option value="0">{{ check_pod_cat($cert->pod_cat, 1) }}</option>--}}
                                     </select>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label>2-уровень категории</label>
                                     <select class="form-control select2" style="width: 100%;" id="id_pod_cat2" onchange="get_cats('id_pod_cat2','id_pod_cat3');" >
-                                        <option value="0">{{ check_pod_cat2($cert->pod_cat) }}</option>
+{{--                                        <option value="0">{{ check_pod_cat($cert->pod_cat, 2) }}</option>--}}
                                     </select>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                 <div class="form-group">
                                     <label>3-уровень категории</label>
                                     <select class="form-control select2" style="width: 100%;" id="id_pod_cat3" onchange="get_cats('id_pod_cat3');" >
-
+                                        {{--<option value="0">{{ check_pod_cat($cert->pod_cat, 3) }}</option>--}}
                                     </select>
                                 </div>
                             </div>
@@ -105,15 +105,15 @@
                             {{--</select>--}}
                         {{--</div>--}}
 
-                        <div class="form-group">
-                            <label for="date_start">Дата начала</label>
-                            <input type="text" class="form-control" id="date_start" value="{{ date("d.m.Y", $cert->date_start) }}" name="date_start" required="required">
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="date_start">Дата начала</label>--}}
+                            {{--<input type="text" class="form-control" id="date_start" value="{{ date("d.m.Y", $cert->date_start) }}" name="date_start" required="required">--}}
+                        {{--</div>--}}
 
-                        <div class="form-group">
-                            <label for="date_end">Дата конца</label>
-                            <input type="text" class="form-control" id="date_end" value="{{ date("d.m.Y", $cert->date_end) }}" name="date_end" required="required">
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="date_end">Дата конца</label>--}}
+                            {{--<input type="text" class="form-control" id="date_end" value="{{ date("d.m.Y", $cert->date_end) }}" name="date_end" required="required">--}}
+                        {{--</div>--}}
 
                         <div class="form-group">
                             <label for="special2">Цена без скидки</label>
@@ -153,12 +153,17 @@
                         @foreach($opt as $item)
                         <div class="row uploadPrice" id="uploadPrice1">
                             <?php
-                                if(!isset($_SESSION['opt']['is'])){
-                                    $_SESSION['opt']['is'] = 1;
-                                    $_SESSION['opt'][] = $item->id;
-                                }else{
-                                    $_SESSION['opt'][] = $item->id;
-                                }
+//                                if(!isset($_SESSION['opt']['is'])){
+//                                    if(!empty($item->id)){
+//                                        $_SESSION['opt']['is'] = 1;
+//                                        $_SESSION['opt'][] = $item->id;
+//                                    }
+//
+//                                }else{
+//                                    if(!empty($item->id)){
+//                                        $_SESSION['opt'][] = $item->id;
+//                                    }
+//                                }
                             ?>
                             <div class="col-md-2">
                                 <label for="number{{ $item->id }}">ID</label>

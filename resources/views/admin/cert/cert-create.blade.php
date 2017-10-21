@@ -76,15 +76,15 @@
                             <input type="text" class="form-control" id="title" required="required" name="title" placeholder="Введите название">
                         </div>
 
-                        <div class="form-group">
-                            <label for="date_start">Дата начала</label>
-                            <input type="text" class="form-control" id="date_start" name="date_start" required="required">
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="date_start">Дата начала</label>--}}
+                            {{--<input type="text" class="form-control" id="date_start" name="date_start" required="required">--}}
+                        {{--</div>--}}
 
-                        <div class="form-group">
-                            <label for="date_end">Дата конца</label>
-                            <input type="text" class="form-control" id="date_end" name="date_end" required="required">
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="date_end">Дата конца</label>--}}
+                            {{--<input type="text" class="form-control" id="date_end" name="date_end" required="required">--}}
+                        {{--</div>--}}
 
                         <div class="form-group">
                             <label for="special2">Цена без скидки</label>

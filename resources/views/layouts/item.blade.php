@@ -87,19 +87,48 @@
         <div class="row">
             <div class="col-md-3">
                 <!-- begin twitter widget -->
-                <div style="line-height:2em;">
-                    <h3>Информация</h3>
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center;">
+                        <span style="font-weight: bold;">Мы</span>&nbsp;&nbsp;<span style="font-family: Verdana, Arial, Helvetica, sans-serif;">гарантируем:</span>
+                    </div>
+                </div>
 
+                <div class="row_tsk">
+                    <div class="row" style="margin-bottom: 20px;">
 
-                    <i class="marker icon"></i>&nbsp;{{ $partner->address }}
-                    <br />
-                    <i class="call square icon"></i>&nbsp;{{ $partner->phone }}
-                    <br />
-                    <i class="mail outline icon"></i>&nbsp;{{ $partner->email }}
-                    <br />
+                        <div class="col-md-2">
+                            <img src="{{ asset('img/d_1.png') }}" alt="" align="left">
+                        </div>
 
-                    <i class="wait icon"></i>&nbsp;{{ $partner->hours }}
-                    <br />
+                        <div class="col-md-10">
+                            <span style="font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif;">Самая быстрая доставка по всему Казахстану</span>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-bottom: 20px;">
+
+                        <div class="col-md-2">
+                            <img src="{{ asset('img/d_2.png') }}" alt="" align="left">
+                        </div>
+
+                        <div class="col-md-10">
+                            <span style="font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif;">Оплата наличными в момент доставки или другим способом (банковские карты, QIWI терминал, безналичный платеж)</span>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <img src="{{ asset('img/d_3.png') }}" alt="" align="left">
+                        </div>
+
+                        <div class="col-md-10" style="padding-top: 3px;">
+                            <span style="font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif;">14 дней на обмен и возврат</span>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div class="col-md-9">

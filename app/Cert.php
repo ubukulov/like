@@ -58,7 +58,11 @@ class Cert extends Model
                 $_SESSION['cart'][$result[$key]->id]['price'] = $result[$key]->special2;
                 $_SESSION['cart'][$result[$key]->id]['img']   = $result[$key]->image;
                 $_SESSION['cart'][$result[$key]->id]['id']    = $result[$key]->id;
-                $total_sum += $_SESSION['cart'][$result[$key]->id]['qty'] * $result[$key]->special2;
+                if(isset($_SESSION['cart'][$result[$key]->id]['opt_price'])){
+                    $total_sum += $_SESSION['cart'][$result[$key]->id]['qty'] * $_SESSION['cart'][$result[$key]->id]['opt_price'];
+                }else{
+                    $total_sum += $_SESSION['cart'][$result[$key]->id]['qty'] * $result[$key]->special2;
+                }
             }
             return $total_sum;
         }

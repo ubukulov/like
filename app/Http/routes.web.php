@@ -58,7 +58,8 @@ Route::get('/store/count/{id}/{qty}', 'StoreController@count'); // пересч�
 Route::post('/store/order', 'StoreController@order');
 Route::get('/store/item/{id}', 'StoreController@add');
 Route::post('/item/buy_one_click', 'StoreController@buy_one_click');
-
+Route::get('/store/checkout/up/{item}', 'StoreController@op_tom');
+Route::get('/store/checkout/down/{item}', 'StoreController@op_tom_down');
 # партнерам
 Route::get('/for-partner', 'IndexController@partner');
 

@@ -204,12 +204,43 @@ $(document).ready(function(){
     });
 
     // оптом
-    $("#opt").on('change', function(){
+    $(".opt_price").each(function(){
+        var item = $(this).attr("id");
+        item = item.substr(3);
+        item = parseInt(item);
         if($(this).prop('checked')){
-            alert("OK");
+            $.get("/store/checkout/up/"+item, function(data){
+                if(data == 401){
+                    alert("Ошибка!");
+                    window.location = '/cart/checkout';
+                }
+                if(data == 402){
+                    alert("Кол-во товара не подходить к оптовом ценам");
+                    $(this).prop('checked', false);
+                }
+                if(data == 1){
+                    window.location = '/cart/checkout';
+                }
+            });
         }else{
-            alert("NO");
+            $.get("/store/checkout/down/"+item, function(data){
+                if(data == 401){
+                    alert("Ошибка!");
+                    window.location = '/cart/checkout';
+                }
+                if(data == 402){
+                    alert("Кол-во товара не подходить к оптовом ценам");
+                    $(this).prop('checked', false);
+                }
+                if(data == 403){
+                    $(this).prop('checked', false);
+                }
+                if(data == 1){
+                    window.location = '/cart/checkout';
+                }
+            });
         }
+
     });
 });
 
