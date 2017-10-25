@@ -41,14 +41,13 @@
                             </td>
 
                             <td>
-                                {{--<div class="inline field" style="padding-top: 5px;">--}}
-                                    {{--<div class="ui checkbox">--}}
-                                        {{--<input type="hidden" id="item{{ $val['id'] }}" value="{{ $val['id'] }}">--}}
-                                        {{--<input type="checkbox" @if(isset($_SESSION['cart'][$val['id']]['opt_price'])) checked="checked" @endif id="opt{{ $val['id'] }}" tabindex="0" class="opt_price">--}}
-                                        {{--<label style="font-size: 14px;">Оптом</label>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                <input type="checkbox" @if(isset($_SESSION['cart'][$val['id']]['opt_price'])) checked="checked" @endif id="opt{{ $val['id'] }}" class="opt_price"> Оптом
+                                <div class="inline field" style="padding-top: 5px;">
+                                    <div class="ui checkbox">
+                                        <input type="hidden" id="item{{ $val['id'] }}" value="{{ $val['id'] }}">
+                                        <input type="checkbox" @if(isset($_SESSION['cart'][$val['id']]['opt_price'])) checked="checked" @endif id="opt{{ $val['id'] }}" tabindex="0" class="opt_price">
+                                        <label style="font-size: 14px;">Оптом</label>
+                                    </div>
+                                </div>
                             </td>
 
                             <td class="td">

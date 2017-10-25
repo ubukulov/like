@@ -76,37 +76,42 @@ $(function(){
         var count = $("#cnt").val();
         var pay   = $("#tp :selected").val();
         var id_item = $("#id_item").val();
+        var customer_address = $("#customer_address").val();
         if(count == 0){
             alert("Нужно указать количество");
             $("#cnt").focus();
-        }
-        if(pay == 0){
+        }else if(pay == 0){
             alert("Нужно выбрать тип оплаты");
             $("#tp").focus();
+        }else if(customer_address.length == 0){
+            alert("Укажите адрес доставки");
+            $("#customer_address").focus();
+        }else{
+            var form = new FormData();
+            form.append('_token',$('#_token').val());
+            form.append('count', count);
+            form.append('pay', pay);
+            form.append('id_item', id_item);
+            form.append('customer_address', customer_address);
+            $.ajax({
+                type: 'post',
+                url: '/admin/order/'+id_item,
+                cache: false,
+                data: form,
+                contentType:false,
+                processData:false,
+                success: function(res){
+                    if(res == 0){
+                        alert("Данные успешно сохранен");
+                        window.location = '/admin/order/'+id_item;
+                    }
+                    if(res == 101){
+                        alert("Ошибка! Попробуйте позже");
+                        window.location = '/admin/orders';
+                    }
+                }
+            });
         }
-        var form = new FormData();
-        form.append('_token',$('#_token').val());
-        form.append('count', count);
-        form.append('pay', pay);
-        form.append('id_item', id_item);
-        $.ajax({
-            type: 'post',
-            url: '/admin/order/'+id_item,
-            cache: false,
-            data: form,
-            contentType:false,
-            processData:false,
-            success: function(res){
-                if(res == 0){
-                    alert("Данные успешно сохранен");
-                    window.location = '/admin/order/'+id_item;
-                }
-                if(res == 101){
-                    alert("Ошибка! Попробуйте позже");
-                    window.location = '/admin/orders';
-                }
-            }
-        });
     });
 });
 

@@ -32,7 +32,7 @@ class OrderController extends Controller
             ->join('business_customers', 'business_customers.id', '=', 'business_orders.id_customer')
             ->join('certs', 'certs.id', '=', 'business_orders.id_cert')
             ->join('partners', 'partners.id', '=', 'certs.partner_id')
-            ->select('business_orders.*', 'business_customers.client_phone', 'partners.name', 'partners.mphone', 'partners.address AS p_address', 'business_customers.client_name', 'certs.prime_cost')
+            ->select('business_orders.*', 'business_customers.client_phone', 'partners.name', 'partners.mphone', 'partners.address AS p_address', 'business_customers.client_name', 'certs.prime_cost', 'certs.title')
             ->where(['business_orders.id' => $id])
             ->first();
         return view('admin/order-show', compact('order'));
@@ -63,13 +63,13 @@ class OrderController extends Controller
         $qty = $request->input('count');
         $payment_type = $request->input('pay');
         $id = $request->input('id_item');
+        $customer_address = $request->input('customer_address');
         $order = DB::table('business_orders')->where(['id' => $id])->first();
         if($order){
             $cert = Cert::findOrFail($order->id_cert);
             if($cert){
-                $title = $cert->title;
                 $price = $cert->special2;
-                DB::update("UPDATE business_orders SET title='$title', qty='$qty', price='$price', payment_type='$payment_type' WHERE id='$id'");
+                DB::update("UPDATE business_orders SET address='$customer_address', qty='$qty', price='$price', payment_type='$payment_type' WHERE id='$id'");
                 return 0;
             }else{
                 return 101;

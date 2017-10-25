@@ -44,8 +44,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title">Адрес покупателя</label>
-                            <input type="text" readonly class="form-control" value="{{ $order->p_address }}">
+                            <label for="customer_address">Адрес покупателя</label>
+                            <input type="text" id="customer_address" readonly class="form-control deactivated" value="{{ $order->address }}">
                         </div>
 
                         <div class="form-group">
@@ -90,7 +90,7 @@
 
                         <div class="form-group">
                             <label for="title">Адрес</label>
-                            <input type="text" readonly class="form-control" value="{{ $order->address }}">
+                            <input type="text" readonly class="form-control" value="{{ $order->p_address }}">
                         </div>
 
                         <div class="form-group">

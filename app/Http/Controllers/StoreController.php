@@ -110,7 +110,7 @@ class StoreController extends Controller
     # пересчитать корзину
     public function count($id_item, $qty){
         if(isset($_SESSION['cart'][$id_item]['opt_price'])){
-            $this->op_tom($id_item);
+            $this->check_interval($id_item, $qty);
         }
         $result = Cert::counted_cart_bus($id_item, $qty);
         return json_encode($result);
@@ -288,6 +288,17 @@ class StoreController extends Controller
             }
         }else{
             return 401; // такой товар в корзине не существует
+        }
+    }
+
+
+    public function check_interval($id, $count){
+        $result = DB::select("SELECT OP.summa FROM cert_opt OP WHERE OP.id_cert='$id' AND OP.nach<='$count' AND OP.kon>='$count' LIMIT 1");
+        if($result){
+            unset($_SESSION['cart'][$id]['opt_price']);
+            $_SESSION['cart'][$id]['opt_price'] = $result[0]->summa;
+        }else{
+            unset($_SESSION['cart'][$id]['opt_price']);
         }
     }
 }

@@ -208,39 +208,36 @@ $(document).ready(function(){
         var item = $(this).attr("id");
         item = item.substr(3);
         item = parseInt(item);
-        if($(this).prop('checked')){
-            $.get("/store/checkout/up/"+item, function(data){
-                if(data == 401){
-                    alert("Ошибка!");
-                    window.location = '/cart/checkout';
-                }
-                if(data == 402){
-                    alert("Кол-во товара не подходить к оптовом ценам");
-                    $(this).prop('checked', false);
-                }
-                if(data == 1){
-                    window.location = '/cart/checkout';
-                }
-            });
-        }else{
-            $.get("/store/checkout/down/"+item, function(data){
-                if(data == 401){
-                    alert("Ошибка!");
-                    window.location = '/cart/checkout';
-                }
-                if(data == 402){
-                    alert("Кол-во товара не подходить к оптовом ценам");
-                    $(this).prop('checked', false);
-                }
-                if(data == 403){
-                    $(this).prop('checked', false);
-                }
-                if(data == 1){
-                    window.location = '/cart/checkout';
-                }
-            });
-        }
-
+        $(this).change(function () {
+            if($(this).prop('checked')){
+                $.get("/store/checkout/up/"+item, function(data){
+                    if(data == 1){
+                        window.location = '/cart/checkout';
+                    }
+                    if(data == 401){
+                        alert("Ошибка!");
+                        window.location = '/cart/checkout';
+                    }
+                    if(data == 402){
+                        $("#opt"+item).prop('checked', false);
+                        alert("Кол-во товара не подходить к оптовом ценам");
+                    }
+                });
+            }else{
+                $.get("/store/checkout/down/"+item, function(data){
+                    if(data == 401){
+                        alert("Ошибка!");
+                        window.location = '/cart/checkout';
+                    }
+                    if(data == 403){
+                        $(this).prop('checked', false);
+                    }
+                    if(data == 1){
+                        window.location = '/cart/checkout';
+                    }
+                });
+            }
+        });
     });
 });
 
