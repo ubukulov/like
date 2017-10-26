@@ -77,6 +77,7 @@ $(function(){
         var pay   = $("#tp :selected").val();
         var id_item = $("#id_item").val();
         var customer_address = $("#customer_address").val();
+        var firstname_customer = $("#firstname_customer").val();
         if(count == 0){
             alert("Нужно указать количество");
             $("#cnt").focus();
@@ -93,6 +94,7 @@ $(function(){
             form.append('pay', pay);
             form.append('id_item', id_item);
             form.append('customer_address', customer_address);
+            form.append('firstname_customer', firstname_customer);
             $.ajax({
                 type: 'post',
                 url: '/admin/order/'+id_item,

@@ -34,8 +34,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="title">Имя покупателя</label>
-                            <input type="text" readonly class="form-control" value="{{ $order->client_name }}">
+                            <label for="firstname_customer">Имя покупателя</label>
+                            <input type="text" id="firstname_customer" readonly class="form-control deactivated" value="{{ $order->client_name }}">
                         </div>
 
                         <div class="form-group">

@@ -42,11 +42,11 @@
                                             @if(is_tariff(Auth::id()))
                                                 <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
                                                 @if(check_user_store_tarif(Auth::id()) == '1')
-                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ $cert->b1 }} тг.</b></font></small></td>
+                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ ($cert->special2 - $cert->prime_cost) * 0.20 }} тг.</b></font></small></td>
                                                 @elseif(check_user_store_tarif(Auth::id()) == '2')
-                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ $cert->b2 }} тг.</b></font></small></td>
+                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ ($cert->special2 - $cert->prime_cost) * 0.30 }} тг.</b></font></small></td>
                                                 @else(check_user_store_tarif(Auth::id()) == '3')
-                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ $cert->b3 }} тг.</b></font></small></td>
+                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ ($cert->special2 - $cert->prime_cost) * 0.50 }} тг.</b></font></small></td>
                                                 @endif
                                             @else
                                                 <td align="right">
