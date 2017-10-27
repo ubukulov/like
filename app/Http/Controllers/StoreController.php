@@ -169,7 +169,11 @@ class StoreController extends Controller
                     $id_cert = $val['id'];
                     $title = rtrim($val['title']);
                     $qty   = $val['qty'];
-                    $price = $val['price'];
+                    if(isset($_SESSION['cart'][$id_cert]['opt_price'])){
+                        $price = $_SESSION['cart'][$id_cert]['opt_price'];
+                    }else{
+                        $price = $val['price'];
+                    }
 
                     DB::table('business_orders')->insertGetId([
                         'id_customer' => $customer_id, 'id_agent' => Auth::id(), 'id_cert' => $id_cert, 'title' => $title,
@@ -245,7 +249,7 @@ class StoreController extends Controller
                 $current_date = date("Y-m-d H:i:s");
                 DB::table('business_orders')->insertGetId([
                     'id_customer' => $customer_id, 'id_agent' => Auth::id(), 'id_cert' => $id_item, 'ip' => $client_ip,
-                    'store_name' => $sub_domain, 'status' => '0', 'created_at' => $current_date
+                    'store_name' => $sub_domain, 'status' => '0', 'created_at' => $current_date, 'type_order' => '1'
                 ]);
                 return 0;
             }

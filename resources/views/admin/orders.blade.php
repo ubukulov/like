@@ -21,6 +21,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Наименование</th>
+                                <th>Тип заказа</th>
                                 <th>Кол-во</th>
                                 <th>Цена</th>
                                 {{--<th>Имя</th>--}}
@@ -44,6 +45,13 @@
                                 </td>
                                 <td>
                                     {{ $item->title }}
+                                </td>
+                                <td>
+                                    @if($item->type_order == 0)
+                                        Обычный
+                                    @else
+                                        В 1 клик
+                                    @endif
                                 </td>
                                 <td>
                                     {{ $item->qty }}

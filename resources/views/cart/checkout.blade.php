@@ -27,7 +27,7 @@
 
                             <td class="td">
                                 <div class="quantity">
-                                    <input style="width: 80px; text-align: center;" class="input-text qty text form-control cart_input2" id="qty<?=$key;?>" type="text" value="<?=$val['qty'];?>">
+                                    <input style="width: 80px; text-align: center;" class="input-text qty text form-control cart_input3" id="qty<?=$key;?>" type="text" value="<?=$val['qty'];?>">
                                 </div>
                             </td>
 

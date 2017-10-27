@@ -156,6 +156,31 @@ $(document).ready(function(){
             }
         });
     });
+    $(".cart_input3").each(function () {
+        var qty_start = $(this).val();
+        $(this).change(function () {
+            var qty = $(this).val();
+            var res = confirm("Пересчитать корзину?");
+            if(res){
+                var id = $(this).attr("id");
+                id = id.substr(3);
+                if(!parseInt(qty)){
+                    qty = qty_start;
+                }
+                $.get("/store/count/"+id+"/"+qty, function (data) {
+                    data = JSON.parse(data);
+                    if(data == 1){
+                        window.location = '/cart/checkout';
+                    }else{
+                        alert("Пересчитать корзину по каким то причинам не получилось");
+                        window.location = '/cart/checkout';
+                    }
+                });
+            }else{
+                $(this).val(qty_start);
+            }
+        });
+    });
     $('.phone').each(function(){
         $(this).mask("+7 (999)-999-99-99");
     });

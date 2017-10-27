@@ -30,7 +30,7 @@
 
                         <div class="form-group">
                             <label for="title">Сумма</label>
-                            <input type="text" readonly class="form-control" value="@if(empty($order->cost_delivery) OR $order->cost_delivery == 0) {{  $order->qty * $order->price }} @else {{ $order->qty * $order->price + $order->cost_delivery }} (с платной доставкой) @endif">
+                            <input type="text" readonly class="form-control" value="@if(empty($order->cost_delivery) OR $order->cost_delivery == 0) {{  $order->qty * $order->price }} @else {{ $order->qty * $order->price }} + {{ $order->cost_delivery }} = {{ $order->qty * $order->price + $order->cost_delivery }} (с платной доставкой) @endif">
                         </div>
 
                         <div class="form-group">
