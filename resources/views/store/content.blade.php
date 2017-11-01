@@ -19,21 +19,21 @@
                 <div style="width: 350px" id="myCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-                        @if(!empty($cert->image) AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image))
-                            <div class="item active">
-                                <img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image) }}" alt="foto">
-                            </div>
-                        @endif
-                        @if(!empty($cert->image2) AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image2))
-                            <div class="item">
-                                <img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image2) }}" alt="foto">
-                            </div>
-                        @endif
-                        @if(!empty($cert->image3) AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image3))
-                            <div class="item">
-                                <img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image3) }}" alt="foto">
-                            </div>
-                        @endif
+                        {{--@if(!empty($cert->image) AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image))--}}
+                            {{--<div class="item active">--}}
+                                {{--<img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image) }}" alt="foto">--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
+                        {{--@if(!empty($cert->image2) AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image2))--}}
+                            {{--<div class="item">--}}
+                                {{--<img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image2) }}" alt="foto">--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
+                        {{--@if(!empty($cert->image3) AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image3))--}}
+                            {{--<div class="item">--}}
+                                {{--<img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image3) }}" alt="foto">--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
                     </div>
 
                     <!-- Left and right controls -->
@@ -130,7 +130,7 @@
                 <li><a href="#tabs-3">Отзывы ()</a></li>
             </ul>
             <div id="tabs-1">
-                <p>{!! htmlspecialchars_decode($cert->conditions) !!}</p>
+                {{--<p>{!! htmlspecialchars_decode($cert->conditions) !!}</p>--}}
             </div>
             <div id="tabs-2">
                 <p>{!! htmlspecialchars_decode($cert->features) !!}</p>
