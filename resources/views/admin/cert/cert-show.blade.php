@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label>1-уровень категории</label>
                                     <select class="form-control select2" style="width: 100%;" id="id_pod_cat1" onchange="get_cats('id_pod_cat1','id_pod_cat2');">
-{{--                                        <option value="0">{{ check_pod_cat($cert->pod_cat, 1) }}</option>--}}
+                                        <option value="0">{{ check_pod_cat($cert->pod_cat, 1) }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label>2-уровень категории</label>
                                     <select class="form-control select2" style="width: 100%;" id="id_pod_cat2" onchange="get_cats('id_pod_cat2','id_pod_cat3');" >
-{{--                                        <option value="0">{{ check_pod_cat($cert->pod_cat, 2) }}</option>--}}
+                                        <option value="0">{{ check_pod_cat($cert->pod_cat, 2) }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                 <div class="form-group">
                                     <label>3-уровень категории</label>
                                     <select class="form-control select2" style="width: 100%;" id="id_pod_cat3" onchange="get_cats('id_pod_cat3');" >
-                                        {{--<option value="0">{{ check_pod_cat($cert->pod_cat, 3) }}</option>--}}
+                                        <option value="0">{{ check_pod_cat($cert->pod_cat, 3) }}</option>
                                     </select>
                                 </div>
                             </div>
