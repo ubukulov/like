@@ -196,7 +196,7 @@ class IndexController extends Controller
             $cat_menu = $this->showCat($tree);
             Cache::put('cat_menu', $cat_menu, 30);
         }
-        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' ORDER BY id DESC");
+        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY id DESC");
         $cats = $this->cats;
         return view('store/index', compact('certs', 'cats', 'cat_menu'));
     }
