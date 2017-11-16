@@ -10,7 +10,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Support\Facades\DB;
-use Cookie;
 
 class CartController extends Controller
 {
@@ -24,6 +23,8 @@ class CartController extends Controller
 
     # корзина
     public function index(){
+//        dd($_SERVER['REQUEST_URI']);
+        //print_array($_SESSION['cart']);
         return view('cart/index');
     }
 

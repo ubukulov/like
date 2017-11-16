@@ -63,6 +63,9 @@ Route::get('/store/checkout/down/{item}', 'StoreController@op_tom_down');
 # партнерам
 Route::get('/for-partner', 'IndexController@partner');
 
+# страницы
+Route::get("/page/{id}", 'PageController@get');
+
 # Предложить свой товар
 Route::get('/suggest', 'IndexController@suggest');
 Route::post('/suggest', 'IndexController@suggest_store');

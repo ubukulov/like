@@ -48,11 +48,7 @@ class CertController extends Controller
      */
     public function store(Request $request)
     {
-        $count = $request->input('cnt');
-        if ($count < 1) {
-            $count = 1;
-        }
-
+        
         $data = [
             'title' => $request->input('title'), 'category_id' => $request->input('id_main_cat'),
             'pod_cat' => $request->input('id_pod_cat'), 'conditions' => $request->input('conditions'),
@@ -113,13 +109,17 @@ class CertController extends Controller
             unlink($from);
         }
         $lastInsertId = Cert::create($data)->id;
-        for ($i = 1; $i <= $count; $i++) {
-            $from = $request->get('from' . $i);
-            $to   = $request->get('to' . $i);
-            $sum   = $request->get('sum' . $i);
-            $current_time = date("Y-m-d H:i:s");
-            DB::insert("INSERT INTO cert_opt (id_cert,nach,kon,summa,created_at) VALUES('$lastInsertId','$from','$to', '$sum', '$current_time')");
+		$count = $request->input('cnt');
+        if ($count >= 1 AND !empty($request->get('from1')) AND !empty($request->get('to1'))) {
+			for ($i = 1; $i <= $count; $i++) {
+				$from = $request->get('from' . $i);
+				$to   = $request->get('to' . $i);
+				$sum   = $request->get('sum' . $i);
+				$current_time = date("Y-m-d H:i:s");
+				DB::insert("INSERT INTO cert_opt (id_cert,nach,kon,summa,created_at) VALUES('$lastInsertId','$from','$to', '$sum', '$current_time')");
+			}
         }
+        
         return redirect('admin/certs')->with('message', "Задания успешно добавлен");
     }
 
@@ -160,7 +160,7 @@ class CertController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $count = $request->input('cnt');
+        
         $data = [
             'title' => $request->input('title'), 'category_id' => $request->input('id_main_cat'),
             'pod_cat' => $request->input('id_pod_cat'), 'conditions' => $request->input('conditions'),
@@ -230,7 +230,9 @@ class CertController extends Controller
         }
         $cert = Cert::find($id);
         $cert->update($data);
-        if($count != 0){
+		$count = $request->input('cnt');
+        
+		if($count != 0){
             for ($i = 1; $i <= $count; $i++) {
                 $from = $request->get('from' . $i);
                 $to   = $request->get('to' . $i);
