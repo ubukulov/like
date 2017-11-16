@@ -66,6 +66,11 @@ Route::get('/for-partner', 'IndexController@partner');
 # страницы
 Route::get("/page/{id}", 'PageController@get');
 
+# интернет магазин по категорияем
+Route::get("/cat/{id}", "IndexController@list_by_cat");
+Route::get("/pod_cat/{id}", "IndexController@list_by_pod_cat");
+
+
 # Предложить свой товар
 Route::get('/suggest', 'IndexController@suggest');
 Route::post('/suggest', 'IndexController@suggest_store');

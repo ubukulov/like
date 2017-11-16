@@ -166,8 +166,16 @@ class IndexController extends Controller
     public function tplMenu($category){
         $menu = '<li';
         $menu .= (isset($category['childs'])) ? ' class="parent">' : '>';
-		$menu .= '<a href="#" title="'. $category['title'] .'">'.
-            $category['title'].'</a>';
+//		$menu .= '<a href="/cat/'. $category['id'] .'" title="'. $category['title'] .'">'.
+//            $category['title'].'</a>';
+        if($category['parent'] == 0){
+            $menu .= '<a href="/cat/'. $category['id'] .'" title="'. $category['title'] .'">'.
+                $category['title'].'</a>';
+        }else{
+            $menu .= '<a href="/pod_cat/'. $category['id'] .'" title="'. $category['title'] .'">'.
+                $category['title'].'</a>';
+        }
+
 
         if(isset($category['childs'])){
             $menu .= '<ul>'. $this->showCat($category['childs']) .'</ul>';
@@ -199,6 +207,32 @@ class IndexController extends Controller
         $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY id DESC");
         $cats = $this->cats;
         return view('store/index', compact('certs', 'cats', 'cat_menu'));
+    }
+
+    public function list_by_pod_cat($id){
+        if(Cache::has('cat_menu')){
+            $cat_menu = Cache::get('cat_menu');
+        }else{
+            $tree = $this->getTree($this->getCat());
+            $cat_menu = $this->showCat($tree);
+            Cache::put('cat_menu', $cat_menu, 30);
+        }
+        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND pod_cat='$id'  AND conditions <> '' AND image <> '' ORDER BY id DESC");
+        $cats = $this->cats;
+        return view('store/cat', compact('certs', 'cats', 'cat_menu'));
+    }
+
+    public function list_by_cat($id){
+        if(Cache::has('cat_menu')){
+            $cat_menu = Cache::get('cat_menu');
+        }else{
+            $tree = $this->getTree($this->getCat());
+            $cat_menu = $this->showCat($tree);
+            Cache::put('cat_menu', $cat_menu, 30);
+        }
+        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND category_id='$id'  AND conditions <> '' AND image <> '' ORDER BY id DESC");
+        $cats = $this->cats;
+        return view('store/cat', compact('certs', 'cats', 'cat_menu'));
     }
 
     public function partner(){
