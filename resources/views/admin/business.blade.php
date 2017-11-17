@@ -24,6 +24,7 @@
                                 <th>Баланс</th>
                                 <th>Тариф</th>
                                 <th>Названия магазина</th>
+                                <th>Телефон</th>
                                 <th>Статус</th>
                                 <th>Дата заявки</th>
                                 <th>Действие</th>
@@ -53,7 +54,10 @@
                                     @if($item->tarif == '3') Premium @endif
                                 </td>
                                 <td>
-                                    {{ $item->store_name }} .likemoney.me
+                                    {{ $item->store_name }}.likemoney.me
+                                </td>
+                                <td>
+                                    {{ getUserData($item->id_user)->mphone }}
                                 </td>
                                 <td>
                                     @if($item->status == '0') Ожидает @endif

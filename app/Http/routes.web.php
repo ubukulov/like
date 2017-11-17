@@ -11,6 +11,7 @@ Route::group(['as' => 'subdomain', 'domain' => '{account}.likemoney.me'], functi
     if($result){
 //        Auth::loginUsingId($result->id_user, true);
         Route::get('/', 'IndexController@market');
+        $_SESSION['store_user_id'] = $result->id_user;
     }else{
         return Redirect::to('http://likemoney.me');
     }

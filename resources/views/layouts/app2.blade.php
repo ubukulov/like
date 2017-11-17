@@ -22,8 +22,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @if(check_user_store_img(Auth::id()))
-                        <a href="/" rel="nofollow"><img src="{{ asset('uploads/users/store/'.check_user_store_img(Auth::id())) }}" alt=""></a>
+                    @if(check_user_store_img($_SESSION['store_user_id']))
+                        <a href="/" rel="nofollow"><img src="{{ asset('uploads/users/store/'.check_user_store_img($_SESSION['store_user_id'])) }}" alt=""></a>
                     @else
                         <a href="/" rel="nofollow"><img src="{{ asset('img/opt_price_logo_red.png') }}" alt=""></a>
                     @endif

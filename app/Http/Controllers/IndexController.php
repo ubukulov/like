@@ -136,11 +136,15 @@ class IndexController extends Controller
     }
 
     public function getCat(){
-        $result = DB::table('cats')->get();
+        //$result = DB::table('cats')->get();
+        $result = DB::select("SELECT CC.*, (SELECT COUNT(*) FROM certs CT WHERE CT.cert_type=2 AND CT.pod_cat=CC.id) AS cnt FROM cats CC");
         $result = collect($result)->map(function($x){ return (array) $x; })->toArray();
         $cat = array();
 
         foreach($result as $val){
+//            if($val['cnt'] != 0){
+//                $cat[$val['id']] = $val;
+//            }
             $cat[$val['id']] = $val;
         }
 
@@ -166,8 +170,6 @@ class IndexController extends Controller
     public function tplMenu($category){
         $menu = '<li';
         $menu .= (isset($category['childs'])) ? ' class="parent">' : '>';
-//		$menu .= '<a href="/cat/'. $category['id'] .'" title="'. $category['title'] .'">'.
-//            $category['title'].'</a>';
         if($category['parent'] == 0){
             $menu .= '<a href="/cat/'. $category['id'] .'" title="'. $category['title'] .'">'.
                 $category['title'].'</a>';
@@ -204,6 +206,7 @@ class IndexController extends Controller
             $cat_menu = $this->showCat($tree);
             Cache::put('cat_menu', $cat_menu, 30);
         }
+
         $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY id DESC");
         $cats = $this->cats;
         return view('store/index', compact('certs', 'cats', 'cat_menu'));
