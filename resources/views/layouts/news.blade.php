@@ -58,7 +58,7 @@
             <div class="header-table">
                 <div class="header-wrapper">
                     <h1 class="header-title">Зарабатывать<br>с нами - легко!</h1>
-                    <button type="button" class="main_button">Хочу интернет магазин - бесплатно!</button>
+                    <a href="{{ url('/page/14') }}" style="text-decoration: none;" class="main_button">Хочу интернет магазин - бесплатно!</a>
                 </div>
                 <!-- /.header-wrapper -->
             </div>

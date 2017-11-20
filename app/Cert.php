@@ -19,7 +19,7 @@ class Cert extends Model
     # Получить список задании по условии срока
     public static function get(){
         $mk_date = time();
-        $result = DB::select("SELECT * FROM certs WHERE date_end > '$mk_date' ORDER BY sort,id DESC");
+        $result = DB::select("SELECT * FROM certs WHERE conditions <> '' AND image <> '' ORDER BY sort,id DESC");
         return $result;
     }
 
