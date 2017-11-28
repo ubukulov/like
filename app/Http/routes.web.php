@@ -2,20 +2,20 @@
 use Illuminate\Support\Facades\DB;
 use App\User;
 ### Общее ###
-Route::group(['as' => 'subdomain', 'domain' => '{account}.likemoney.me'], function () {
-    $url = $_SERVER["SERVER_NAME"];
-    $domain = explode(".",$url);
-    $sub_domain = $domain[0];
-    $result = DB::table('business_store')->where(['store_name' => $sub_domain, 'status' => 1])->first();
-    Route::get('/', ['as' => 'home', 'uses' => 'IndexController@welcome']); // Главная страница
-    if($result){
-//        Auth::loginUsingId($result->id_user, true);
-        Route::get('/', 'IndexController@market');
-        $_SESSION['store_user_id'] = $result->id_user;
-    }else{
-        return Redirect::to('http://likemoney.me');
-    }
-});
+//Route::group(['as' => 'subdomain', 'domain' => '{account}.likemoney.me'], function () {
+//    $url = $_SERVER["SERVER_NAME"];
+//    $domain = explode(".",$url);
+//    $sub_domain = $domain[0];
+//    $result = DB::table('business_store')->where(['store_name' => $sub_domain, 'status' => 1])->first();
+//    Route::get('/', ['as' => 'home', 'uses' => 'IndexController@welcome']); // Главная страница
+//    if($result){
+////        Auth::loginUsingId($result->id_user, true);
+//        Route::get('/', 'IndexController@market');
+//        $_SESSION['store_user_id'] = $result->id_user;
+//    }else{
+//        return Redirect::to('http://likemoney.me');
+//    }
+//});
 
 Route::get('/', ['as' => 'home', 'uses' => 'IndexController@welcome']); // Главная страница
 Route::get('/cashback', 'IndexController@cashback'); // Сервис кэшбэк
@@ -75,4 +75,8 @@ Route::get("/pod_cat/{id}", "IndexController@list_by_pod_cat");
 # Предложить свой товар
 Route::get('/suggest', 'IndexController@suggest');
 Route::post('/suggest', 'IndexController@suggest_store');
+
+# XML
+Route::get('/xml', 'XmlController@create');
+Route::post('/xml', 'XmlController@execute');
 ### Конец ###
