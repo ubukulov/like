@@ -159,4 +159,27 @@ class IndexController extends Controller
         ]);
         return 0;
     }
+
+    public function statistics(){
+        $result = DB::select("SELECT
+            COUNT(*) AS cnt,
+            SUM(BO.qty*BO.price) AS summ,
+            CASE MONTH(BO.created_at)
+                WHEN 01 THEN 'Январь'
+                WHEN 02 THEN 'Февраль'
+                WHEN 03 THEN 'Март'
+                WHEN 04 THEN 'Апрель'
+                WHEN 05 THEN 'Май'
+                WHEN 06 THEN 'Июнь'
+                WHEN 07 THEN 'Июль'
+                WHEN 08 THEN 'Август'
+                WHEN 09 THEN 'Сентябрь'
+                WHEN 10 THEN 'Октябрь'
+                WHEN 11 THEN 'Ноябрь'
+                WHEN 12 THEN 'Декабрь'
+            END AS mnt
+            FROM business_orders BO
+            WHERE BO.id_agent=15 AND BO.status='3' GROUP BY MONTH(BO.created_at)");
+        return view('user/statistics', compact('result'));
+    }
 }

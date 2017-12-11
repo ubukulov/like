@@ -109,9 +109,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{ url('user/business') }}" class="active item" style="background: none;">
-                                    Тарифы Бизнес
-                                </a>
+                                <div class="ui compact menu" style="font-size: 18px; border: none;box-shadow: none;">
+                                    <div class="ui simple dropdown item">
+                                        Бизнес
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <div class="item"><a href="{{ url('user/business') }}">Тарифы Бизнес</a></div>
+                                            <div class="item"><a href="{{ url('user/business/statistics') }}">Статистика</a></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

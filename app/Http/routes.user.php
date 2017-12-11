@@ -29,6 +29,8 @@ Route::group(['namespace' => 'Usr', 'prefix' => 'user'], function(){
         # тариф Бизнес
         Route::get('/business', 'IndexController@business'); // страница для бизнес тарифа
         Route::post('/business/set', 'IndexController@business_set');
+
+        Route::get('/business/statistics', 'IndexController@statistics');
     });
 
 });
