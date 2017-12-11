@@ -19,12 +19,12 @@ class OrderController extends Controller
                             ->select('business_orders.*', 'business_customers.client_phone', 'partners.name', 'partners.mphone', 'partners.address AS p_address', 'business_customers.client_name', 'certs.title')
                             ->orderBy('id', 'DESC')
                             ->paginate(20);
-        return view('admin/orders', compact('orders'));
+        return view('admin/order/orders', compact('orders'));
     }
 
     public function setStatus($id_order, $status){
         DB::update("UPDATE business_orders SET status='$status' WHERE id='$id_order'");
-        return redirect('admin/orders')->with('message', 'Статус успешно изменен');
+        return redirect('admin/order/orders')->with('message', 'Статус успешно изменен');
     }
 
     public function show($id){
@@ -35,7 +35,7 @@ class OrderController extends Controller
             ->select('business_orders.*', 'business_customers.client_phone', 'partners.name', 'partners.mphone', 'partners.address AS p_address', 'business_customers.client_name', 'certs.prime_cost', 'certs.title')
             ->where(['business_orders.id' => $id])
             ->first();
-        return view('admin/order-show', compact('order'));
+        return view('admin/order/order-show', compact('order'));
     }
 
     # стоимость доставки
@@ -80,5 +80,12 @@ class OrderController extends Controller
         }else{
             return 101; // ошибка! попробуйте позже
         }
+    }
+
+    public function statistics(){
+        $result = DB::select("SELECT COUNT(*) AS cnt, BO.store_name FROM business_orders BO
+                                INNER JOIN business_store BS ON BS.id_user=BO.id_agent
+                                /*WHERE BO.`status`='3'*/ GROUP BY BO.store_name ORDER BY cnt DESC LIMIT 5");
+        return view('admin/order/statistics', compact('result'));
     }
 }

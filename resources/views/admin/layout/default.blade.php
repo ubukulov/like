@@ -451,13 +451,18 @@
                     </a>
                 </li>
 
-                <li @if(request_uri('orders')) class="active" @endif>
-                    <a href="{{ url('admin/orders') }}">
-                        <i class="fa fa-inbox" aria-hidden="true"></i> <span>Список заказов</span>
-                <span class="pull-right-container">
-                    <span class="label label-primary pull-right"></span>
-                </span>
+                <li @if(request_uri('orders')) class="active treeview" @else class="treeview" @endif>
+                    <a href="#">
+                        <i class="fa fa-credit-card" aria-hidden="true"></i>
+                        <span>Список заказов</span>
+                        <span class="pull-right-container">
+                      <span class="label label-primary pull-right"></span>
+                    </span>
                     </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('/admin/orders') }}"><i class="fa fa-circle-o"></i> Заказы</a></li>
+                        <li><a href="{{ url('/admin/orders/statistics') }}"><i class="fa fa-circle-o"></i> Статистика</a></li>
+                    </ul>
                 </li>
 
                 <li @if(request_uri('suggest')) class="active" @endif>

@@ -45,7 +45,7 @@
             <div class="inline fields">
                 <div class="eight wide field">
                     <label>Придумайте названия будущего магазина:</label>
-                    <input type="text" placeholder="alizhan" value="{{ isset($business_store) AND $business_store->store_name }}" required="required" name="store_name">
+                    <input type="text" placeholder="alizhan" @if(isset($business_store)) value="{{ $business_store->store_name }}" @endif required="required" name="store_name">
                 </div>
             </div>
             <br>

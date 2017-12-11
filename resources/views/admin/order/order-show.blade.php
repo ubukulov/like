@@ -1,4 +1,4 @@
-@extends('admin/layout/default')
+@extends('admin.layout.default')
 @section('content')
     <section class="content-header">
         <h1>

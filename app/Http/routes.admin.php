@@ -95,6 +95,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('/order/{id_order}/delivery/{cost_delivery}', 'OrderController@cost_delivery');
         Route::get('/order/{id_order}/delivery', 'OrderController@delivery');
         Route::post('/order/{id}', 'OrderController@setOrderData');
+
+        Route::get('/orders/statistics', 'OrderController@statistics');
         # Предложение
         Route::get('/suggests', 'IndexController@suggest');
         Route::get('/suggest/{id}', 'IndexController@suggest');
