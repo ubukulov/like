@@ -161,9 +161,15 @@ class IndexController extends Controller
     }
 
     public function statistics(){
+        $user_id = Auth::id();
         $result = DB::select("SELECT
             COUNT(*) AS cnt,
             SUM(BO.qty*BO.price) AS summ,
+						CASE BS.tarif
+								WHEN '1' THEN SUM(BO.qty*BO.price*0.20)
+								WHEN '2' THEN SUM(BO.qty*BO.price*0.30)
+								WHEN '3' THEN SUM(BO.qty*BO.price*0.50)
+						END AS profit,
             CASE MONTH(BO.created_at)
                 WHEN 01 THEN 'Январь'
                 WHEN 02 THEN 'Февраль'
@@ -179,7 +185,27 @@ class IndexController extends Controller
                 WHEN 12 THEN 'Декабрь'
             END AS mnt
             FROM business_orders BO
-            WHERE BO.id_agent=15 AND BO.status='3' GROUP BY MONTH(BO.created_at)");
-        return view('user/statistics', compact('result'));
+						INNER JOIN business_store BS ON BS.id_user=BO.id_agent
+            WHERE BO.id_agent='$user_id' AND BO.status='3' GROUP BY MONTH(BO.created_at) ORDER BY MONTH(BO.created_at);");
+
+        $orders = DB::select("SELECT
+            BO.id,
+						BC.client_name,
+						BC.client_phone,
+						BC.client_email,
+						TRIM(CT.title) AS ptitle,
+						BO.qty,
+						BO.price,
+						BO.payment_type,
+						BO.address,
+						BO.cost_delivery,
+						DATE_FORMAT(BO.created_at,'%d-%m-%Y') AS mnt,
+                        BO.status
+            FROM business_orders BO
+						INNER JOIN business_store BS ON BS.id_user=BO.id_agent
+						INNER JOIN business_customers BC ON BC.id=BO.id_customer
+						INNER JOIN certs CT ON CT.id=BO.id_cert
+            WHERE BO.id_agent='$user_id'  ORDER BY BO.id DESC");
+        return view('user/statistics', compact('result', 'orders'));
     }
 }
