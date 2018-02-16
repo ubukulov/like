@@ -1328,3 +1328,24 @@ span.korsina {
     background: #0099CC;
     color: #ffffff;
 }
+.hit_sell{
+    background-image: url('../img/hit_ribbon.png');
+    position: relative;
+    z-index: 9999;
+    left: -95px;
+}
+.day_sell{
+    position: absolute;
+    z-index: 9999;
+    left: 185px;
+}
+.best_choice{
+    position: absolute;
+    z-index: 9999;
+    left: 185px;
+}
+.low_price{
+    position: absolute;
+    z-index: 9999;
+    left: 202px;
+}

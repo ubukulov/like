@@ -15,8 +15,26 @@
                             <!-- /.portfolio-img -->
                             <a href="{{ url('/item/'.$cert->id) }}">
 
-                                <div class="portfolio-img" style="height: 160px; cursor: pointer;">
-                                    <img @if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/small/'.$cert->image) AND !empty($cert->image)) src="{{ asset('uploads/certs/small/'.$cert->image) }}" @else src="{{ asset('img/no_photo227x140.png') }}" @endif alt="port-1" class="port-item">
+                                <div  class="portfolio-img" style="height: 160px; cursor: pointer; border: 1px solid #ccc;">
+
+                                    @if($cert->label_type == 1)
+                                        <img src="{{ asset('img/hit_ribbon.png') }}" class="hit_sell" alt="хит продаж">
+                                    @endif
+
+                                    @if($cert->label_type == 2)
+                                        <img src="{{ asset('img/day_label.png') }}" class="day_sell" alt="товар дня">
+                                    @endif
+
+                                    @if($cert->label_type == 3)
+                                        <img src="{{ asset('img/best_choise.png') }}" class="best_choice" alt="лучший выбор">
+                                    @endif
+
+                                    @if($cert->label_type == 4)
+                                        <img src="{{ asset('img/low_price.png') }}" class="low_price" alt="низкая цена">
+                                    @endif
+
+                                    <img style="position: absolute; left: 0px;" @if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/small/'.$cert->image) AND !empty($cert->image)) src="{{ asset('uploads/certs/small/'.$cert->image) }}" @else src="{{ asset('img/no_photo227x140.png') }}" @endif alt="port-1" class="port-item">
+
                                     <div class="portfolio-img-hover">
 
                                     </div>

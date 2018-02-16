@@ -159,8 +159,9 @@ class StoreController extends Controller
         $url = $_SERVER["SERVER_NAME"];
         $domain = explode(".",$url);
         $sub_domain = $domain[0].".likemoney.me";
+        $sms_code = strtoupper(generateCode(6));
 
-        DB::transaction(function() use ($email, $phone, $status, $address, $delivery, $sub_domain, $client_name){
+        DB::transaction(function() use ($email, $phone, $status, $address, $delivery, $sub_domain, $client_name,$sms_code){
             $customer_id = $this->setBusinessCustomers($email, $phone, $client_name);
             $client_ip = $_SERVER['REMOTE_ADDR'];
             $current_date = date("Y-m-d H:i:s");
@@ -174,6 +175,9 @@ class StoreController extends Controller
                     }else{
                         $price = $val['price'];
                     }
+                    $name_sms = 'Likemoney';
+                    $sms_text = "SC-code: ".$sms_code.". ".$name_sms." (".$this->set_transliterator($title)."). Podrobnee: likemoney.me/item/".$id_cert;
+                    sendSms($phone, $sms_text);
 
                     DB::table('business_orders')->insertGetId([
                         'id_customer' => $customer_id, 'id_agent' => Auth::id(), 'id_cert' => $id_cert, 'title' => $title,
@@ -304,5 +308,45 @@ class StoreController extends Controller
         }else{
             unset($_SESSION['cart'][$id]['opt_price']);
         }
+    }
+
+    public function get_transliterator($string) {
+        $converter = array(
+            'а' => 'a',   'б' => 'b',   'в' => 'v',
+            'г' => 'g',   'д' => 'd',   'е' => 'e',
+            'ё' => 'e',   'ж' => 'zh',  'з' => 'z',
+            'и' => 'i',   'й' => 'y',   'к' => 'k',
+            'л' => 'l',   'м' => 'm',   'н' => 'n',
+            'о' => 'o',   'п' => 'p',   'р' => 'r',
+            'с' => 's',   'т' => 't',   'у' => 'u',
+            'ф' => 'f',   'х' => 'h',   'ц' => 'c',
+            'ч' => 'ch',  'ш' => 'sh',  'щ' => 'sch',
+            'ь' => '\'',  'ы' => 'y',   'ъ' => '\'',
+            'э' => 'e',   'ю' => 'yu',  'я' => 'ya',
+
+            'А' => 'A',   'Б' => 'B',   'В' => 'V',
+            'Г' => 'G',   'Д' => 'D',   'Е' => 'E',
+            'Ё' => 'E',   'Ж' => 'Zh',  'З' => 'Z',
+            'И' => 'I',   'Й' => 'Y',   'К' => 'K',
+            'Л' => 'L',   'М' => 'M',   'Н' => 'N',
+            'О' => 'O',   'П' => 'P',   'Р' => 'R',
+            'С' => 'S',   'Т' => 'T',   'У' => 'U',
+            'Ф' => 'F',   'Х' => 'H',   'Ц' => 'C',
+            'Ч' => 'Ch',  'Ш' => 'Sh',  'Щ' => 'Sch',
+            'Ь' => '\'',  'Ы' => 'Y',   'Ъ' => '\'',
+            'Э' => 'E',   'Ю' => 'Yu',  'Я' => 'Ya',
+        );
+        return strtr($string, $converter);
+    }
+    public function set_transliterator($str) {
+        // переводим в транслит
+        $str = $this->get_transliterator($str);
+        // в нижний регистр
+        //$str = strtolower($str);
+        // заменям все ненужное нам на "-"
+        $str = preg_replace('~[^-a-zA-Z0-9_.]+~u', ' ', $str);
+        // удаляем начальные и конечные '-'
+        $str = trim($str, "-");
+        return ucfirst($str);
     }
 }

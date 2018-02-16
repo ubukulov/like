@@ -150,10 +150,23 @@
 
                         <div class="form-group">
                             <label>Выберите раздел</label>
-                            <select name="section_type" id="section_type" class="form-control">
+                            <select name="section_type" id="section_type" class="form-control"  style="cursor: pointer;">
                                 <option value="0" @if($cert->section_type == '0') selected="selected" @endif>Не указыно</option>
                                 <option value="1" @if($cert->section_type == '1') selected="selected" @endif>Хиты продаж</option>
                                 <option value="2" @if($cert->section_type == '2') selected="selected" @endif>Популярные</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Выберите ярлык к товару</label>
+                            <select name="label_type" id="label_type" class="form-control"  style="cursor: pointer;">
+                                <option value="0" @if($cert->label_type == 0) selected="selected" @endif>Не указыно</option>
+                                <option value="1" @if($cert->label_type == 1) selected="selected" @endif>Хиты продаж</option>
+                                <option value="2" @if($cert->label_type == 2) selected="selected" @endif>Товар дня</option>
+                                <option value="3" @if($cert->label_type == 3) selected="selected" @endif>Лучший выбор</option>
+                                <option value="4" @if($cert->label_type == 4) selected="selected" @endif>Низкая цена</option>
+                                <option value="5" @if($cert->label_type == 5) selected="selected" @endif>Акционный</option>
+                                <option value="6" @if($cert->label_type == 6) selected="selected" @endif>Лучший подарок</option>
                             </select>
                         </div>
 

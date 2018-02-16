@@ -64,7 +64,8 @@ class CertController extends Controller
             'meta_keywords' => $request->input('meta_keywords'), 'sort' => $request->input('sort'),
             'cert_type' => $request->input('cert_type'), 'article_code' => $request->input('article_code'),
             'b1' => $request->input('b1'), 'b2' => $request->input('b2'), 'b3' => $request->input('b3'),
-            'prime_cost' => $request->input('prime_cost'), 'count' => $request->input('count')
+            'prime_cost' => $request->input('prime_cost'), 'count' => $request->input('count'),
+            'section_type' => $request->input('section_type'), 'label_type' => $request->input('label_type')
         ];
         if(!empty($data['image'])){
             $from = $_SERVER['DOCUMENT_ROOT'] . '/temp/'.$data['image'];
@@ -176,7 +177,8 @@ class CertController extends Controller
             'meta_keywords' => $request->input('meta_keywords'), 'sort' => $request->input('sort'),
             'cert_type' => $request->input('cert_type'), 'article_code' => $request->input('article_code'),
             'b1' => $request->input('b1'), 'b2' => $request->input('b2'), 'b3' => $request->input('b3'),
-            'prime_cost' => $request->input('prime_cost'), 'count' => $request->input('count')
+            'prime_cost' => $request->input('prime_cost'), 'count' => $request->input('count'),
+            'section_type' => $request->input('section_type'), 'label_type' => $request->input('label_type')
         ];
 
         if(!empty($data['image'])){

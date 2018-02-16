@@ -117,10 +117,23 @@
 
                         <div class="form-group">
                             <label>Выберите раздел</label>
-                            <select name="section_type" id="section_type" class="form-control">
+                            <select name="section_type" id="section_type" class="form-control" style="cursor: pointer;">
                                 <option value="0">Не указыно</option>
                                 <option value="1">Хиты продаж</option>
                                 <option value="2">Популярные</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Выберите ярлык к товару</label>
+                            <select name="label_type" id="label_type" class="form-control" style="cursor: pointer;">
+                                <option value="0">Не указыно</option>
+                                <option value="1">Хиты продаж</option>
+                                <option value="2">Товар дня</option>
+                                <option value="3">Лучший выбор</option>
+                                <option value="4">Низкая цена</option>
+                                <option value="5">Акционный</option>
+                                <option value="6">Лучший подарок</option>
                             </select>
                         </div>
                         <hr>

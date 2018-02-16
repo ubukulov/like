@@ -85,7 +85,15 @@ class OrderController extends Controller
     public function statistics(){
         $result = DB::select("SELECT COUNT(*) AS cnt, BO.store_name FROM business_orders BO
                                 INNER JOIN business_store BS ON BS.id_user=BO.id_agent
-                                /*WHERE BO.`status`='3'*/ GROUP BY BO.store_name ORDER BY cnt DESC LIMIT 5");
+                                WHERE BO.`status`='3' GROUP BY BO.store_name ORDER BY cnt DESC LIMIT 5");
+        if(isset($result[0])){
+            $_SESSION['cnt1'] = $result[0]->cnt;
+            $_SESSION['store_name1'] = $result[0]->store_name;
+        }
+        if(isset($result[1])){
+            $_SESSION['cnt2'] = $result[1]->cnt;
+            $_SESSION['store_name2'] = $result[1]->store_name;
+        }
         return view('admin/order/statistics', compact('result'));
     }
 }
