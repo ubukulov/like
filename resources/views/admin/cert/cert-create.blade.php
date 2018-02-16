@@ -114,6 +114,15 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label>Выберите раздел</label>
+                            <select name="section_type" id="section_type" class="form-control">
+                                <option value="0">Не указыно</option>
+                                <option value="1">Хиты продаж</option>
+                                <option value="2">Популярные</option>
+                            </select>
+                        </div>
                         <hr>
                         <h3>Настройки оптовой цены</h3>
                         <input type="hidden" id="cnt" value="1" name="cnt"/>

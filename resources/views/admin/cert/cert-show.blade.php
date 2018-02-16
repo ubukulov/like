@@ -148,6 +148,15 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <label>Выберите раздел</label>
+                            <select name="section_type" id="section_type" class="form-control">
+                                <option value="0" @if($cert->section_type == '0') selected="selected" @endif>Не указыно</option>
+                                <option value="1" @if($cert->section_type == '1') selected="selected" @endif>Хиты продаж</option>
+                                <option value="2" @if($cert->section_type == '2') selected="selected" @endif>Популярные</option>
+                            </select>
+                        </div>
+
                         <h3>Настройки оптовой цены</h3>
                         <input type="hidden" id="cnt" value="0" name="cnt"/>
                         @foreach($opt as $item)
