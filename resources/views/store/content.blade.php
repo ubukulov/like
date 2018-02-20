@@ -62,7 +62,7 @@
                             <a style="width: 100px; font-size: 14px;" @if(Auth::check()) href="{{ url('/store/item/'.$cert->id) }}" @else href="{{ url('/user/login') }}" @endif class="btn btn-danger">Купить</a>
                             <button style="font-size: 14px; width: 100px;" type="button" onclick="addToCartItem({{ $cert->id }});" class="btn btn-danger">В корзину</button>
 							<br />
-							<a href="https://api.whatsapp.com/send?phone=77758153538&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="/img/whatsapp_button1.png" /></a>
+							<a href="https://api.whatsapp.com/send?phone=77758153538&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>%20(<?php echo $cert->special2; ?>%20тг.)'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://<?php echo $sub_domain; ?>likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="/img/whatsapp_button1.png" /></a>
                         </div>
                         <div id="msg" class="hidden"></div>
                         <div class="row" style="margin-top: 15px;">

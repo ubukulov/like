@@ -96,9 +96,17 @@ class StoreController extends Controller
             $cert->views += 1;
             $cert->save();
         }
+        $url = $_SERVER["SERVER_NAME"];
+        $domain = explode(".",$url);
+        $sub_domain = $domain[0].".";
         $certs_sub = CertSub::get_cert_subs($id);
         $partner = Partner::getByIdPartnerData($cert->partner_id);
-        return view('store/content', compact('cert', 'partner', 'certs_sub'));
+        if($sub_domain != 'likemoney.'){
+            return view('store/content', compact('cert', 'partner', 'certs_sub', 'sub_domain'));
+        }else{
+            $sub_domain = '';
+            return view('store/content', compact('cert', 'partner', 'certs_sub', 'sub_domain'));
+        }
     }
 
     # добавляем товар и переходим к оформление

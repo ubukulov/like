@@ -32,7 +32,8 @@ class IndexController extends Controller
             Cache::put('cat_menu', $cat_menu, 30);
         }
 
-        $certs = Cert::get();
+        //$certs = Cert::get();
+        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY updated_at DESC");
         $cats = $this->cats;
         return view('welcome', compact('certs', 'cats', 'cat_menu'));
     }
@@ -206,10 +207,12 @@ class IndexController extends Controller
             $cat_menu = $this->showCat($tree);
             Cache::put('cat_menu', $cat_menu, 30);
         }
-
+        $url = $_SERVER["SERVER_NAME"];
+        $domain = explode(".",$url);
+        $sub_domain = $domain[0];
         $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY updated_at DESC");
         $cats = $this->cats;
-        return view('store/index', compact('certs', 'cats', 'cat_menu'));
+        return view('store/index', compact('certs', 'cats', 'cat_menu', 'sub_domain'));
     }
 
     public function list_by_pod_cat($id){

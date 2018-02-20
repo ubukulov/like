@@ -13,28 +13,10 @@
                     <div class="brd">
                         <div class="portfolio-item">
                             <!-- /.portfolio-img -->
-                            <a href="{{ url('/item/'.$cert->id) }}">
+                            <a href="{{ url('/cert/'.$cert->id) }}">
 
-                                <div  class="portfolio-img" style="height: 160px; cursor: pointer; border: 1px solid #ccc;">
-
-                                    @if($cert->label_type == 1)
-                                        <img src="{{ asset('img/hit_ribbon.png') }}" class="hit_sell" alt="хит продаж">
-                                    @endif
-
-                                    @if($cert->label_type == 2)
-                                        <img src="{{ asset('img/day_label.png') }}" class="day_sell" alt="товар дня">
-                                    @endif
-
-                                    @if($cert->label_type == 3)
-                                        <img src="{{ asset('img/best_choise.png') }}" class="best_choice" alt="лучший выбор">
-                                    @endif
-
-                                    @if($cert->label_type == 4)
-                                        <img src="{{ asset('img/low_price.png') }}" class="low_price" alt="низкая цена">
-                                    @endif
-
-                                    <img style="position: absolute; left: 0px;" @if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/small/'.$cert->image) AND !empty($cert->image)) src="{{ asset('uploads/certs/small/'.$cert->image) }}" @else src="{{ asset('img/no_photo227x140.png') }}" @endif alt="port-1" class="port-item">
-
+                                <div class="portfolio-img" style="height: 160px; cursor: pointer;">
+                                    <img @if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/'.$cert->image) && !empty($cert->image)) src="{{ asset('uploads/certs/'.$cert->image) }}" @else src="{{ asset('img/no_photo227x140.png') }}" @endif alt="port-1" class="port-item">
                                     <div class="portfolio-img-hover">
 
                                     </div>
@@ -48,35 +30,46 @@
                                     <table>
                                         <tbody>
                                         <tr>
-                                            @if(empty($cert->special3) AND $cert->special3 == 0)
-                                                @if(empty($cert->special2))
-                                                    <td width="130">
-                                                        <a href="https://api.whatsapp.com/send?phone=77758153538&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="/img/whatsapp_button.png" /></a>
-                                                    </td>
-                                                @else
+                                            @if($cert->cert_type == 2)
+                                                <!-- Бизнес -->
+                                                @if(empty($cert->special3) AND $cert->special3 == 0)
                                                     <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
-                                                    <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ $cert->special2 }} тг.</b></font></small></td>
-                                                @endif
-                                            @else
+                                                    <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ $cert->special2 }}</b></font></small></td>
+                                                @else
                                                 <td width="130">
                                                     <span style="text-decoration: line-through; font-size: 12px;">{{ $cert->special2 }} тг</span><br>
                                                     <span style="color: green; font-weight: bold;">{{ $cert->special3 }} тг</span>
                                                 </td>
-                                            @endif
-                                            @if(is_tariff(Auth::id()))
-                                                <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
-                                                @if(check_user_store_tarif(Auth::id()) == '1')
-                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ ($cert->special2 - $cert->prime_cost) * 0.20 }} тг.</b></font></small></td>
-                                                @elseif(check_user_store_tarif(Auth::id()) == '2')
-                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ ($cert->special2 - $cert->prime_cost) * 0.30 }} тг.</b></font></small></td>
-                                                @else(check_user_store_tarif(Auth::id()) == '3')
-                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ ($cert->special2 - $cert->prime_cost) * 0.50 }} тг.</b></font></small></td>
                                                 @endif
-                                            @else
+                                                @if(is_tariff(Auth::id()))
+                                                    <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
+                                                    <td style="padding-left:7px; line-height: 15px;"><small>cashback:<br><font color="#62A005"><b>{{ $cert->special1 }}</b></font></small></td>
+                                                @else
                                                 <td align="right">
-                                                    <a href="{{ url('/item/'.$cert->id) }}" class="hidden-xs taskbutton">Подробнее</a>
+                                                    <a href="{{ url('/cert/'.$cert->id) }}" class="hidden-xs taskbutton">Подробнее</a>
                                                 </td>
+                                                @endif
                                             @endif
+
+                                            <?php if($cert->cert_type == 3) :?>
+                                            <!-- Купон -->
+                                            <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
+                                            <td style="padding-left:7px; line-height: 15px; width: 130px;"><small>скидка:<br><font color="#62A005"><b><?= $cert->special1 ?></b></font></small></td>
+                                            <td align="right">
+                                                <a href="{{ url('/cert/'.$cert->id) }}" class="hidden-xs taskbutton">Подробнее</a>
+                                            </td>
+                                            <?php endif; ?>
+
+                                            <?php if($cert->cert_type == 1) :?>
+                                            <!-- Задания -->
+                                            <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
+                                            <td style="padding-left:7px; line-height: 15px; width: 130px;">
+                                                <small>@if($key == 0)Франшиза:@else cashback: @endif<br><font color="#62A005"><b><?= $cert->special1 ?></b></font></small>
+                                            </td>
+                                            <td align="right">
+                                                <a href="{{ url('/cert/'.$cert->id) }}" class="hidden-xs taskbutton">Подробнее</a>
+                                            </td>
+                                            <?php endif; ?>
                                         </tr>
                                         </tbody>
                                     </table>
