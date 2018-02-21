@@ -42,7 +42,11 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @if(!empty($cert->features) OR !empty($cert->image))
                                         {{ $cert->title }}
+                                        @else
+                                        {{ $cert->title }} <font style="color: red;">( нет картинки и описание )</font>
+                                        @endif
                                     </td>
                                     <td>
                                         {{ $cert->purchased }}

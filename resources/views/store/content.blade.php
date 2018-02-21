@@ -19,23 +19,23 @@
                 <div style="width: 350px" id="myCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-                        @if(!empty($cert->image) AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image))
+                        @if(!empty($cert->image) AND $cert->image != '' AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image))
                             <div class="item active">
                                 <img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image) }}" alt="foto">
                             </div>
                         @endif
-                        @if(!empty($cert->image2) AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image2))
+                        @if(!empty($cert->image2) AND $cert->image2 != '' AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image2))
                             <div class="item">
                                 <img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image2) }}" alt="foto">
                             </div>
                         @endif
-                        @if(!empty($cert->image3) AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image3))
+                        @if(!empty($cert->image3) AND $cert->image3 != '' AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image3))
                             <div class="item">
                                 <img style="width: 400px;" src="{{ asset('uploads/certs/'.$cert->image3) }}" alt="foto">
                             </div>
                         @endif
                     </div>
-
+                    @if(!empty($cert->image2) AND $cert->image2 != '' AND file_exists($_SERVER['DOCUMENT_ROOT'] . '/uploads/certs/'.$cert->image2))
                     <!-- Left and right controls -->
                     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -45,6 +45,7 @@
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
+                    @endif
                 </div>
             </div>
             <div class="col-md-7" style="padding-left: 30px;">

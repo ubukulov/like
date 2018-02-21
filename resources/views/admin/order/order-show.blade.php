@@ -52,6 +52,23 @@
                             <label for="title">Интернет магазин</label>
                             <input type="text" readonly class="form-control" value="{{ $order->store_name }}">
                         </div>
+
+                        <div class="form-group">
+                            <label for="channel_sells">Каналы продаж</label>
+                            <select name="channel_sells" id="channel_sells" class="form-control">
+                                <option @if($order->channel_sells == 0) selected="selected" @endif value="0">Не указано</option>
+                                <option @if($order->channel_sells == 1) selected="selected" @endif value="1">Likemoney.me</option>
+                                <option @if($order->channel_sells == 2) selected="selected" @endif value="2">Instagram.com</option>
+                                <option @if($order->channel_sells == 3) selected="selected" @endif value="3">VK.com</option>
+                                <option @if($order->channel_sells == 4) selected="selected" @endif value="4">Olx.kz</option>
+                                <option @if($order->channel_sells == 5) selected="selected" @endif value="5">Market.kz</option>
+                                <option @if($order->channel_sells == 6) selected="selected" @endif value="6">Kolesa.kz</option>
+                                <option @if($order->channel_sells == 7) selected="selected" @endif value="7">Alfa.kz</option>
+                                <option @if($order->channel_sells == 8) selected="selected" @endif value="8">Радио</option>
+                                <option @if($order->channel_sells == 9) selected="selected" @endif value="9">Google</option>
+                                <option @if($order->channel_sells == 10) selected="selected" @endif value="10">Яндекс</option>
+                            </select>
+                        </div>
                         @if(empty($order->qty) AND empty($order->price))
                         <div class="form-group">
                             <button type="button" class="btn btn-danger" id="deactivated">Деактивировать поля</button>

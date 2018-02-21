@@ -8,6 +8,7 @@
         </div>
         <hr>
         <div class="row">
+            @if(!empty($certs))
             @foreach($certs as $key=>$cert)
                 <div class="col-md-3">
                     <div class="brd">
@@ -64,6 +65,11 @@
                     <!-- /.portfolio-item -->
                 </div>
             @endforeach
+            @else
+                <div class="col-md-12">
+                    Товаров по этой категории не найдено
+                </div>
+            @endif
         </div>
     </div>
     <style>
