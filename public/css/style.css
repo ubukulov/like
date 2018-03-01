@@ -457,9 +457,10 @@ a:hover{
 
 .portfolio-img .port-item
 {
-    width: 100%;
+    /*width: 100%;*/
     height: auto;
     transition: all .6s ease-in-out;
+    text-align: center;
 }
 
 .portfolio-img:hover .portfolio-img-hover

@@ -33,8 +33,11 @@
                         </div>
                         <div class="col-sm-5">
                             <div class="ui action input">
-                                <input type="text" style="width: 350px;">
-                                <button class="ui button">Поиск</button>
+                                <form action="/search" method="post">
+                                    {{ csrf_field() }}
+                                    <input type="text" name="keywords" style="width: 195px;">
+                                    <button type="submit" name="submit" class="ui button" style="padding: 11px;">Поиск</button>
+                                </form>
                             </div>
                         </div>
                     </div>

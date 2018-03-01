@@ -33,7 +33,7 @@
                                         <img src="{{ asset('img/low_price.png') }}" class="low_price" alt="низкая цена">
                                     @endif
 
-                                    <img style="position: absolute; left: 0px;" @if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/small/'.$cert->image) AND !empty($cert->image)) src="{{ asset('uploads/certs/small/'.$cert->image) }}" @else src="{{ asset('img/no_photo227x140.png') }}" @endif alt="port-1" class="port-item">
+                                    <img style="left: 0px;" @if(file_exists($_SERVER['DOCUMENT_ROOT'].'/uploads/certs/small/'.$cert->image) AND !empty($cert->image)) src="{{ asset('uploads/certs/small/'.$cert->image) }}" @else src="{{ asset('img/no_photo227x140.png') }}" @endif alt="port-1" class="port-item">
 
                                     <div class="portfolio-img-hover">
 
@@ -55,12 +55,12 @@
                                                     </td>
                                                 @else
                                                     <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
-                                                    <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ $cert->special2 }} тг.</b></font></small></td>
+                                                    <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ number_format($cert->special2,0,' ',' ') }} тг.</b></font></small></td>
                                                 @endif
                                             @else
                                                 <td width="130">
-                                                    <span style="text-decoration: line-through; font-size: 12px;">{{ $cert->special2 }} тг</span><br>
-                                                    <span style="color: green; font-weight: bold;">{{ $cert->special3 }} тг</span>
+                                                    <span style="text-decoration: line-through; font-size: 12px;">{{ number_format($cert->special2,0,' ',' ') }} тг</span><br>
+                                                    <span style="color: green; font-weight: bold;">{{ number_format($cert->special3,0,' ',' ') }} тг</span>
                                                 </td>
                                             @endif
                                             @if(is_tariff(Auth::id()))

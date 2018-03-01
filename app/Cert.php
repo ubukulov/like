@@ -13,7 +13,7 @@ class Cert extends Model
         'partner', 'partner_email', 'partner_address', 'partner_hours', 'partner_phone', 'date_start', 'date_end',
         'periodicity', 'period_start', 'period_end', 'period_count', 'coords', 'zoom', 'meta_description',
         'meta_keywords', 'sort', 'views', 'cert_type', 'created_at', 'updated_at', 'article_code', 'b1', 'b2', 'b3', 'prime_cost',
-        'count', 'section_type', 'label_type'
+        'count', 'section_type', 'label_type', 'opt_price1', 'opt_count1', 'opt_price2', 'opt_count2', 'opt_price3', 'opt_count3'
     ];
 
     # Получить список задании по условии срока

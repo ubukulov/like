@@ -2,6 +2,7 @@
 @section('content')
     <div class="row_tsk">
         <div class="row">
+            @if(!empty($search_certs))
             @foreach($search_certs as $key=>$cert)
                 <div class="col-md-3">
                     <div class="brd">
@@ -64,6 +65,11 @@
                     <!-- /.portfolio-item -->
                 </div>
             @endforeach
+            @else
+            <div class="col-md-12">
+                Не найдено записей по <strong><?php echo "'".$keywords."'"; ?></strong>;
+            </div>
+            @endif
         </div>
     </div>
 @stop

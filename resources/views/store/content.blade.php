@@ -52,7 +52,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="price">
-                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Цена:<br /><font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $cert->special2 ?> тг.</font>
+                            @if($sub_domain != 'optprice.')
+                                <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Цена:<br /><font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= number_format($cert->special2,0,' ',' ') ?> тг.</font>
+                            @else
+                                <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Оптовая цена:<br />
+                                @if(!empty($cert->opt_price1))
+                                    <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">от <strong><?= (int) $cert->opt_count1 ?></strong> шт. {{ number_format($cert->opt_price1,0,' ',' ') }} тг.</font><br />
+                                @endif
+
+                                @if(!empty($cert->opt_price2))
+                                    <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">от <strong><?= (int) $cert->opt_count2 ?></strong> шт. {{ number_format($cert->opt_price2,0,' ',' ') }} тг.</font><br />
+                                @endif
+
+                                @if(!empty($cert->opt_price3))
+                                    <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">от <strong><?= (int) $cert->opt_count3 ?></strong> шт. {{ number_format($cert->opt_price3,0,' ',' ') }} тг.</font><br />
+                                @endif
+                            @endif
                         </div>
                         <div style="margin-top: 15px;">
                             <span style="color: green; margin-left: 30px;">Есть в наличии</span>
