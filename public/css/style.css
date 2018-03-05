@@ -1350,3 +1350,29 @@ span.korsina {
     z-index: 9999;
     left: 202px;
 }
+.show_more{
+    background: orange;
+    width: 100%;
+    padding: 15px;
+    color: #000000;
+    border: 1px solid orange;
+    border-radius: 4px;
+}
+.show_more:hover{
+    background: orange;
+    color: #000000;
+    border: 1px solid orange;
+    border-radius: 4px;
+}
+.show_more:active{
+    background: orange;
+    color: #000000;
+    border: 1px solid orange;
+    border-radius: 4px;
+}
+.show_more:link{
+    background: orange;
+    color: #000000;
+    border: 1px solid orange;
+    border-radius: 4px;
+}

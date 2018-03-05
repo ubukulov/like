@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 42" preserveAspectRatio="xMaxYMin slice">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <title>order-top</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <path class="cls-1" d="M0,42V25.26A25.34,25.34,0,0,0,25.27,0H358.73A25.34,25.34,0,0,0,384,25.26V42"/>
+    </g>
+  </g>
+</svg>

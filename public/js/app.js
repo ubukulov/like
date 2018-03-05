@@ -264,7 +264,84 @@ $(document).ready(function(){
             }
         });
     });
+    // кнопка показать ещё
+    $("#show_more").on('click', function(){
+
+        var button = document.getElementById('show_more');
+        var first_row = button.getAttribute('data-value');
+        var last_row  = 32;
+        $("#show_more").html("Загружается ...");
+        $.get("/get/certs/"+first_row+"/"+last_row, function (data) {
+            data = JSON.parse(data);
+
+            var html = '<div class="row">';
+
+            for(var i=0; i<data.length; i++){
+                html = html + '<div class="col-md-3">';
+                    html = html + '<div class="brd">';
+                        html = html + '<div class="portfolio-item">';
+
+                            html = html + "<a href='/item/"+data[i].id+"'>";
+                                html = html + '<div  class="portfolio-img" style="height: 160px; cursor: pointer; border: 1px solid #ccc;">';
+                                    html = html + '<img style="left: 0px;" src="/uploads/certs/small/'+data[i].image+'" alt="port-1" class="port-item">';
+                                    html = html + '<div class="portfolio-img-hover"></div>';
+                                html = html + '</div>';
+                            html = html + '</a>';
+
+                            html = html + '<div class="portfolio-item-details">';
+                                html = html + "<div class='portfolio-item-name'>"+data[i].title+"</div>";
+                                    html = html + '<div style="float: left;">';
+                                        html = html + '<table><tbody><tr>';
+                                        if(data[i].special2 == ""){
+                                            html = html + '<td width="130">';
+                                                html = html + "<a href='https://api.whatsapp.com/send?phone=77758153538&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20"+data[i].title+"!.%20%20Спасибо!%20Код товара:%20"+data[i].article_code+"%20Товар%20по%20этому%20адресу:%20http://likemoney.me/item/"+data[i].id+"' target='_blank'><img src='/img/whatsapp_button.png' /></a>";
+                                            html = html + '</td>';
+                                        }else{
+                                            html = html + '<td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>';
+                                            html = html + '<td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>'+XFormatPrice(data[i].special2)+'</b></font></small></td>';
+                                        }
+                                            html = html + "<td align='right'><a href='/item/"+data[i].id+"' class='hidden-xs taskbutton'>Подробнее</a></td>";
+                                        html = html + '</tr></tbody></table>';
+                                    html = html + '</div>';
+                            html = html + '</div>';
+
+                        html = html + '</div>';
+                    html = html + '</div>';
+                html = html + '</div>';
+            }
+
+            html = html + '</div>';
+
+            $('#div_show_more').before(html);
+        }).done(function(){
+            $("#show_more").html("Показать ещё");
+        }).fail(function(){
+            $("#show_more").html("Не удалось загрузить");
+        });
+        first_row = parseInt(first_row) + parseInt(32);
+        button.setAttribute('data-value', first_row);
+    });
 });
+
+function XFormatPrice(_number)
+{
+    var decimal=0;
+    var separator=' ';
+    var decpoint = '.';
+    var format_string = '# тг.';
+
+    var r=parseFloat(_number)
+
+    var exp10=Math.pow(10,decimal);// приводим к правильному множителю
+    r=Math.round(r*exp10)/exp10;// округляем до необходимого числа знаков после запятой
+
+    rr=Number(r).toFixed(decimal).toString().split('.');
+
+    b=rr[0].replace(/(\d{1,3}(?=(\d{3})+(?:\.\d|\b)))/g,"\$1"+separator);
+
+    r=(rr[1]?b+ decpoint +rr[1]:b);
+    return format_string.replace('#', r);
+}
 
 function taskButton_money(){
     var m = Array();

@@ -498,3 +498,7 @@ function check_pod_cat($id, $lvl){
         }
     }
 }
+function getUserIdByStoreName($store_name){
+    $result = DB::table('business_store')->where(['store_name' => $store_name, 'status' => 1])->first();
+    return $result;
+}

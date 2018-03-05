@@ -13,6 +13,7 @@ use App\CertView;
 use Cache;
 use SSH;
 use App\Page;
+use App\User;
 
 class IndexController extends Controller
 {
@@ -33,7 +34,7 @@ class IndexController extends Controller
         }
 
         //$certs = Cert::get();
-        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY updated_at DESC");
+        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY updated_at DESC LIMIT 32");
         $cats = $this->cats;
         return view('welcome', compact('certs', 'cats', 'cat_menu'));
     }
@@ -265,5 +266,22 @@ class IndexController extends Controller
         }else{
             return redirect('/suggest')->with('message', 'Ошибка! Вы не правильно посчитали!')->withInput();
         }
+    }
+
+    # Показать еще
+    public function show_more($first_row,$last_row){
+        $first_row = (int) $first_row;
+        $last_row  = (int) $last_row;
+        $result    = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' LIMIT $first_row, $last_row");
+        return json_encode($result);
+    }
+
+    public function get_information_about_store($store_name){
+        $result = DB::table('business_store')->where(['store_name' => $store_name, 'status' => 1])->first();
+        if($result){
+            $user = User::find($result->id_user);
+            return json_encode($user->mphone);
+        }
+        return 0;
     }
 }

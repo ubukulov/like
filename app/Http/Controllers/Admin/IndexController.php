@@ -31,7 +31,7 @@ class IndexController extends Controller
 //        $file .= "      ServerName $name.likemoney.me\r\n";
 //        $file .= "      AddDefaultCharset UTF-8\r\n";
 //        $file .= "      AssignUserID admin admin\r\n";
-//        $file .= "      DirectoryIndex index.html index.php\r\n";
+//        $file .= "      DirectoryIndex index2.html index.php\r\n";
 //        $file .= "      DocumentRoot /var/www/admin/data/www/asay.likemoney.me/\r\n";
 //        $file .= "      ServerAdmin webmaster@asay.likemoney.me\r\n";
 //        $file .= "      ServerAlias www.$name.likemoney.me\r\n";
