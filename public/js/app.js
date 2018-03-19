@@ -184,6 +184,7 @@ $(document).ready(function(){
     $('.phone').each(function(){
         $(this).mask("+7 (999)-999-99-99");
     });
+    $('#store_phone').mask("+7 (999)-999-99-99");
 
     $('.phone2').each(function(){
         $(this).mask("+7 999 999 9999",{placeholder:" "});

@@ -170,6 +170,11 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <label for="special3">Название поставщика</label>
+                            <input type="text" class="form-control" readonly value="{{ $cert->price_company }}" placeholder="Название поставщика" />
+                        </div>
+
                         <h3>Настройки оптовой цены</h3>
                         <input type="hidden" id="cnt" value="0" name="cnt"/>
                         @foreach($opt as $item)

@@ -316,4 +316,14 @@ class CertController extends Controller
         DB::table('cert_opt')->where('id', '=', $id)->delete();
         return 0;
     }
+
+    public function search($title){
+        $result = DB::select("SELECT * FROM certs WHERE title LIKE '%$title%'");
+        return json_encode($result);
+    }
+
+    public function unprocessed(){
+        $certs = DB::table('certs')->whereNull('features')->whereNull('image')->orderBy("id", 'DESC')->paginate(30);
+        return view('admin/cert/unprocessed', compact('certs'));
+    }
 }

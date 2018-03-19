@@ -502,3 +502,13 @@ function getUserIdByStoreName($store_name){
     $result = DB::table('business_store')->where(['store_name' => $store_name, 'status' => 1])->first();
     return $result;
 }
+// для определенных пользователей показывать доп. информации о поставщика
+function show_add_info_about_cert($id_cert, $id_user){
+    $users = [
+        15 => 'Алижан'
+    ];
+    if(array_key_exists($id_user,$users)){
+
+    }
+
+}

@@ -25,7 +25,7 @@ class Cert extends Model
 
     # Получить список задании без условия
     public static function getNotWhere(){
-        $result = DB::table('certs')->orderBy("id", 'DESC')->paginate(30);
+        $result = DB::table('certs')->whereNotNull('features')->whereNotNull('image')->orderBy("id", 'DESC')->paginate(30);
         return $result;
     }
     

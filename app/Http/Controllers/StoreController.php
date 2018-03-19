@@ -101,11 +101,14 @@ class StoreController extends Controller
         $sub_domain = $domain[0].".";
         $certs_sub = CertSub::get_cert_subs($id);
         $partner = Partner::getByIdPartnerData($cert->partner_id);
+        // посчитаем кол-во проданного товара
+        $sell_certs = DB::select("SELECT COUNT(*) AS cnt FROM business_orders BO WHERE BO.id_cert=$id AND BO.status='3'");
+        $count_sell_certs = $sell_certs[0]->cnt;
         if($sub_domain != 'likemoney.'){
-            return view('store/content', compact('cert', 'partner', 'certs_sub', 'sub_domain'));
+            return view('store/content', compact('cert', 'partner', 'certs_sub', 'sub_domain', 'count_sell_certs'));
         }else{
             $sub_domain = '';
-            return view('store/content', compact('cert', 'partner', 'certs_sub', 'sub_domain'));
+            return view('store/content', compact('cert', 'partner', 'certs_sub', 'sub_domain', 'count_sell_certs'));
         }
     }
 

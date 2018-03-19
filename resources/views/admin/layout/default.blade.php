@@ -336,14 +336,18 @@
                         <i class="fa fa-home" aria-hidden="true"></i> <span>Главная</span>
                     </a>
                 </li>
-                <li @if(request_uri('certs')) class="active" @endif>
-                    <a href="{{ url('admin/certs') }}">
-                        <i class="fa fa-files-o"></i>
-                        <span>Список задании</span>
+                <li @if(request_uri('certs')) class="active" @endif class="treeview">
+                    <a href="#">
+                        <i class="fa fa-pie-chart"></i>
+                        <span>Задания</span>
                         <span class="pull-right-container">
                           <span class="label label-primary pull-right">{{ count_certs() }}</span>
                         </span>
                     </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('/admin/certs') }}"><i class="fa fa-circle-o"></i> Список задании</a></li>
+                        <li><a href="{{ url('/admin/certs/unprocessed') }}"><i class="fa fa-circle-o"></i> Список необработанные</a></li>
+                    </ul>
                 </li>
                 @if(check_admin_users_role(Auth::guard('admin')->user()->role))
                 <li class="treeview">

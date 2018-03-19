@@ -18,6 +18,20 @@
                             {!!Session::get('message')!!}
                         </div>
                         @endif
+                        <h3>Используйте поиск</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <input type="text" id="cert_title" class="form-control" placeholder="Наименование">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <button type="button" onclick="search_cert_by_title();" style="width: 150px;" class="btn btn-success">Поиск</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -30,7 +44,7 @@
                                     <th colspan="2">Действие</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="cert_content">
                                 <?php foreach($certs as $cert) :?>
                                 <tr>
                                     <td>
@@ -42,11 +56,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if(!empty($cert->features) OR !empty($cert->image))
                                         {{ $cert->title }}
-                                        @else
-                                        {{ $cert->title }} <font style="color: red;">( нет картинки и описание )</font>
-                                        @endif
                                     </td>
                                     <td>
                                         {{ $cert->purchased }}

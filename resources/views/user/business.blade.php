@@ -51,6 +51,13 @@
             <br>
             <div class="inline fields">
                 <div class="eight wide field">
+                    <label>Укажите номер телефона (Whats app):</label>
+                    <input type="text" class="phone" id="store_phone" placeholder="+7 (777)-777-88-99" required="required" name="store_phone"  value="{{ $business_store->store_phone }}">
+                </div>
+            </div>
+            <br>
+            <div class="inline fields">
+                <div class="eight wide field">
                     <div id="image1">
                         @if(!empty(isset($business_store) AND $business_store->store_img))
                         <img src="{{ asset('uploads/users/store/'.$business_store->store_img) }}" height="100" name="image1">
@@ -65,6 +72,27 @@
             <br>
             <button type="submit" class="btn btn-success">Отправить заявку!</button>
             </form>
+        </div>
+    </div>
+
+    <div class="rowtsk-bkg">
+		<h4>Список лэндингов</h4>
+        <div class="row">
+            <div class="col-md-4">
+                Роза в колбе
+            </div>
+            <div class="col-md-8">
+                <input type="text" class="form-control" readonly value="http://likemoney.me/rose_flask">
+            </div>
+        </div>
+		<br /><br />
+		<div class="row">
+            <div class="col-md-4">
+                Samsung Galaxy S9
+            </div>
+            <div class="col-md-8">
+                <input type="text" class="form-control" readonly value="http://likemoney.me/samsung_s9">
+            </div>
         </div>
     </div>
 

@@ -8,14 +8,13 @@ Route::group(['as' => 'subdomain', 'domain' => '{account}.likemoney.me'], functi
     $sub_domain = $domain[0];
 
     $result = DB::table('business_store')->where(['store_name' => $sub_domain, 'status' => 1])->first();
-    $user = User::find($result->id_user);
-    $_SESSION['store_user_id'] = $result->id_user;
-    $_SESSION['store_user_phone'] = $user->mphone;
     Route::get('/', ['as' => 'home', 'uses' => 'IndexController@welcome']); // Главная страница
     if($result){
 //        Auth::loginUsingId($result->id_user, true);
+        $user = User::find($result->id_user);
+        $_SESSION['store_user_id'] = $result->id_user;
+        $_SESSION['store_user_phone'] = $user->mphone;
         Route::get('/', 'IndexController@market');
-
     }else{
         return Redirect::to('http://likemoney.me');
     }

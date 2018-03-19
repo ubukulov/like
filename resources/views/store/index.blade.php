@@ -114,6 +114,11 @@
                 </div>
             @endforeach
         </div>
+        <div id="div_show_more" class="row" style="margin-top: 5px;">
+            <div class="col-md-12">
+                <button type="button" id="show_more" class="show_more" data-value="32">Показать ещё</button>
+            </div>
+        </div>
     </div>
     <style>
         #mainmenu {

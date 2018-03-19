@@ -112,7 +112,7 @@ class IndexController extends Controller
                 ->where('id', $business_store->id)
                 ->update([
                 'id_user' => $this->id_user, 'tarif' => $request->tariff, 'store_name' => $request->store_name, 'created_at' => date("Y-m-d H:i:s"),
-                'store_img' => $store_img
+                'store_img' => $store_img, 'store_phone' => $request->store_phone
             ]);
             return redirect()->back()->with('message', 'Успешно отправлено. Ждите!');
         }else{
@@ -134,7 +134,7 @@ class IndexController extends Controller
             }
             DB::table('business_store')->insertGetId([
                 'id_user' => $this->id_user, 'tarif' => $request->tariff, 'store_name' => $request->store_name, 'created_at' => date("Y-m-d H:i:s"),
-                'store_img' => $data['photo1']
+                'store_img' => $data['photo1'], 'store_phone' => $request->store_phone
             ]);
             return redirect()->back()->with('message', 'Успешно отправлено. Ждите!');
         }

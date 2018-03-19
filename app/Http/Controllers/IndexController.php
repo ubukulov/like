@@ -211,7 +211,7 @@ class IndexController extends Controller
         $url = $_SERVER["SERVER_NAME"];
         $domain = explode(".",$url);
         $sub_domain = $domain[0];
-        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY updated_at DESC");
+        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY updated_at DESC  LIMIT 32");
         $cats = $this->cats;
         return view('store/index', compact('certs', 'cats', 'cat_menu', 'sub_domain'));
     }

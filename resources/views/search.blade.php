@@ -65,9 +65,13 @@
                     <!-- /.portfolio-item -->
                 </div>
             @endforeach
-            @else
+            @elseif(isset($keywords))
             <div class="col-md-12">
                 Не найдено записей по <strong><?php echo "'".$keywords."'"; ?></strong>;
+            </div>
+            @else
+            <div class="col-md-12">
+                <?php header("Location: http://likemoney.me"); ?>
             </div>
             @endif
         </div>

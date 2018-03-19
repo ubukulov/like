@@ -13,11 +13,6 @@
     {{--    <link rel="stylesheet" href="{{ asset('components/icon.min.css') }}">--}}
     {{--    <link rel="stylesheet" href="{{ asset('components/modal.min.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('css/partner.css') }}">
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/semantic.min.js') }}"></script>
-    <script type="text/javascript">
-        $.fn.bsModal = $.fn.modal.noConflict();
-    </script>
 </head>
 <body>
 <div id="wrap">
@@ -171,8 +166,12 @@
     @include('pattern.footer')
 </div>
 </body>
-{{--<script src="{{ asset('lib/tinymce/tinymce.min.js') }}"></script>--}}
-{{--<script src="{{ asset('lib/tinymce/config.js') }}"></script>--}}
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('js/semantic.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+<script type="text/javascript">
+    $.fn.bsModal = $.fn.modal.noConflict();
+</script>
 <script src="{{ asset('lib/froala/js/froala_editor.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('lib/froala/js/languages/ru.js') }}"></script>
 <script src="{{ asset('js/ajaxupload.js') }}"></script>

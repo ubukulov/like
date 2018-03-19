@@ -115,6 +115,24 @@ $(function(){
             });
         }
     });
+    // поиск по нажатие кнопку ентер
+    $("#cert_title").keyup(function(e){
+        if(e.keyCode == 13){
+            search_cert_by_title();
+        }
+    });
+    // сохранение канал продаж
+    $("#channel_sells").change(function(){
+        var val = $("#channel_sells :selected").val();
+        var id= $("#id_item").val();
+        var choice = confirm('Вы действительно хотите сохранить этот вариант?');
+        if(choice){
+            $.get("/admin/order/"+id+"/channel/"+val, function(){
+                alert("Успешно изменен!");
+                window.location.href = "/admin/order/"+id;
+            });
+        }
+    });
 });
 
 function delete_opt_partner(id) {
@@ -385,4 +403,35 @@ function deleteOptomBD(id, id_cert){
         }
     });
 
+}
+// поиск по название
+function search_cert_by_title() {
+    var cert_title = $('#cert_title').val();
+    var cert_content = $('#cert_content');
+    $.get("/admin/cert/search/"+cert_title, function(data){
+        cert_content.html('');
+        data = JSON.parse(data);
+        var html = "";
+        if(data.length != 0){
+            for(var i = 0; i < data.length; i++){
+                var avatar;
+                var reg_date;
+                if(data[i].image == ''){
+                    avatar = '<img src="/img/blank_avatar_220.png" alt="" height="40" width="40" />';
+                }else{
+                    avatar = '<img src="/uploads/certs/'+data[i].image+'" alt="" height="40" width="60" />';
+                }
+                if(data[i].reg_date == ''){
+                    reg_date = data[i].created_at;
+                }else{
+                    reg_date = data[i].reg_date;
+                }
+                html = html + '<tr><td>'+data[i].id+'</td><td>'+avatar+'</td><td>'+data[i].title+'</td><td></td><td></td><td></td><td><a href="/cert/'+data[i].id+'" class="btn btn-warning">Редактировать</a></td><td></td></tr>';
+            }
+            cert_content.html(html);
+            $(".pagination").remove();
+        }else{
+            cert_content.html("<div class='alert alert-info'>Не найдено записей</div>");
+        }
+    });
 }

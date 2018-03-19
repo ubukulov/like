@@ -24,7 +24,7 @@ class OrderController extends Controller
 
     public function setStatus($id_order, $status){
         DB::update("UPDATE business_orders SET status='$status' WHERE id='$id_order'");
-        return redirect('admin/order/orders')->with('message', 'Статус успешно изменен');
+        return redirect('admin/orders')->with('message', 'Статус успешно изменен');
     }
 
     public function show($id){
@@ -95,5 +95,10 @@ class OrderController extends Controller
             $_SESSION['store_name2'] = $result[1]->store_name;
         }
         return view('admin/order/statistics', compact('result'));
+    }
+
+    public function setSellChannel($id, $type_channel){
+        DB::update("UPDATE business_orders SET channel_sells=$type_channel WHERE id=$id");
+        return 0;
     }
 }
