@@ -82,7 +82,7 @@
                 Роза в колбе
             </div>
             <div class="col-md-8">
-                <input type="text" class="form-control" readonly value="http://likemoney.me/rose_flask">
+                <a href="http://likemoney.me/rose_flask" target="_blank" class="form-control">http://likemoney.me/rose_flask</a>
             </div>
         </div>
 		<br /><br />
@@ -91,7 +91,7 @@
                 Samsung Galaxy S9
             </div>
             <div class="col-md-8">
-                <input type="text" class="form-control" readonly value="http://likemoney.me/samsung_s9">
+                <a href="http://likemoney.me/samsung_s9" target="_blank" class="form-control">http://likemoney.me/samsung_s9</a>
             </div>
         </div>
     </div>

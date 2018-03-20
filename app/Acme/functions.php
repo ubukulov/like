@@ -512,3 +512,15 @@ function show_add_info_about_cert($id_cert, $id_user){
     }
 
 }
+// сделок за день
+function count_order_today(){
+    $result = DB::select("SELECT COUNT(*) AS cnt FROM business_orders BO WHERE BO.status='3' AND DATE_FORMAT(BO.updated_at,'%d-%m-%Y')=DATE_FORMAT(NOW(),'%d-%m-%Y');");
+    return $result[0]->cnt;
+}
+// самый высокий доход за сегодня
+function max_price_today(){
+    $result = DB::select("SELECT * FROM
+		(SELECT BO.*, (BO.qty*BO.price) AS max_price FROM business_orders BO WHERE BO.status='3' AND DATE_FORMAT(BO.updated_at,'%d-%m-%Y')=DATE_FORMAT(NOW(),'%d-%m-%Y')) AS TB
+ORDER BY TB.max_price DESC LIMIT 1;");
+    return $result[0]->max_price;
+}

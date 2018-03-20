@@ -110,6 +110,7 @@
                                         <i class="dropdown icon"></i>
                                         <div class="menu">
                                             <div class="item"><a href="{{ url('user/business') }}">Тарифы Бизнес</a></div>
+                                            <div class="item"><a href="{{ url('user/business/offline') }}">Регистрация оффлайн продажу</a></div>
                                             <div class="item"><a href="{{ url('user/business/statistics') }}">Статистика</a></div>
                                         </div>
                                     </div>

@@ -13,8 +13,8 @@ class OrderController extends Controller
 {
     public function index(){
         $orders = DB::table('business_orders')
-                            ->join('business_customers', 'business_customers.id', '=', 'business_orders.id_customer')
-                            ->join('certs', 'certs.id', '=', 'business_orders.id_cert')
+                            ->leftJoin('business_customers', 'business_customers.id', '=', 'business_orders.id_customer')
+                            ->leftJoin('certs', 'certs.id', '=', 'business_orders.id_cert')
                             ->join('partners', 'partners.id', '=', 'certs.partner_id')
                             ->select('business_orders.*', 'business_customers.client_phone', 'partners.name', 'partners.mphone', 'partners.address AS p_address', 'business_customers.client_name', 'certs.title')
                             ->orderBy('id', 'DESC')
@@ -29,8 +29,8 @@ class OrderController extends Controller
 
     public function show($id){
         $order = DB::table('business_orders')
-            ->join('business_customers', 'business_customers.id', '=', 'business_orders.id_customer')
-            ->join('certs', 'certs.id', '=', 'business_orders.id_cert')
+            ->leftJoin('business_customers', 'business_customers.id', '=', 'business_orders.id_customer')
+            ->leftJoin('certs', 'certs.id', '=', 'business_orders.id_cert')
             ->join('partners', 'partners.id', '=', 'certs.partner_id')
             ->select('business_orders.*', 'business_customers.client_phone', 'partners.name', 'partners.mphone', 'partners.address AS p_address', 'business_customers.client_name', 'certs.prime_cost', 'certs.title')
             ->where(['business_orders.id' => $id])

@@ -322,6 +322,37 @@ $(document).ready(function(){
         first_row = parseInt(first_row) + parseInt(32);
         button.setAttribute('data-value', first_row);
     });
+
+    // поиск по код товара. личный кабинет пользователя. Регистрация оффлайн продажу
+    $("#search_btn").on('click', function(){
+        var code_good = $("#code_good");
+        var code_good_val = code_good.val();
+        var token = $("input[name='_token']").val();
+        if(code_good_val.length == 0){
+            alert("Введите код товара");
+            code_good.focus();
+        }else{
+            var form_data = new FormData();
+            form_data.append('_token', token);
+            form_data.append('code_good_val', code_good_val);
+            $.ajax({
+                type: 'post',
+                url: '/user/business/offline',
+                cache: false,
+                data: form_data,
+                datatype: 'json',
+                processData: false,
+                contentType: false,
+                success: function(data){
+                    data = JSON.parse(data);
+                    $("#title").val(data[0].title);
+                    var html = "<input type='hidden' name='id_cert' value='"+data[0].id+"'/>";
+                    $("#order").before(html);
+                    $("#accept_order").prop('disabled', false);
+                }
+            });
+        }
+    });
 });
 
 function XFormatPrice(_number)

@@ -49,8 +49,10 @@
                                 <td>
                                     @if($item->type_order == 0)
                                         Обычный
-                                    @else
+                                    @elseif($item->type_order == 1)
                                         В 1 клик
+                                    @else
+                                        Оффлайн
                                     @endif
                                 </td>
                                 <td>

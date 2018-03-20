@@ -208,4 +208,29 @@ class IndexController extends Controller
             WHERE BO.id_agent='$user_id'  ORDER BY BO.id DESC");
         return view('user/statistics', compact('result', 'orders'));
     }
+
+    public function offline(){
+        return view('user/offline');
+    }
+
+    public function setOfflineOrder(Request $request){
+        $code_good_val = $request->input('code_good_val');
+        $result = DB::select("SELECT id,title FROM certs WHERE article_code='$code_good_val' LIMIT 1");
+        return json_encode($result);
+    }
+
+    public function set_offline_order(Request $request){
+        $data = $request->all();
+        $current_time = date("Y-m-d H:i:s");
+        $lastInsertId = DB::table('business_orders')->insertGetId([
+            'id_customer' => 0, 'id_agent' => $this->id_user, 'id_cert' => $data['id_cert'], 'title' => $data['title'],
+            'qty' => $data['count_sell'], 'price' => $data['price_sell'], 'ip' => $_SERVER['REMOTE_ADDR'],
+            'status' => '3', 'type_order' => '2', 'channel_sells' => $data['channel_sells'], 'created_at' => $current_time, 'updated_at' => $current_time
+        ]);
+        if($lastInsertId){
+            return redirect()->back()->with('message', 'Оффлайн заказ успешно принять'); // успешно принять заказ
+        }else{
+            return redirect()->back()->with('message', 'Произошло ошибка. Попробуйте позже!'); // произошло ошибка
+        }
+    }
 }
