@@ -519,8 +519,29 @@ function count_order_today(){
 }
 // самый высокий доход за сегодня
 function max_price_today(){
-    $result = DB::select("SELECT * FROM
+    $result = DB::select("SELECT TB.*,CT.prime_cost FROM
 		(SELECT BO.*, (BO.qty*BO.price) AS max_price FROM business_orders BO WHERE BO.status='3' AND DATE_FORMAT(BO.updated_at,'%d-%m-%Y')=DATE_FORMAT(NOW(),'%d-%m-%Y')) AS TB
+	LEFT JOIN certs CT ON CT.id=TB.id_cert
 ORDER BY TB.max_price DESC LIMIT 1;");
-    return $result[0]->max_price;
+    if($result){
+        $sum = ($result[0]->max_price - $result[0]->prime_cost)*0.3;
+        return $sum;
+    }else{
+        return 0;
+    }
+
+}
+// определяет роль у пользователя
+function check_user_roles($user_id){
+    $result = DB::select("SELECT * FROM users_roles WHERE user_id=$user_id");
+    if($result){
+        if($result[0]->role_id == 1){
+            return 0; // admin
+        }
+        if($result[0]->role_id == 2){
+            return 1; // operator
+        }
+    }else{
+        return false;
+    }
 }

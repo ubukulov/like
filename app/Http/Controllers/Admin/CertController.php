@@ -12,6 +12,7 @@ use App\Partner;
 use Illuminate\Support\Facades\DB;
 use App\SimpleImage;
 use Intervention\Image\Facades\Image as Image;
+use App\Supplier;
 
 class CertController extends Controller
 {
@@ -149,7 +150,10 @@ class CertController extends Controller
         $pod_cat = DB::select("SELECT * FROM pod_cat");
         $cats = DB::table('cats')->where(['parent' => 0])->get();
         $opt = DB::table('cert_opt')->where(['id_cert' => $id])->get();
-        return view('admin/cert/cert-show', compact('cert', 'cat', 'partner', 'pod_cat', 'cats', 'opt'));
+        //$suppliers = Supplier::all();
+        $suppliers = Partner::all();
+        $best_prices = DB::table('best_price')->where(['id_cert' => $id])->get();
+        return view('admin/cert/cert-show', compact('cert', 'cat', 'partner', 'pod_cat', 'cats', 'opt', 'suppliers', 'best_prices'));
     }
 
     /**
@@ -325,5 +329,52 @@ class CertController extends Controller
     public function unprocessed(){
         $certs = DB::table('certs')->whereNull('features')->whereNull('image')->orderBy("id", 'DESC')->paginate(30);
         return view('admin/cert/unprocessed', compact('certs'));
+    }
+
+    // получить список поставщиков из таблицу suppliers
+    public function supp(){
+        //$result = Supplier::all();
+        $result = Partner::all();
+        return json_encode($result);
+    }
+
+    public function supp_settings(Request $request, $id_cert){
+        $data = $request->all();
+        $count = $data['cnt_supp'];
+        $price = [];
+        if($count != 0){
+            for ($i = 1; $i <= $count; $i++) {
+                $price_supp = (int) $data['price_supp'.$i];
+                $id_supp   = (int) $data['supp'.$i];
+                $current_time = date("Y-m-d H:i:s");
+                $price[] = $price_supp;
+				$result = DB::select("SELECT * FROM best_price WHERE id_cert=$id_cert AND id_supp=$id_supp");
+				if($result){
+					DB::update("UPDATE best_price SET price_supp=$price_supp WHERE id_cert=$id_cert AND id_supp=$id_supp");
+				}else{
+					DB::insert("INSERT INTO best_price (id_cert,id_supp,price_supp,created_at) VALUES('$id_cert','$id_supp','$price_supp', '$current_time')");	
+				}
+            }
+            $cert = Cert::find($id_cert);
+            $min_price_sup = min($price); // самые минимальные цены best_price
+            $cert_prime_cost = $cert->prime_cost; // себестоимость товара
+            if($cert_prime_cost > $min_price_sup){
+                $price_difference = $cert_prime_cost - $min_price_sup;
+                $new_special2 = (int) $cert->special2 - $price_difference;
+                $cert->update([
+                    'prime_cost' => $min_price_sup, 'special2' => $new_special2, 'is_best_price' => 1
+                ]);
+            }
+
+            return redirect('admin/certs')->with('message', 'BestPrice успешно сохранен');
+        }
+    }
+
+    public function best_price(){
+        $best_prices = DB::select("SELECT CT.id, CT.title,MIN(BP.price_supp) AS min_price,SP.name AS com_title,SP.address,SP.mphone,SP.email,BP.created_at FROM best_price BP
+                                    INNER JOIN certs CT ON CT.id=BP.id_cert
+                                    INNER JOIN partners SP ON SP.id=BP.id_supp
+                                    GROUP BY BP.id_cert");
+        return view('admin/best_price', compact('best_prices'));
     }
 }

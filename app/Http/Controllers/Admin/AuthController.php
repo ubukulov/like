@@ -81,7 +81,7 @@ class AuthController extends Controller
         if (Auth::guard('admin')->attempt(['username' => $request->get('username'), 'password' => $request->get('password')])) {
             return redirect()->intended('admin/dashboard');
         }else{
-            return redirect()->back()->with('message', 'Логин или пароль не правильно');
+            return redirect()->back()->with('message', 'Логин или пароль не правильный');
         }
     }
 

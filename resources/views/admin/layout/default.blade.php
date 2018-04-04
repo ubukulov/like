@@ -486,6 +486,15 @@
                     {{--</a>--}}
                 {{--</li>--}}
                 @endif
+
+                <li @if(request_uri('best_price')) class="active" @endif>
+                    <a href="{{ url('admin/best_price') }}">
+                        <i class="fa fa-inbox" aria-hidden="true"></i> <span>BestPrice (Лучшая цена)</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -712,6 +721,7 @@
 <!-- Bootstrap 3.3.6 -->
 <script src="{{ asset('themes/admin/admin_lte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('themes/admin/admin_lte/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/semantic.js') }}"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 {{--<script src="{{ asset('themes/admin/admin_lte/plugins/morris/morris.min.js') }}"></script>--}}

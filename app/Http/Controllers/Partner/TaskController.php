@@ -74,31 +74,34 @@ class TaskController extends Controller
             $data['image'] = $data['photo1'];
             unset($data['photo1']);
         }
+        $title = $data['title'];
+        $text = $data['text'];
+        $id_type = $data['id_type'];
+        $related_works = $data['related_works'];
+        $image = $data['image'];
+        $id_partner = $this->id_partner;
+        $current_time = date("Y-m-d H:i:s");
+        $lastInsertId = DB::table('tasks')->insertGetId([
+            'title' => $title, 'text' => $text, 'id_partner' => $id_partner, 'image' => $image, 'created_at' => $current_time,
+            'related_works' => $related_works, 'id_type' => $id_type
+        ]);
+        $result = DB::select("SELECT * FROM task_details WHERE id_task=$lastInsertId");
         if(isset($data['task_variant1'])){
             // деньги
             $count = $data['money'];
             if ($count < 1) {
                 $count = 1;
             }
-            $title = $data['title'];
-            $text = $data['text'];
-            $id_type = $data['id_type'];
-            $related_works = $data['related_works'];
-            $image = $data['image'];
-            $id_partner = $this->id_partner;
-            $current_time = date("Y-m-d H:i:s");
-            DB::transaction(function() use ($title,$text,$id_type,$related_works,$image,$id_partner,$current_time,$count,$data){
-                $lastInsertId = DB::table('tasks')->insertGetId([
-                    'title' => $title, 'text' => $text, 'id_partner' => $id_partner, 'image' => $image, 'created_at' => $current_time,
-                    'related_works' => $related_works, 'id_type' => $id_type
-                ]);
 
-                for ($i = 1; $i <= $count; $i++) {
-                    $amount = $data['amount'.$i];
-                    $count_type = $data['count' . $i];
+            for ($i = 1; $i <= $count; $i++) {
+                $amount = $data['amount'.$i];
+                $count_type = $data['count' . $i];
+                if($result){
+                    DB::update("UPDATE task_details SET amount=$amount,count=$count_type WHERE id_task=$lastInsertId");
+                }else{
                     DB::insert("INSERT INTO task_details (id_task,amount,count,created_at) VALUES('$lastInsertId','$amount','$count_type','$current_time')");
                 }
-            });
+            }
         }
         if(isset($data['task_variant2'])){
             // подарками
@@ -106,25 +109,15 @@ class TaskController extends Controller
             if ($count < 1) {
                 $count = 1;
             }
-            $title = $data['title'];
-            $text = $data['text'];
-            $id_type = $data['id_type'];
-            $related_works = $data['related_works'];
-            $image = $data['image'];
-            $id_partner = $this->id_partner;
-            $current_time = date("Y-m-d H:i:s");
-            DB::transaction(function() use ($title,$text,$id_type,$related_works,$image,$id_partner,$current_time,$count,$data){
-                $lastInsertId = DB::table('tasks')->insertGetId([
-                    'title' => $title, 'text' => $text, 'id_partner' => $id_partner, 'image' => $image, 'created_at' => $current_time,
-                    'related_works' => $related_works, 'id_type' => $id_type
-                ]);
-
-                for ($i = 1; $i <= $count; $i++) {
-                    $gift_name = $data['gift_name'.$i];
-                    $gift_count = $data['gift_count' . $i];
+            for ($i = 1; $i <= $count; $i++) {
+                $gift_name = $data['gift_name'.$i];
+                $gift_count = $data['gift_count' . $i];
+                if($result){
+                    DB::update("UPDATE task_details SET gift_name=$gift_name,gift_count=$gift_count WHERE id_task=$lastInsertId");
+                }else{
                     DB::insert("INSERT INTO task_details (id_task,gift_name,gift_count,created_at) VALUES('$lastInsertId','$gift_name','$gift_count','$current_time')");
                 }
-            });
+            }
         }
         return redirect('partner/task')->with('message', 'Успешно добавлен');
     }

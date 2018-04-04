@@ -15,7 +15,7 @@ use SSH;
 use App\Page;
 use App\User;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     protected $cats;
 
@@ -28,15 +28,15 @@ class IndexController extends Controller
         if(Cache::has('cat_menu')){
             $cat_menu = Cache::get('cat_menu');
         }else{
-            $tree = $this->getTree($this->getCat());
-            $cat_menu = $this->showCat($tree);
+            $tree = parent::getTree(parent::getCat());
+            $cat_menu = parent::showCat($tree);
             Cache::put('cat_menu', $cat_menu, 30);
         }
 
         //$certs = Cert::get();
         $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY updated_at DESC LIMIT 32");
-        $cats = $this->cats;
-        return view('welcome', compact('certs', 'cats', 'cat_menu'));
+        //$cats = $this->cats;
+        return view('welcome', compact('certs', 'cat_menu'));
     }
 
     # Кэшбэк
@@ -135,69 +135,6 @@ class IndexController extends Controller
 
     public function task_content(){
         return view('task-content');
-    }
-
-    public function getCat(){
-        //$result = DB::table('cats')->get();
-        $result = DB::select("SELECT CC.*, (SELECT COUNT(*) FROM certs CT WHERE CT.cert_type=2 AND CT.pod_cat=CC.id) AS cnt FROM cats CC");
-        $result = collect($result)->map(function($x){ return (array) $x; })->toArray();
-        $cat = array();
-
-        foreach($result as $val){
-//            if($val['cnt'] != 0){
-//                $cat[$val['id']] = $val;
-//            }
-            $cat[$val['id']] = $val;
-        }
-
-        return $cat;
-    }
-
-    public function getTree($data){
-        $tree = array();
-
-        foreach ($data as $id => &$node) {
-            //Если нет вложений
-            if (!$node['parent']){
-                $tree[$id] = &$node;
-            }else{
-                //Если есть потомки то перебераем массив
-                $data[$node['parent']]['childs'][$id] = &$node;
-            }
-        }
-        return $tree;
-    }
-
-    //Шаблон для вывода меню в виде дерева
-    public function tplMenu($category){
-        $menu = '<li';
-        $menu .= (isset($category['childs'])) ? ' class="parent">' : '>';
-        if($category['parent'] == 0){
-            $menu .= '<a href="/cat/'. $category['id'] .'" title="'. $category['title'] .'">'.
-                $category['title'].'</a>';
-        }else{
-            $menu .= '<a href="/pod_cat/'. $category['id'] .'" title="'. $category['title'] .'">'.
-                $category['title'].'</a>';
-        }
-
-
-        if(isset($category['childs'])){
-            $menu .= '<ul>'. $this->showCat($category['childs']) .'</ul>';
-        }
-        $menu .= '</li>';
-
-        return $menu;
-    }
-
-    /**
-     * Рекурсивно считываем наш шаблон
-     **/
-    public function showCat($data){
-        $string = '';
-        foreach($data as $item){
-            $string .= $this->tplMenu($item);
-        }
-        return $string;
     }
 
     public function market(){

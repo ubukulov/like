@@ -346,6 +346,8 @@ $(document).ready(function(){
                 success: function(data){
                     data = JSON.parse(data);
                     $("#title").val(data[0].title);
+                    var price = XFormatPrice(data[0].special2);
+                    $("#r_price").val(price);
                     var html = "<input type='hidden' name='id_cert' value='"+data[0].id+"'/>";
                     $("#order").before(html);
                     $("#accept_order").prop('disabled', false);

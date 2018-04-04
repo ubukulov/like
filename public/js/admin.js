@@ -1,5 +1,6 @@
 $(function(){
     $(".select2").select2();
+    $('.ui.checkbox').checkbox();
     $('#date_start').datepicker({
         dateFormat: 'dd.mm.YY'
     });
@@ -380,7 +381,7 @@ function createOptom(){
         var k = m.length-1;
         var n = k+1;
         $('#cnt').val(count);
-        var html = '<div class="row uploadPrice" id="uploadPrice'+n+'"><div class="col-md-2"><label for="number'+n+'">№</label><span class="form-control">'+n+'</span></div><div class="col-md-2"><label for="from">от</label><input type="text" id="from'+n+'" class="form-control int" name="from'+n+'" required></div><div class="col-md-2"><label for="to'+n+'">до</label><input type="text" id="to'+n+'" class="form-control int" name="to'+n+'" required></div><div class="col-md-4"><label for="sum'+n+'">сумма</label><input type="text" id="sum'+n+'" class="form-control int" name="sum'+n+'" required></div><div class="col-md-2"><label for="number'+n+'">удалить</label><button onclick="deleteOptom('+n+');" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></div></div>';
+        var html = '<div class="row uploadPrice" id="uploadPrice'+n+'"><div class="col-md-2"><label for="number'+n+'">№</label><span class="form-control">'+n+'</span></div><div class="col-md-2"><label for="from">от</label><input type="text" id="from'+n+'" class="form-control int" name="from'+n+'" required></div><div class="col-md-2"><label for="to'+n+'">до</label><input type="text" id="to'+n+'" class="form-control int" name="to'+n+'" required></div><div class="col-md-4"><label for="sum'+n+'">сумма</label><input type="text" id="sum'+n+'" class="form-control int" name="sum'+n+'" required></div><div class="col-md-2"><label for="number'+n+'">удалить</label><button type="button" onclick="deleteOptom('+n+');" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></div></div>';
         $("#createUploadButton").before(html);
     }else{
         $('#cnt').val(1);
@@ -426,7 +427,7 @@ function search_cert_by_title() {
                 }else{
                     reg_date = data[i].reg_date;
                 }
-                html = html + '<tr><td>'+data[i].id+'</td><td>'+avatar+'</td><td>'+data[i].title+'</td><td></td><td></td><td></td><td><a href="/cert/'+data[i].id+'" class="btn btn-warning">Редактировать</a></td><td></td></tr>';
+                html = html + '<tr><td>'+data[i].id+'</td><td>'+avatar+'</td><td>'+data[i].title+'</td><td></td><td></td><td></td><td><a href="/admin/cert/'+data[i].id+'" class="btn btn-warning">Редактировать</a></td><td></td></tr>';
             }
             cert_content.html(html);
             $(".pagination").remove();
@@ -434,4 +435,42 @@ function search_cert_by_title() {
             cert_content.html("<div class='alert alert-info'>Не найдено записей</div>");
         }
     });
+}
+// BestPrice
+function createSupp(){
+    var m = Array();
+    var i = 0;
+    var supp;
+    if($("div").is("#uploadPriceSupp1")) {
+        $(".uploadSupp").each(function(){
+            i = i + 1;
+            var n = $(this).attr('id');
+            m[i] = n.substr(11);
+        });
+        var count = m.length;
+        var k = m.length-1;
+        var n = k+1;
+        $.get("/admin/cert/supplier/101", function(data){
+            data = JSON.parse(data);
+            supp = '<label for="supp'+n+'">Поставщик</label><select id="supp'+n+'" name="supp'+n+'" class="form-control select2" style="cursor: pointer;">';
+            for(var i=0; i<data.length; i++){
+                supp = supp + '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+            }
+            supp = supp + '</select>';
+
+            $('#cnt_supp').val(count);
+            var html = '<div class="row uploadSupp" id="uploadPriceSupp'+n+'"><div class="col-md-2"><label for="n'+n+'">№</label><span class="form-control">'+n+'</span></div><div class="col-md-3"><label for="from">Цена</label><input type="text" id="price_supp'+n+'" name="price_supp'+n+'" required class="form-control int"></div><div class="col-md-5">'+supp+'</div><div class="col-md-2"><label for="n'+n+'">удалить</label><button type="button" onclick="deleteSupp('+n+');" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></div></div>';
+            $("#createUploadButtonSupp").before(html);
+        });
+    }else{
+        $('#cnt_supp').val(1);
+        var html = '<div class="row uploadSupp" id="uploadPriceSupp1"><div class="col-md-2"><label for="n">№</label><span class="form-control">1</span></div><div class="col-md-3"><label for="from">Цена</label><input type="text" id="price_supp1" name="price_supp1" required class="form-control int"></div><div class="col-md-5">'+supp+'</div></div>';
+        $("#createUploadButtonSupp").before(html);
+    }
+}
+// удаление строк которые хотели удалить в форме настройки цены
+function deleteSupp(id) {
+    $('#uploadPriceSupp'+id).remove();
+    var count = $('#cnt_supp').val();
+    $('#cnt_supp').val(count-1);
 }

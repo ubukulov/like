@@ -21,17 +21,31 @@
     <form action="{{ url('/user/business/set_offline_order') }}" method="post" class="form-horizontal">
         {{ csrf_field() }}
         <div class="row" style="margin-left: 0px; margin-right: 0px;">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="form-group">
                     <label for="title">Наименование</label>
-                    <input type="text" class="form-control" id="title" required="required" name="title" readonly>
+                    <input type="text" class="form-control" id="title" required="required" style="width: 600px;" name="title" readonly>
                 </div>
             </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Розничная цена</label>
+                    <input type="text" class="form-control int" id="r_price" style="width: 120px;" readonly>
+                </div>
+            </div>
+            <!--
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Оптовая цена</label>
+                    <input type="text" class="form-control int" id="opt_price" style="width: 120px;" readonly>
+                </div>
+            </div>-->
 
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="channel_sells">Каналы продаж</label>
-                    <select name="channel_sells" id="channel_sells" class="form-control" style="width: 200px;">
+                    <select name="channel_sells" id="channel_sells" class="form-control" style="width: 200px;" readonly>
                         <option value="0">Не указано</option>
                         <option value="1">Likemoney.me</option>
                         <option value="2">Instagram.com</option>

@@ -53,7 +53,15 @@
                     <div class="col-md-6">
                         <div class="price">
                             @if($sub_domain != 'optprice.')
-                                <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Цена:<br /><font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= number_format($cert->special2,0,' ',' ') ?> тг.</font>
+                                <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Цена:<br />
+                                @if(Auth::check())
+                                    @if(check_user_roles(Auth::id()) == 0)
+                                <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format($cert->prime_cost,0,' ',' ') ?> тг. </font>Себестоимость
+                                <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format($cert->special2,0,' ',' ') ?> тг. </font>Розничная
+                                    @endif
+                                @else
+                                <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= number_format($cert->special2,0,' ',' ') ?> тг.</font>
+                                @endif
                             @else
                                 <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Оптовая цена:<br />
                                 @if(!empty($cert->opt_price1))

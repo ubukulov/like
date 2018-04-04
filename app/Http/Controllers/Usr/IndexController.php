@@ -215,7 +215,7 @@ class IndexController extends Controller
 
     public function setOfflineOrder(Request $request){
         $code_good_val = $request->input('code_good_val');
-        $result = DB::select("SELECT id,title FROM certs WHERE article_code='$code_good_val' LIMIT 1");
+        $result = DB::select("SELECT id,title,special2 FROM certs WHERE article_code='$code_good_val' LIMIT 1");
         return json_encode($result);
     }
 

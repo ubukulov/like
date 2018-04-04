@@ -95,7 +95,7 @@ class AuthController extends Controller
             return redirect()->intended('user/account');
 
         }else{
-            return redirect()->back()->with('message', 'Логин или пароль не правильно');
+            return redirect()->back()->with('message', 'Логин или пароль не правильный');
         }
     }
 

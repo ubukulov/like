@@ -9,7 +9,7 @@
                 <div class="table-responsive table-checkout">
                     <h3><strong>Оформление заказа</strong></h3>
                     <hr><br>
-                    <h6><span class="shipping-label">Итого: {{ $_SESSION['total_quantity'] }} товар(-ов) на сумму <span style="font-weight: bold;"><?=$_SESSION['total_sum']?> тг</span></span></h6>
+                    <h6><span class="shipping-label">Итого: {{ $_SESSION['total_quantity'] }} товар(-ов) на сумму <span style="font-weight: bold;"><?=number_format($_SESSION['total_sum'],0,' ',' ')?> тг</span></span></h6>
                     <table class="table">
                         <tbody>
                         <?php foreach($_SESSION['cart'] as $key=>$val) :?>
@@ -36,7 +36,7 @@
                                     <span style="text-decoration: line-through;"><?=$val['price'];?> тг</span><br>
                                     <strong><span>{{ $_SESSION['cart'][$val['id']]['opt_price'] }} тг</span></strong>
                                 @else
-                                <strong><?=$val['price'];?> тг</strong>
+                                <strong><?=number_format($val['price'],0,' ',' ');?> тг</strong>
                                 @endif
                             </td>
 

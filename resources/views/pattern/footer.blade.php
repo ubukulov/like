@@ -41,10 +41,10 @@
             <div class="col-sm-3 col-xs-6">
                 <div>
                     <h4>Служба поддержки</h4>
-                    <font size="5">+7(727) 326-96-08</font>
+                    <font size="5">+7(708) 614-46-60</font>
                     <br>
                     <small class="hidden-sm hidden-xs">без перерыва и выходных с 9:00 до 21:00)</small>
-                    <br>info@likemoney.me
+                    <br>likemoneyworld@gmail.com
                     <br>
                     <h4>Мы в соц. сетях:</h4>
                     <i class="facebook icon"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -37,7 +37,7 @@
                             </td>
 
                             <td class="td">
-                                <strong><?=$val['price'];?> тг</strong>
+                                <strong><?=number_format($val['price'],0,' ',' ');?> тг</strong>
                             </td>
                             <td class="td">
                                 <div class="text-center" style="color: navy">
@@ -48,7 +48,7 @@
                         </tr>
                         <?php endforeach; ?>
                         <tr class="shipping-subtotal">
-                            <td colspan="2" class="td"><span class="shipping-label">Итого: {{ $_SESSION['total_quantity'] }} товар(-ов) на сумму <span style="font-weight: bold;"><?=$_SESSION['total_sum']?> тг</span></span></td>
+                            <td colspan="2" class="td"><span class="shipping-label">Итого: {{ $_SESSION['total_quantity'] }} товар(-ов) на сумму <span style="font-weight: bold;"><?=number_format($_SESSION['total_sum'],0,' ',' ')?> тг</span></span></td>
                             <td colspan="2" class="td" style="text-align: center;">
                                 <a href="{{ url('/cart/checkout') }}" class="btn btn-success" style="width: 200px; background: #FFDB4D; border: 1px solid #FFDB4D; color: #000;">Оформить заказ</a>
                             </td>

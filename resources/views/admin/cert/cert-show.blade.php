@@ -290,6 +290,7 @@
                             <label for="meta_keywords">Ключевые слова</label>
                             <input type="text" class="form-control" id="meta_keywords" value="{{ $cert->meta_keywords }}" name="meta_keywords" placeholder="meta_keywords" />
                         </div>
+                        <hr>
 
                     </div>
                     <!-- /.box-body -->
@@ -363,7 +364,7 @@
                         </div>
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary" name="submit">Сохранить</button>
+                            <button type="submit" class="btn btn-primary" name="submit">Сохранить изменение</button>
                         </div>
                     </div>
                 </div>
@@ -372,6 +373,103 @@
 
         </div>
     </form>
-    </div>
 </section>
+<div class="content-wrapper">
+<section class="content">
+    <form action="{{ url('admin/cert/'.$cert->id.'/supp') }}" method="post">
+        {{ csrf_field() }}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <h3>Настройки BestPrice</h3>
+                        <span style="font-size: 12px;">Указывается после добавление товара</span>
+                        <br>
+                        <input type="hidden" id="cnt_supp" name="cnt_supp" @if(count($best_prices) > 0) value="0" @else value="1" @endif/>
+                        @if(count($best_prices) > 0)
+                        @foreach($best_prices as $best)
+                        <div class="row uploadSupp" id="uploadPriceSupp{{ $best->id }}">
+
+                            <div class="col-md-2">
+                                <label for="n{{ $best->id }}">№</label>
+                                <span class="form-control">{{ $best->id }}</span>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="from">Цена</label>
+                                <input type="text" id="price_supp{{ $best->id }}" name="price_supp{{ $best->id }}" required class="form-control int" value="{{ $best->price_supp }}">
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="supp{{ $best->id }}">Поставщик</label>
+                                <select id="supp{{ $best->id }}" name="supp{{ $best->id }}" class="form-control select2"  style="cursor: pointer;">
+                                    @foreach($suppliers as $supp)
+                                        @if($supp->id == $best->id_supp)
+                                        <option selected value="{{ $supp->id }}">{{ $supp->name }}</option>
+                                        @else
+                                        <option value="{{ $supp->id }}">{{ $supp->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+
+                            </div>
+
+                        </div>
+                        @endforeach
+                        @else
+                        <div class="row uploadSupp" id="uploadPriceSupp1">
+
+                            <div class="col-md-2">
+                                <label for="n1">№</label>
+                                <span class="form-control">1</span>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="from">Цена</label>
+                                <input type="text" id="price_supp1" name="price_supp1" required class="form-control int">
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="supp1">Поставщик</label>
+                                <select id="supp1" name="supp1" class="form-control select2"  style="cursor: pointer;">
+                                    @foreach($suppliers as $supp)
+                                        <option value="{{ $supp->id }}">{{ $supp->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+
+                            </div>
+
+                        </div>
+                        @endif
+                        <div id="createUploadButtonSupp" class="row" style="margin-top: 40px;">
+                            <div class="col-md-12" style="border-top: 1px solid #ccc;">
+                                <button id="supplier" type="button" style="margin-top: 10px;" class="btn btn-bitbucket" onclick="createSupp();">еще добавить</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="inline field" style="padding-top: 5px;">
+                            <div class="ui checkbox checked">
+                                <input type="checkbox" checked="" id="best_price" name="best_price" tabindex="0" class="best_price">
+                                <label style="font-size: 14px;">Лучшая цена</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-success">Сохранить BestPrice</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+</div>
 @stop

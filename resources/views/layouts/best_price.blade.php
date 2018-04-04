@@ -22,7 +22,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#" rel="nofollow"></a>
+                    <a class="navbar-brand" href="{{ route('home') }}" rel="nofollow"></a>
                 </div>
                 <!-- /.navbar-header -->
                 <div class="collapse navbar-collapse">
@@ -85,8 +85,8 @@
             <!-- /.section-title -->
             <div class="task-menu" id="task-menu">
                 <ul class="main_menu navbar-nav navbar-left">
-                    <li class="active-task">
-                        <a href="{{ route('home') }}" class="active">Offline cashback</a>
+                    <li>
+                        <a href="{{ route('home') }}" class="link_a">Offline cashback</a>
                     </li>
                     <li>
                         <a class="link_a" href="#">
@@ -108,8 +108,8 @@
                     <li>
                         <a class="link_a" href="https://admotionz.com" rel="nofollow">Зарабатывай онлайн</a>
                     </li>
-                    <li>
-                        <a class="link_a" href="{{ url('/best_price') }}">
+                    <li class="active-task">
+                        <a class="active" href="{{ url('/best_price') }}">
                             Лучшая цена
                         </a>
                     </li>

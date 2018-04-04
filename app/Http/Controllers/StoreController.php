@@ -13,7 +13,7 @@ use App\Partner;
 use Illuminate\Support\Facades\DB;
 use Auth;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     protected $clientId = "d9cd15eaac63b4a47ef568dd268717";
     protected $clientSecret = "d850e7fae59786b948dc1c777d3ba3";
