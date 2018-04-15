@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\SimpleImage;
 use Intervention\Image\Facades\Image as Image;
 use App\Supplier;
+use App\CertSub;
 
 class CertController extends Controller
 {
@@ -376,5 +377,34 @@ class CertController extends Controller
                                     INNER JOIN partners SP ON SP.id=BP.id_supp
                                     GROUP BY BP.id_cert");
         return view('admin/best_price', compact('best_prices'));
+    }
+
+    // получить список сертификатов
+    public function get_subs(){
+        $cert_subs = DB::table('certs_sub')
+                        ->join('certs', 'certs.id', '=', 'certs_sub.cert_id')
+                        ->select('certs_sub.*', 'certs.title AS c_title', 'certs.image')
+                        ->orderBy('id', 'DESC')
+                        ->paginate(20);
+        return view('admin/cert/subs_index', compact('cert_subs'));
+    }
+
+    // удалить сертификат по ид
+    public function delete_sub($sub_id){
+        CertSub::destroy($sub_id);
+        return redirect()->back()->with('message', 'Сертификат успешно удален');
+    }
+
+    // редактирование сертификатов по ид
+    public function edit_sub($sub_id){
+        $sub = CertSub::find($sub_id);
+        $certs = Cert::all();
+        return view('admin/cert/sub_edit', compact('sub', 'certs'));
+    }
+
+    // форма добавление сертификата
+    public function create_sub(){
+        $certs = Cert::all();
+        return view('admin/cert/create_sub', compact('certs'));
     }
 }

@@ -174,7 +174,12 @@ class IndexController extends BaseController
             $cat_menu = $this->showCat($tree);
             Cache::put('cat_menu', $cat_menu, 30);
         }
-        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND category_id='$id'  AND conditions <> '' AND image <> '' ORDER BY id DESC");
+        if($id != 888){
+            $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND category_id='$id'  AND conditions <> '' AND image <> '' ORDER BY id DESC");
+        }else{
+            $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND is_best_price=1 AND conditions <> '' AND image <> '' ORDER BY id DESC");
+        }
+
         $cats = $this->cats;
         return view('store/cat', compact('certs', 'cats', 'cat_menu'));
     }

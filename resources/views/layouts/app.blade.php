@@ -29,7 +29,7 @@
                     <div class="col-sm-8" style="font-size: 12px; padding-top: 20px;">
                         <div class="col-sm-4">
                             Прием заказов по WhatsApp <br>
-                            <i class="fa fa-whatsapp">&nbsp; &nbsp; +7(777) 447-77-04</i>
+                            <i class="fa fa-whatsapp">&nbsp; &nbsp; +7(708) 614-46-60</i>
                         </div>
                         <div class="col-sm-5">
                             <div class="ui action input">
@@ -108,11 +108,6 @@
                     <li>
                         <a class="link_a" href="https://admotionz.com" rel="nofollow">Зарабатывай онлайн</a>
                     </li>
-                    <li>
-                        <a class="link_a" href="{{ url('/best_price') }}">
-                            Лучшая цена
-                        </a>
-                    </li>
                 </ul>
                 <!-- /.nav -->
             </div>
@@ -120,6 +115,7 @@
             @yield('content')
         </div>
     </div>
+    <div class="clear"></div>
     <!-- /.content -->
     <section class="note purple">
         <div class="container section-wrapper text-center">

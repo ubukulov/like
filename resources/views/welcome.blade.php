@@ -55,7 +55,7 @@
                                                     </td>
                                                 @else
                                                     <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
-                                                    <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ number_format($cert->special2,0,' ',' ') }} тг.</b></font></small></td>
+                                                    <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ number_format($cert->prime_cost,0,' ',' ') }} тг.</b></font></small></td>
                                                 @endif
                                             @else
                                                 <td width="130">

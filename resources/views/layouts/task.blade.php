@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Likemoney.me</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.1, maximum-scale=1.0, minimum-scale=0.25,  user-scalable=yes">
     <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">

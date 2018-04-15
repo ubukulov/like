@@ -51,43 +51,46 @@
             <div class="col-md-7" style="padding-left: 30px;">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="price">
-                            @if($sub_domain != 'optprice.')
-                                <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Цена:<br />
-                                @if(Auth::check())
-                                    @if(check_user_roles(Auth::id()) == 0)
-                                <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format($cert->prime_cost,0,' ',' ') ?> тг. </font>Себестоимость
-                                <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format($cert->special2,0,' ',' ') ?> тг. </font>Розничная
-                                    @endif
-                                @else
-                                <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= number_format($cert->special2,0,' ',' ') ?> тг.</font>
-                                @endif
-                            @else
-                                <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Оптовая цена:<br />
-                                @if(!empty($cert->opt_price1))
-                                    <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">от <strong><?= (int) $cert->opt_count1 ?></strong> шт. {{ number_format($cert->opt_price1,0,' ',' ') }} тг.</font><br />
-                                @endif
-
-                                @if(!empty($cert->opt_price2))
-                                    <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">от <strong><?= (int) $cert->opt_count2 ?></strong> шт. {{ number_format($cert->opt_price2,0,' ',' ') }} тг.</font><br />
-                                @endif
-
-                                @if(!empty($cert->opt_price3))
-                                    <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">от <strong><?= (int) $cert->opt_count3 ?></strong> шт. {{ number_format($cert->opt_price3,0,' ',' ') }} тг.</font><br />
-                                @endif
+                        @if($sub_domain != 'optprice.')
+                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Себестоимость: <i class="ui teal question circle icon grey" data-title="Информация" data-content="Прекрати переплачивать, плати всегда справедливую цену, мы готовы удивить тебя, потому что у нас ты можешь купить любой товар по себестоимости, заплатив нам вознаграждение, за то что мы нашли тебе самую низкую цену в городе." style="cursor:pointer;"></i><br />
+                            <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format($cert->prime_cost,0,' ',' ') ?> тг. </font>
+                            <br>
+                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Розничная:<br />
+                            <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format($cert->special2,0,' ',' ') ?> тг. </font>
+                        @else
+                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Оптовая цена:<br />
+                            @if(!empty($cert->opt_price1))
+                                <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">от <strong><?= (int) $cert->opt_count1 ?></strong> шт. {{ number_format($cert->opt_price1,0,' ',' ') }} тг.</font><br />
                             @endif
-                        </div>
-                        <div style="margin-top: 15px;">
-                            <span style="color: green; margin-left: 30px;">Есть в наличии</span>
-                        </div>
+
+                            @if(!empty($cert->opt_price2))
+                                <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">от <strong><?= (int) $cert->opt_count2 ?></strong> шт. {{ number_format($cert->opt_price2,0,' ',' ') }} тг.</font><br />
+                            @endif
+
+                            @if(!empty($cert->opt_price3))
+                                <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">от <strong><?= (int) $cert->opt_count3 ?></strong> шт. {{ number_format($cert->opt_price3,0,' ',' ') }} тг.</font><br />
+                            @endif
+                        @endif
                     </div>
                     <div class="col-md-6">
                         <div class="cert_button" style="padding-bottom: 10px;">
                             <a style="width: 100px; font-size: 14px;" @if(Auth::check()) href="{{ url('/store/item/'.$cert->id) }}" @else href="{{ url('/user/login') }}" @endif class="btn btn-danger">Купить</a>
                             <button style="font-size: 14px; width: 100px;" type="button" onclick="addToCartItem({{ $cert->id }});" class="btn btn-danger">В корзину</button>
-							<br />
-							<a href="https://api.whatsapp.com/send?phone=77758153538&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>%20(<?php echo $cert->special2; ?>%20тг.)'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://<?php echo $sub_domain; ?>likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="/img/whatsapp_button1.png" /></a>
+							<br /><div style="margin-top: 15px;">
+                            <span style="color: green;">Есть в наличии</span>
                         </div>
+							
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-6">
+			<span style="font-size: 11px;">Предложите нам свое вознаграждение, чтобы получить товар по себестоимости</span>
+                        <a href="https://api.whatsapp.com/send?phone=77758153538&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>%20(<?php echo $cert->special2; ?>%20тг.)'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://<?php echo $sub_domain; ?>likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="/img/whatsapp_button1.png" /></a>
+                    </div>
+                    <div class="col-md-6">
                         <div id="msg" class="hidden"></div>
                         <div class="row" style="margin-top: 15px;">
                             <div class="col-sm-5">
@@ -167,7 +170,17 @@
         </div>
     </div>
     <br><br>
-
+    <style>
+	.header{
+		background: none !important;
+		height: auto !important;
+		position: relative !important;
+		color: orange !important;			
+	}
+	.content{
+		font-size: 14px !important;
+	}
+    </style>		
     {{--<div class="row_tsk">--}}
 
         {{--<div  class="task_map">--}}

@@ -4,6 +4,7 @@ use App\OptPartner;
 use App\User;
 use App\Task;
 use App\CertView;
+use App\Partner;
 # Посчитать кол-во задании
 function count_certs(){
     $result = DB::select("SELECT * FROM certs");
@@ -533,15 +534,23 @@ ORDER BY TB.max_price DESC LIMIT 1;");
 }
 // определяет роль у пользователя
 function check_user_roles($user_id){
-    $result = DB::select("SELECT * FROM users_roles WHERE user_id=$user_id");
-    if($result){
-        if($result[0]->role_id == 1){
-            return 0; // admin
+    if($user_id){
+        $result = DB::select("SELECT * FROM users_roles WHERE user_id=$user_id");
+        if($result){
+            if($result[0]->role_id == 1){
+                return 0; // admin
+            }
+            if($result[0]->role_id == 2){
+                return 1; // operator
+            }
+        }else{
+            return false;
         }
-        if($result[0]->role_id == 2){
-            return 1; // operator
-        }
-    }else{
-        return false;
     }
+    return 200;
+}
+// по ид партнера получить данные
+function getPartnerData($partner_id){
+    $partner = Partner::find($partner_id);
+    return $partner;
 }

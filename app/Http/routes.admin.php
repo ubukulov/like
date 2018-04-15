@@ -23,6 +23,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('/certs/unprocessed', 'CertController@unprocessed');
         Route::get('/cert/supplier/101', 'CertController@supp'); // получить список поставщиков из таблицу suppliers
         Route::post('/cert/{id_cert}/supp', 'CertController@supp_settings');
+        // сертификаты
+        Route::get('/certs/subs', 'CertController@get_subs'); // получить список сертификатов
+        Route::get('/cert/sub/delete/{id}', 'CertController@delete_sub'); // удалить сертификать по ид
+        Route::get('/sub/{id}', 'CertController@edit_sub'); // редактирование сертификатов по ид
+        Route::get('/certs/subs/создать', 'CertController@create_sub'); // форма добавление сертификата
         # Маршруты для "карты"
         Route::get('/cards', 'CardController@index'); // Список всех карт
         Route::get('/cards_vip', 'CardController@vip'); // Список вип карт

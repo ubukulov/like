@@ -355,6 +355,12 @@ $(document).ready(function(){
             });
         }
     });
+
+    // знак вопроса внутри товара
+    $('.ui .teal')
+        .popup({
+            on: 'click'
+        });		
 });
 
 function XFormatPrice(_number)

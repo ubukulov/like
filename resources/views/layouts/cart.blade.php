@@ -27,7 +27,7 @@
                 <div class="col-sm-9">
                     <div class="col-sm-4">
                         Прием заказов по WhatsApp <br>
-                        <i class="fa fa-whatsapp">&nbsp; &nbsp; +7(777) 447-77-04</i>
+                        <i class="fa fa-whatsapp">&nbsp; &nbsp; +7(708) 614-46-60</i>
                     </div>
                     <div class="col-sm-5">
                         <div class="ui action input">

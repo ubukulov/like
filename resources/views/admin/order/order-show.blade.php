@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <label for="channel_sells">Каналы продаж</label>
                             <select name="channel_sells" id="channel_sells" class="form-control">
-                                <option @if($order->channel_sells == 0) selected="selected" @endif value="0">Не указано</option>
+                                <option @if($order->channel_sells == 0) selected="selected" @endif value="0">Не указыно</option>
                                 <option @if($order->channel_sells == 1) selected="selected" @endif value="1">Likemoney.me</option>
                                 <option @if($order->channel_sells == 2) selected="selected" @endif value="2">Instagram.com</option>
                                 <option @if($order->channel_sells == 3) selected="selected" @endif value="3">VK.com</option>

@@ -347,6 +347,7 @@
                     <ul class="treeview-menu">
                         <li><a href="{{ url('/admin/certs') }}"><i class="fa fa-circle-o"></i> Список задании</a></li>
                         <li><a href="{{ url('/admin/certs/unprocessed') }}"><i class="fa fa-circle-o"></i> Список необработанные</a></li>
+                        <li><a href="{{ url('/admin/certs/subs') }}"><i class="fa fa-circle-o"></i> Список сертификатов</a></li>
                     </ul>
                 </li>
                 @if(check_admin_users_role(Auth::guard('admin')->user()->role))

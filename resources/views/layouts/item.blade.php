@@ -16,6 +16,7 @@
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/semantic.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('components/popup.css') }}"></script>
     <script type="text/javascript">
         $.fn.bsModal = $.fn.modal.noConflict();
     </script>
@@ -50,7 +51,7 @@
                 <div class="col-sm-9">
                     <div class="col-sm-4">
                         Прием заказов по WhatsApp <br>
-                        <i class="fa fa-whatsapp">&nbsp; &nbsp; +7(777) 447-77-04</i>
+                        <i class="fa fa-whatsapp">&nbsp; &nbsp; +7(708) 614-46-60</i>
                     </div>
                     {{--<div class="col-sm-5">--}}
                         {{--<div class="ui action input">--}}
@@ -130,6 +131,34 @@
 
                     </div>
                 </div>
+
+                @if(check_user_roles(Auth::id()) == 0)
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-md-12" style="text-align: center;">
+                        <span>Данные о поставщиках</span>
+                    </div>
+                </div>
+                <div class="row_tsk">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-md-2"><i class="briefcase icon large"></i></div>
+                        <div class="col-md-10" style="padding-top: 9px;">
+                            {{ $partner->name }}
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-md-2"><i class="phone icon large"></i></div>
+                        <div class="col-md-10" style="padding-top: 8px;">
+                            {{ $partner->phone }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"><i class="address card icon large"></i></div>
+                        <div class="col-md-10" style="padding-top: 8px;">
+                            {{ $partner->address }}
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
             <div class="col-md-9">
                 <div class="content section-wrapper" style="padding-top: 0px;">
@@ -152,6 +181,7 @@
 <script src="{{ asset('js/upload_image.js') }}"></script>
 {{--<script src="{{ asset('lib/flipclock/flipclock.js') }}"></script>--}}
 <script src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
+<script src="{{ asset('components/popup.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 {{--<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>--}}
 {{--<script type="text/javascript">--}}
