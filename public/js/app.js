@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $('#id_cat').dropdown();
     $('.ui.checkbox').checkbox();
+    $('.ui.dropdown').dropdown();
     $('#task_variant1').change(function(){
         if($(this).prop('checked')){
             $('.task_money').show();
@@ -360,7 +361,54 @@ $(document).ready(function(){
     $('.ui .teal')
         .popup({
             on: 'click'
-        });		
+        });
+    $("#type_sort").on("change", function(){
+        var id = $("#type_sort :selected").val();
+        $.get("/sort/by_type/"+id, function(data){
+            data = JSON.parse(data);
+            $("#main_div").remove();
+            $("#sort").remove();
+
+            var html = '<div class="row" id="sort">';
+
+            for(var i=0; i<data.length; i++){
+                html = html + '<div class="col-md-3">';
+                html = html + '<div class="brd">';
+                html = html + '<div class="portfolio-item">';
+
+                html = html + "<a href='/item/"+data[i].id+"'>";
+                html = html + '<div  class="portfolio-img" style="height: 160px; cursor: pointer; border: 1px solid #ccc;">';
+                html = html + '<img style="left: 0px;" src="/uploads/certs/small/'+data[i].image+'" alt="port-1" class="port-item">';
+                html = html + '<div class="portfolio-img-hover"></div>';
+                html = html + '</div>';
+                html = html + '</a>';
+
+                html = html + '<div class="portfolio-item-details">';
+                html = html + "<div class='portfolio-item-name'>"+data[i].title+"</div>";
+                html = html + '<div style="float: left;">';
+                html = html + '<table><tbody><tr>';
+                if(data[i].prime_cost == ""){
+                    html = html + '<td width="130">';
+                    html = html + "<a href='https://api.whatsapp.com/send?phone=77758153538&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20"+data[i].title+"!.%20%20Спасибо!%20Код товара:%20"+data[i].article_code+"%20Товар%20по%20этому%20адресу:%20http://likemoney.me/item/"+data[i].id+"' target='_blank'><img src='/img/whatsapp_button.png' /></a>";
+                    html = html + '</td>';
+                }else{
+                    html = html + '<td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>';
+                    html = html + '<td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>'+XFormatPrice(data[i].prime_cost)+'</b></font></small></td>';
+                }
+                html = html + "<td align='right'><a href='/item/"+data[i].id+"' class='hidden-xs taskbutton'>Подробнее</a></td>";
+                html = html + '</tr></tbody></table>';
+                html = html + '</div>';
+                html = html + '</div>';
+
+                html = html + '</div>';
+                html = html + '</div>';
+                html = html + '</div>';
+            }
+
+            html = html + '</div>';
+            $('#div_show_more').before(html);
+        });
+    });
 });
 
 function XFormatPrice(_number)

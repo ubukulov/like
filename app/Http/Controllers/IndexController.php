@@ -226,4 +226,24 @@ class IndexController extends BaseController
         }
         return 0;
     }
+
+    # фильтры
+    public function sort($id){
+	$id = (int) $id;
+	$sql = "";
+	if($id == 1){
+		// От низкой цены к высокой
+		$sql = "ORDER BY prime_cost ASC";
+	}
+	if($id == 2){
+		// От высокой к низкой
+		$sql = "ORDER BY prime_cost DESC";
+	}
+	if($id == 3){
+		// Самые популярные
+		//$sql = "";
+	}
+	$result = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 $sql LIMIT 32");
+	return json_encode($result);
+    }		
 }

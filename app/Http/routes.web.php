@@ -14,8 +14,13 @@ Route::group(['as' => 'subdomain', 'domain' => '{account}.likemoney.me'], functi
         $user = User::find($result->id_user);
         $_SESSION['store_user_id'] = $result->id_user;
         $_SESSION['store_user_phone'] = $user->mphone;
+        $for_whatsapp = preg_replace("/[^0-9]/","", $user->mphone);
+        $_SESSION['store_user_phone_whatsapp'] = $for_whatsapp;
         Route::get('/', 'IndexController@market');
     }else{
+        $_SESSION['store_user_id'] = 15;
+        $_SESSION['store_user_phone'] = '+7(708) 614-46-60';
+        $_SESSION['store_user_phone_whatsapp'] = '77086144660';
         return Redirect::to('http://likemoney.me');
     }
 });
@@ -92,5 +97,14 @@ Route::get('get/certs/{first_row}/{last_row}', 'IndexController@show_more');
 
 #
 Route::get('get/information/about/store/{store}', 'IndexController@get_information_about_store');
+
+# фильтры
+Route::get("sort/by_type/{id}", "IndexController@sort");
+
+# Landing
+Route::get('rose_flask', 'LandingController@rose_flask');
+Route::get('samsung_s9', 'LandingController@samsung_s9');
+# Landing
+
 
 ### Конец ###

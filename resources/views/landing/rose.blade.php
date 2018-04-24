@@ -1,5 +1,4 @@
 <?php
-session_start();
 $url = $_SERVER["SERVER_NAME"];
 $domain = explode(".",$url);
 $sub_domain = $domain[0];
@@ -9,7 +8,7 @@ if($sub_domain == 'likemoney'){
     $user_phone = preg_replace('![^0-9]+!', '', $_SESSION['store_user_phone']);
 }
 ?>
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -35,14 +34,14 @@ if($sub_domain == 'likemoney'){
     <meta name="theme-color" content="#1b1519">
     <!--fav-->
 
-    <link href="css/main.css" rel="stylesheet">
+    <link href="{{ asset('landings/rose_flask/css/main.css') }}" rel="stylesheet">
 </head>
 
 <body><section class="s-top">
     <div class="container--wide">
 
         <div class="top-logo">
-            <img src="img/top-logo.png" alt="Verdissimo logo" width="170">
+            <img src="{{ asset('landings/rose_flask/img/top-logo.png') }}" alt="Verdissimo logo" width="170">
         </div>
 
         <nav class="top-nav">
@@ -57,7 +56,7 @@ if($sub_domain == 'likemoney'){
         <div class="top-phone">
             <span>По вопросам оптового сотрудничества</span>
             <a href="https://api.whatsapp.com/send?phone=<?=$user_phone;?>&text=Здравствуйте!%20Я%20хотел%20бы%20заказать%20розу%20в%20колбе.%20%20Спасибо!" title="WhatsApp" target="_blank">
-                <img src="img/whatsapp.png" alt=""> +<?=$user_phone;?>
+                <img src="{{ asset('landings/rose_flask/img/whatsapp.png') }}" alt=""> +<?=$user_phone;?>
             </a>
         </div>
 
@@ -173,9 +172,9 @@ if($sub_domain == 'likemoney'){
         <p class="h2">Роза в колбе Verdissimo это:</p>
 
         <div class="promo-stage">
-            <img src="img/bottom.png" alt="" class="promo-stage__bottom">
-            <img src="img/flower.png" alt="" class="promo-stage__flower">
-            <img src="img/glass.png" alt="" class="promo-stage__glass">
+            <img src="{{ asset('landings/rose_flask/img/bottom.png') }}" alt="" class="promo-stage__bottom">
+            <img src="{{ asset('landings/rose_flask/img/flower.png') }}" alt="" class="promo-stage__flower">
+            <img src="{{ asset('landings/rose_flask/img/glass.png') }}" alt="" class="promo-stage__glass">
         </div>
 
         <div class="promo promo--1">
@@ -183,7 +182,7 @@ if($sub_domain == 'likemoney'){
                 <path d="M254.42,36.5H186.5a50,50,0,0,0-96,0H21.58A21.14,21.14,0,0,1,.5,57.58V290.42A21.14,21.14,0,0,1,21.58,311.5H254.42a21.14,21.14,0,0,1,21.08-21.08V57.58A21.14,21.14,0,0,1,254.42,36.5Z"/>
             </svg>
             <header>
-                <img src="img/promo_1.png" alt="1">
+                <img src="{{ asset('landings/rose_flask/img/promo_1.png') }}" alt="1">
             </header>
             <h5 class="h5">Живут 5 лет</h5>
             <p>Мы стабилизируем цветы, чтобы они жили и&nbsp;пахли до&nbsp;5&nbsp;лет. Запах легкий и&nbsp;натуральный.</p>
@@ -194,7 +193,7 @@ if($sub_domain == 'likemoney'){
                 <path d="M254.42,36.5H186.5a50,50,0,0,0-96,0H21.58A21.14,21.14,0,0,1,.5,57.58V290.42A21.14,21.14,0,0,1,21.58,311.5H254.42a21.14,21.14,0,0,1,21.08-21.08V57.58A21.14,21.14,0,0,1,254.42,36.5Z"/>
             </svg>
             <header>
-                <img src="img/promo_2.png" alt="1">
+                <img src="{{ asset('landings/rose_flask/img/promo_2.png') }}" alt="1">
             </header>
             <h5 class="h5">Настоящее стекло</h5>
             <p>Колба сама по&nbsp;себе — предмет искусства. 6&nbsp;вариантов колб, сделанных на&nbsp;одном из&nbsp;старейших стеклодувных заводов Европы. </p>
@@ -205,7 +204,7 @@ if($sub_domain == 'likemoney'){
                 <path d="M254.42,36.5H186.5a50,50,0,0,0-96,0H21.58A21.14,21.14,0,0,1,.5,57.58V290.42A21.14,21.14,0,0,1,21.58,311.5H254.42a21.14,21.14,0,0,1,21.08-21.08V57.58A21.14,21.14,0,0,1,254.42,36.5Z"/>
             </svg>
             <header>
-                <img src="img/promo_3.png" alt="1">
+                <img src="{{ asset('landings/rose_flask/img/promo_3.png') }}" alt="1">
             </header>
             <h5 class="h5">Премиум подставка</h5>
             <p>Она сделана по&nbsp;специальной технологии из&nbsp;цельной древесины. Подставка имеет фаску для колбы и&nbsp;узорные края.</p>
@@ -216,7 +215,7 @@ if($sub_domain == 'likemoney'){
                 <path d="M254.42,36.5H186.5a50,50,0,0,0-96,0H21.58A21.14,21.14,0,0,1,.5,57.58V290.42A21.14,21.14,0,0,1,21.58,311.5H254.42a21.14,21.14,0,0,1,21.08-21.08V57.58A21.14,21.14,0,0,1,254.42,36.5Z"/>
             </svg>
             <header>
-                <img src="img/promo_4.png" alt="1">
+                <img src="{{ asset('landings/rose_flask/img/promo_4.png') }}" alt="1">
             </header>
             <h5 class="h5">Живая роза</h5>
             <p>Цветы Verdissimo — следующее поколение цветов. Благодаря технологии стабилизации они живые, прочные и&nbsp;не стареют.</p>
@@ -225,24 +224,24 @@ if($sub_domain == 'likemoney'){
     </div>
 
     <div class="promo-bg">
-        <img src="img/f_1.png" alt="1" class="pbg pbg--d1">
-        <img src="img/f_2.png" alt="1" class="pbg pbg--d1">
-        <img src="img/f_3.png" alt="1" class="pbg pbg--d1">
-        <img src="img/f_1.png" alt="1" class="pbg pbg--d1">
-        <img src="img/f_2.png" alt="1" class="pbg pbg--d1">
-        <img src="img/f_3.png" alt="1" class="pbg pbg--d1">
-        <img src="img/m_1.png" alt="1" class="pbg pbg--d2">
-        <img src="img/m_2.png" alt="1" class="pbg pbg--d2">
-        <img src="img/m_3.png" alt="1" class="pbg pbg--d2">
-        <img src="img/m_1.png" alt="1" class="pbg pbg--d2">
-        <img src="img/m_2.png" alt="1" class="pbg pbg--d2">
-        <img src="img/m_3.png" alt="1" class="pbg pbg--d2">
-        <img src="img/b_1.png" alt="1" class="pbg pbg--d3">
-        <img src="img/b_2.png" alt="1" class="pbg pbg--d3">
-        <img src="img/b_3.png" alt="1" class="pbg pbg--d3">
-        <img src="img/b_1.png" alt="1" class="pbg pbg--d3">
-        <img src="img/b_2.png" alt="1" class="pbg pbg--d3">
-        <img src="img/b_3.png" alt="1" class="pbg pbg--d3">
+        <img src="{{ asset('landings/rose_flask/img/f_1.png') }}" alt="1" class="pbg pbg--d1">
+        <img src="{{ asset('landings/rose_flask/img/f_2.png') }}" alt="1" class="pbg pbg--d1">
+        <img src="{{ asset('landings/rose_flask/img/f_3.png') }}" alt="1" class="pbg pbg--d1">
+        <img src="{{ asset('landings/rose_flask/img/f_1.png') }}" alt="1" class="pbg pbg--d1">
+        <img src="{{ asset('landings/rose_flask/img/f_2.png') }}" alt="1" class="pbg pbg--d1">
+        <img src="{{ asset('landings/rose_flask/img/f_3.png') }}" alt="1" class="pbg pbg--d1">
+        <img src="{{ asset('landings/rose_flask/img/m_1.png') }}" alt="1" class="pbg pbg--d2">
+        <img src="{{ asset('landings/rose_flask/img/m_2.png') }}" alt="1" class="pbg pbg--d2">
+        <img src="{{ asset('landings/rose_flask/img/m_3.png') }}" alt="1" class="pbg pbg--d2">
+        <img src="{{ asset('landings/rose_flask/img/m_1.png') }}" alt="1" class="pbg pbg--d2">
+        <img src="{{ asset('landings/rose_flask/img/m_2.png') }}" alt="1" class="pbg pbg--d2">
+        <img src="{{ asset('landings/rose_flask/img/m_3.png') }}" alt="1" class="pbg pbg--d2">
+        <img src="{{ asset('landings/rose_flask/img/b_1.png') }}" alt="1" class="pbg pbg--d3">
+        <img src="{{ asset('landings/rose_flask/img/b_2.png') }}" alt="1" class="pbg pbg--d3">
+        <img src="{{ asset('landings/rose_flask/img/b_3.png') }}" alt="1" class="pbg pbg--d3">
+        <img src="{{ asset('landings/rose_flask/img/b_1.png') }}" alt="1" class="pbg pbg--d3">
+        <img src="{{ asset('landings/rose_flask/img/b_2.png') }}" alt="1" class="pbg pbg--d3">
+        <img src="{{ asset('landings/rose_flask/img/b_3.png') }}" alt="1" class="pbg pbg--d3">
     </div>
 </section>
 
@@ -255,7 +254,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb" id="retail1">
                 <span class="colb__num">1</span>
                 <figure>
-                    <img src="img/colbs/1.jpg" alt="1">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/1.jpg') }}" alt="1">
                 </figure>
                 <span id="colb_n1" class="colb__name">Mini</span>
                 <span id="colb_d1" class="colb__descr">Высота 10&nbsp;см </span>
@@ -266,7 +265,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb" id="retail2">
                 <span class="colb__num">2</span>
                 <figure>
-                    <img src="img/colbs/2.jpg" alt="2">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/2.jpg') }}" alt="2">
                 </figure>
                 <span id="colb_n2" class="colb__name">Standart</span>
                 <span id="colb_d2" class="colb__descr">Высота 16&nbsp;см </span>
@@ -277,7 +276,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb" id="retail3">
                 <span class="colb__num">3</span>
                 <figure>
-                    <img src="img/colbs/3.jpg" alt="3">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/3.jpg') }}" alt="3">
                 </figure>
                 <span id="colb_n3" class="colb__name">Premium</span>
                 <span id="colb_d3" class="colb__descr">Высота 18&nbsp;см </span>
@@ -287,7 +286,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb" id="retail4">
                 <span class="colb__num">4</span>
                 <figure>
-                    <img src="img/colbs/4.jpg" alt="4">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/4.jpg') }}" alt="4">
                 </figure>
                 <span id="colb_n4" class="colb__name">Premium</span>
                 <span id="colb_d4" class="colb__descr">Высота 22&nbsp;см </span>
@@ -297,7 +296,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb" id="retail5">
                 <span class="colb__num">5</span>
                 <figure>
-                    <img src="img/colbs/5.jpg" alt="5">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/5.jpg') }}" alt="5">
                 </figure>
                 <span id="colb_n5" class="colb__name">Premium</span>
                 <span id="colb_d5" class="colb__descr">Высота 32&nbsp;см</span>
@@ -307,7 +306,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb" id="retail6">
                 <span class="colb__num">6</span>
                 <figure>
-                    <img src="img/colbs/6.jpg" alt="6">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/6.jpg') }}" alt="6">
                 </figure>
                 <span id="colb_n6" class="colb__name">King</span>
                 <span id="colb_d6" class="colb__descr">Высота 42&nbsp;см </span>
@@ -327,7 +326,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb">
                 <span class="colb__num">1</span>
                 <figure>
-                    <img src="img/colbs/1.jpg" alt="1">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/1.jpg') }}" alt="1">
                 </figure>
                 <span id="bulk_n1" class="colb__name">Mini</span>
                 <span id="bulk_d1" class="colb__descr">Высота 10&nbsp;см </span>
@@ -337,7 +336,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb">
                 <span class="colb__num">2</span>
                 <figure>
-                    <img src="img/colbs/2.jpg" alt="2">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/2.jpg') }}" alt="2">
                 </figure>
                 <span id="bulk_n2" class="colb__name">Standart</span>
                 <span id="bulk_d2" class="colb__descr">Высота 16&nbsp;см </span>
@@ -347,7 +346,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb">
                 <span class="colb__num">3</span>
                 <figure>
-                    <img src="img/colbs/3.jpg" alt="3">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/3.jpg') }}" alt="3">
                 </figure>
                 <span id="bulk_n3" class="colb__name">Premium</span>
                 <span id="bulk_d3" class="colb__descr">Высота 18&nbsp;см </span>
@@ -357,7 +356,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb">
                 <span class="colb__num">4</span>
                 <figure>
-                    <img src="img/colbs/4.jpg" alt="4">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/4.jpg') }}" alt="4">
                 </figure>
                 <span id="bulk_n4" class="colb__name">Premium</span>
                 <span id="bulk_d4" class="colb__descr">Высота 22&nbsp;см </span>
@@ -367,7 +366,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb">
                 <span class="colb__num">5</span>
                 <figure>
-                    <img src="img/colbs/5.jpg" alt="5">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/5.jpg') }}" alt="5">
                 </figure>
                 <span id="bulk_n5" class="colb__name">Premium</span>
                 <span id="bulk_d5" class="colb__descr">Высота 32&nbsp;см</span>
@@ -377,7 +376,7 @@ if($sub_domain == 'likemoney'){
             <div class="colb">
                 <span class="colb__num">6</span>
                 <figure>
-                    <img src="img/colbs/6.jpg" alt="6">
+                    <img src="{{ asset('landings/rose_flask/img/colbs/6.jpg') }}" alt="6">
                 </figure>
                 <span id="bulk_n6" class="colb__name">King</span>
                 <span id="bulk_d6" class="colb__descr">Высота 32&nbsp;см </span>
@@ -406,7 +405,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--hit">Хит</span>
                 <figure>
-                    <img src="img/1.jpg" alt="1">
+                    <img src="{{ asset('landings/rose_flask/img/1.jpg') }}" alt="1">
                 </figure>
                 <span class="tovar__name">Premium</span>
                 <span class="tovar__descr">Роза в Колбе №5</span>
@@ -418,7 +417,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--hit">Хит</span>
                 <figure>
-                    <img src="img/2.jpg" alt="2">
+                    <img src="{{ asset('landings/rose_flask/img/2.jpg') }}" alt="2">
                 </figure>
                 <span class="tovar__name">Premium</span>
                 <span class="tovar__descr">Роза в Колбе №5</span>
@@ -430,7 +429,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--hit">Хит</span>
                 <figure>
-                    <img src="img/3.jpg" alt="3">
+                    <img src="{{ asset('landings/rose_flask/img/3.jpg') }}" alt="3">
                 </figure>
                 <span class="tovar__name">Premium</span>
                 <span class="tovar__descr">Роза в Колбе №5</span>
@@ -442,7 +441,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--hit">Хит</span>
                 <figure>
-                    <img src="img/4.jpg" alt="4">
+                    <img src="{{ asset('landings/rose_flask/img/4.jpg') }}" alt="4">
                 </figure>
                 <span class="tovar__name">Premium</span>
                 <span class="tovar__descr">Роза в Колбе №5</span>
@@ -454,7 +453,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--lider">Лидер</span>
                 <figure>
-                    <img src="img/5.jpg" alt="5">
+                    <img src="{{ asset('landings/rose_flask/img/5.jpg') }}" alt="5">
                 </figure>
                 <span class="tovar__name">King</span>
                 <span class="tovar__descr">Роза в Колбе №4</span>
@@ -466,7 +465,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--lider">Лидер</span>
                 <figure>
-                    <img src="img/6.jpg" alt="1">
+                    <img src="{{ asset('landings/rose_flask/img/6.jpg') }}" alt="1">
                 </figure>
                 <span class="tovar__name">King</span>
                 <span class="tovar__descr">Роза в Колбе №4</span>
@@ -478,7 +477,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--lider">Лидер</span>
                 <figure>
-                    <img src="img/7.jpg" alt="7">
+                    <img src="{{ asset('landings/rose_flask/img/7.jpg') }}" alt="7">
                 </figure>
                 <span class="tovar__name">King</span>
                 <span class="tovar__descr">Роза в Колбе №4</span>
@@ -490,7 +489,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--lider">Лидер</span>
                 <figure>
-                    <img src="img/8.jpg" alt="8">
+                    <img src="{{ asset('landings/rose_flask/img/8.jpg') }}" alt="8">
                 </figure>
                 <span class="tovar__name">King</span>
                 <span class="tovar__descr">Роза в Колбе №4</span>
@@ -502,7 +501,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--new">New</span>
                 <figure>
-                    <img src="img/9.jpg" alt="9">
+                    <img src="{{ asset('landings/rose_flask/img/9.jpg') }}" alt="9">
                 </figure>
                 <span class="tovar__name">King</span>
                 <span class="tovar__descr">Роза в Колбе №6</span>
@@ -514,7 +513,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--hit">Хит</span>
                 <figure>
-                    <img src="img/10.jpg" alt="10">
+                    <img src="{{ asset('landings/rose_flask/img/10.jpg') }}" alt="10">
                 </figure>
                 <span class="tovar__name">Mini</span>
                 <span class="tovar__descr">Роза в Колбе №1</span>
@@ -526,7 +525,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--new">New</span>
                 <figure>
-                    <img src="img/11.jpg" alt="11">
+                    <img src="{{ asset('landings/rose_flask/img/11.jpg') }}" alt="11">
                 </figure>
                 <span class="tovar__name">Standart</span>
                 <span class="tovar__descr">Роза в Колбе №2</span>
@@ -538,7 +537,7 @@ if($sub_domain == 'likemoney'){
             <div class="tovar fancy" data-src="#modal-order">
                 <span class="tovar__label tovar__label--new">New</span>
                 <figure>
-                    <img src="img/12.jpg" alt="12">
+                    <img src="{{ asset('landings/rose_flask/img/12.jpg') }}" alt="12">
                 </figure>
                 <span class="tovar__name">Premium</span>
                 <span class="tovar__descr">Роза в Колбе №3</span>
@@ -571,11 +570,11 @@ if($sub_domain == 'likemoney'){
         <header class="info-header">
             <div class="grid-6 grid-12_s info-left">
                 <p>Великолепная альтернатива искусственным и живым цветам. Это натуральные цветы и растения, их отличает прочность и долговечность за счет уникальной технологии стабилизации. Процесс стабилизации запатентован и отлажен до мелочей. Вся продукция Verdissimo делается вручную и проходит обязательную проверку на качество.</p>
-                <div class="country"><span class="h5">производитель: Франция</span><img src="img/flag2.png" alt="2"></div>
+                <div class="country"><span class="h5">производитель: Франция</span><img src="{{ asset('landings/rose_flask/img/flag2.png') }}" alt="2"></div>
             </div>
             <div class="grid-6 grid-12_s logos">
                 <p class="h5">ЦВЕТЫ VERDISSIMO УКРАШАЛИ МИРОВЫЕ БРЕНДЫ</p>
-                <img src="img/logos.png" alt="logos">
+                <img src="{{ asset('landings/rose_flask/img/logos.png') }}" alt="logos">
             </div>
         </header>
 
@@ -684,12 +683,12 @@ if($sub_domain == 'likemoney'){
 
             <div class="about-prizes">
                 <div class="about-prize">
-                    <img src="img/prize_1.svg" alt="prize">
+                    <img src="{{ asset('landings/rose_flask/img/prize_1.svg') }}" alt="prize">
                     <span class="h5">Официально для королевских дворов</span>
                     <p>Букеты и композиции для декора Verdissimo были неоднократно представлены лично владельцами компании Полом Ламбертом и Жанет Уильямс на королевских приемах в Европе.</p>
                 </div>
                 <div class="about-prize">
-                    <img src="img/prize_2.svg" alt="prize">
+                    <img src="{{ asset('landings/rose_flask/img/prize_2.svg') }}" alt="prize">
                     <span class="h5">1 место в мире >75 международных наград</span>
                     <p>В партнерстве с дизайнером Marcel Wolterinck компани Verdissimo заняла первое место в 1997 году на самой престижной в Мире дизайнерской выставке Maison & Objet в Париже.</p>
                 </div>
@@ -698,9 +697,9 @@ if($sub_domain == 'likemoney'){
             <div class="serts">
                 <h5 class="h5">Сертификаты</h5>
                 <div class="sert-slider">
-                    <a href="img/serts/1.jpg" class="sert-slide fancy" data-fancybox="serts"><img src="img/serts/1_s.jpg" alt="1"></a>
-                    <a href="img/serts/2.jpg" class="sert-slide fancy" data-fancybox="serts"><img src="img/serts/2_s.jpg" alt="2"></a>
-                    <a href="img/serts/3.jpg" class="sert-slide fancy" data-fancybox="serts"><img src="img/serts/3_s.jpg" alt="3"></a>
+                    <a href="{{ asset('landings/rose_flask/img/serts/1.jpg') }}" class="sert-slide fancy" data-fancybox="serts"><img src="{{ asset('landings/rose_flask/img/serts/1_s.jpg') }}" alt="1"></a>
+                    <a href="{{ asset('landings/rose_flask/img/serts/2.jpg') }}" class="sert-slide fancy" data-fancybox="serts"><img src="{{ asset('landings/rose_flask/img/serts/2_s.jpg') }}" alt="2"></a>
+                    <a href="{{ asset('landings/rose_flask/img/serts/3.jpg') }}" class="sert-slide fancy" data-fancybox="serts"><img src="{{ asset('landings/rose_flask/img/serts/3_s.jpg') }}" alt="3"></a>
                 </div>
             </div>
 
@@ -735,23 +734,23 @@ if($sub_domain == 'likemoney'){
 
         <div class="row designers-row">
             <div class="designer">
-                <figure><img src="img/designers/1.jpg" alt="Jos Van Dyck"></figure>
+                <figure><img src="{{ asset('landings/rose_flask/img/designers/1.jpg') }}" alt="Jos Van Dyck"></figure>
                 <span class="h5">Jos Van Dyck</span>
             </div>
             <div class="designer">
-                <figure><img src="img/designers/2.jpg" alt="Annette Stampek"></figure>
+                <figure><img src="{{ asset('landings/rose_flask/img/designers/2.jpg') }}" alt="Annette Stampek"></figure>
                 <span class="h5">Annette Stampe</span>
             </div>
             <div class="designer">
-                <figure><img src="img/designers/3.jpg" alt="Christian Tortu"></figure>
+                <figure><img src="{{ asset('landings/rose_flask/img/designers/3.jpg') }}" alt="Christian Tortu"></figure>
                 <span class="h5">Christian Tortu</span>
             </div>
             <div class="designer">
-                <figure><img src="img/designers/4.jpg" alt="Daniel Ost"></figure>
+                <figure><img src="{{ asset('landings/rose_flask/img/designers/4.jpg') }}" alt="Daniel Ost"></figure>
                 <span class="h5">Daniel Ost</span>
             </div>
             <div class="designer">
-                <figure><img src="img/designers/5.jpg" alt="Paul Morris"></figure>
+                <figure><img src="{{ asset('landings/rose_flask/img/designers/5.jpg') }}" alt="Paul Morris"></figure>
                 <span class="h5">Paul Morris</span>
             </div>
         </div>
@@ -894,7 +893,7 @@ if($sub_domain == 'likemoney'){
             <div class="grid-3 grid-3_l grid-12_m foot-col foot-col__last">
                 <div class="socials">
                     <a href="https://api.whatsapp.com/send?phone=<?=$user_phone;?>&text=Здравствуйте!%20Я%20хотел%20бы%20заказать%20розу%20в%20колбе.%20%20Спасибо!" title="WhatsApp" target="_blank">
-                        <img src="img/whatsapp.png" alt=""> +<?=$user_phone;?>
+                        <img src="{{ asset('landings/rose_flask/img/whatsapp.png') }}" alt=""> +<?=$user_phone;?>
                     </a>
                 </div>
             </div>
@@ -1174,17 +1173,9 @@ if($sub_domain == 'likemoney'){
 <!-- Модальные окна -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="js/assets.js" type="text/javascript" ></script>
-<script src="js/main.js" type="text/javascript" ></script>
-
-
-
-
+<script src="{{ asset('landings/rose_flask/js/assets.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('landings/rose_flask/js/main.js') }}" type="text/javascript" ></script>
 <script type="text/javascript" src="//track.adspire.io/code/rosersvermont/"></script>
-
-
-
-
 
 <style type="text/css">
     .to_qwest{
@@ -1213,12 +1204,5 @@ if($sub_domain == 'likemoney'){
 <div class="to_qwest" target="_blank" onclick="window.location='http://www.vermont-design.ru/otvet.html'">
     Ответы на вопросы.
 </div>
-
-
-
-
-
-
-
 </body>
 </html>

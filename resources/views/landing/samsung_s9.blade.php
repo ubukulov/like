@@ -1,5 +1,4 @@
 <?php
-session_start();
 $url = $_SERVER["SERVER_NAME"];
 $domain = explode(".",$url);
 $sub_domain = $domain[0];
@@ -37,11 +36,11 @@ if($sub_domain == 'likemoney'){
     <link rel="shortcut icon" href="//cdn.samsung.com/etc/designs/smg/global/imgs/favicon.ico">
     <link rel="apple-touch-icon" href="//cdn.samsung.com/etc/designs/smg/global/imgs/app_ico.png" sizes="144x144">
 
-    <link rel="stylesheet" href="css/style.css" type="text/css"/>
-    <link rel="stylesheet" href="css/page-shop.css" type="text/css"/>
-    <link rel="stylesheet" href="css/ru.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('landings/samsung_s9/css/style.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('landings/samsung_s9/css/page-shop.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('landings/samsung_s9/css/ru.css') }}" type="text/css">
     <!--[if lt IE 9]>
-    <script src="/etc/designs/smg/global/ie9/html5.js"></script>
+    <script src="{{ asset('landings/samsung_s9//etc/designs/smg/global/ie9/html5.js') }}"></script>
     <![endif]-->
 
     <script type="text/javascript">
@@ -143,7 +142,7 @@ if($sub_domain == 'likemoney'){
     </script>
 
 
-    <script src="js/satelliteLib-db2822c526e4500fa9b86a9e9ca775ba4d6db18e.js"></script>
+    <script src="{{ asset('landings/samsung_s9/js/satelliteLib-db2822c526e4500fa9b86a9e9ca775ba4d6db18e.js') }}"></script>
 
 
     <script>
@@ -192,59 +191,59 @@ if($sub_domain == 'likemoney'){
                             <div class="sh-g-shop-buying-tool_visual_thumb">
                                 <div class="sh-g-shop-buying-tool_visual_thumb_item  sh-g-shop-buying-tool_active">
                                     <a href="#" data-omni-type="microsite_gallery" data-omni="">
-                                        <img alt="Galaxy S9 Black front and rear thumbnail" data-src-mobile="images/product_galaxys9_thumb_midnightblack_01.png" data-src-pc="images/product_galaxys9_thumb_midnightblack_01.png">
+                                        <img alt="Galaxy S9 Black front and rear thumbnail" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_01.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_01.png') }}">
                                         <em class="blind">selected</em>
                                     </a>
                                 </div>
                                 <div class="sh-g-shop-buying-tool_visual_thumb_item">
                                     <a href="#" data-omni-type="microsite_gallery" data-omni="">
-                                        <img alt="Galaxy S9 Black rear thumbnail" data-src-mobile="images/product_galaxys9_thumb_midnightblack_02.png" data-src-pc="images/product_galaxys9_thumb_midnightblack_02.png">
+                                        <img alt="Galaxy S9 Black rear thumbnail" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_02.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_02.png') }}">
                                         <em class="blind">unselected</em>
                                     </a>
                                 </div>
                                 <div class="sh-g-shop-buying-tool_visual_thumb_item">
                                     <a href="#" data-omni-type="microsite_gallery" data-omni="">
-                                        <img alt="Galaxy S9 Black left side thumbnail" data-src-mobile="images/product_galaxys9_thumb_midnightblack_03.png" data-src-pc="images/product_galaxys9_thumb_midnightblack_03.png">
+                                        <img alt="Galaxy S9 Black left side thumbnail" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_03.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_03.png') }}">
                                         <em class="blind">unselected</em>
                                     </a>
                                 </div>
                                 <div class="sh-g-shop-buying-tool_visual_thumb_item">
                                     <a href="#" data-omni-type="microsite_gallery" data-omni="">
-                                        <img alt="Galaxy S9 Black right side thumbnail" data-src-mobile="images/product_galaxys9_thumb_midnightblack_04.png" data-src-pc="images/product_galaxys9_thumb_midnightblack_04.png">
+                                        <img alt="Galaxy S9 Black right side thumbnail" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_04.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_04.png') }}">
                                         <em class="blind">unselected</em>
                                     </a>
                                 </div>
                                 <div class="sh-g-shop-buying-tool_visual_thumb_item">
                                     <a href="#" data-omni-type="microsite_gallery" data-omni="">
-                                        <img alt="Galaxy S9 Black Galaxy S9 Black front side with left rotation thumbnail" data-src-mobile="images/product_galaxys9_thumb_midnightblack_05.png" data-src-pc="images/product_galaxys9_thumb_midnightblack_05.png">
+                                        <img alt="Galaxy S9 Black Galaxy S9 Black front side with left rotation thumbnail" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_05.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_05.png') }}">
                                         <em class="blind">unselected</em>
                                     </a>
                                 </div>
                                 <div class="sh-g-shop-buying-tool_visual_thumb_item">
                                     <a href="#" data-omni-type="microsite_gallery" data-omni="">
-                                        <img alt="Galaxy S9 Black front side with right rotation thumbnail" data-src-mobile="images/product_galaxys9_thumb_midnightblack_06.png" data-src-pc="images/product_galaxys9_thumb_midnightblack_06.png">
+                                        <img alt="Galaxy S9 Black front side with right rotation thumbnail" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_06.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_thumb_midnightblack_06.png') }}">
                                         <em class="blind">unselected</em>
                                     </a>
                                 </div>
                             </div>
                             <div class="sh-g-shop-buying-tool_visual_view">
                                 <div class="sh-g-shop-buying-tool_visual_item">
-                                    <img alt="Galaxy S9 Black front and rear" src="images/blank.gif" data-src-mobile="images/product_galaxys9_midnightblack_01.png" data-src-pc="images/product_galaxys9_midnightblack_01.png">
+                                    <img alt="Galaxy S9 Black front and rear" src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_01.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_01.png') }}">
                                 </div>
                                 <div class="sh-g-shop-buying-tool_visual_item">
-                                    <img alt="Galaxy S9 Black rear" src="images/blank.gif" data-src-mobile="images/product_galaxys9_midnightblack_02.png" data-src-pc="images/product_galaxys9_midnightblack_02.png">
+                                    <img alt="Galaxy S9 Black rear" src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_02.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_02.png') }}">
                                 </div>
                                 <div class="sh-g-shop-buying-tool_visual_item">
-                                    <img alt="Galaxy S9 Black left side" src="images/blank.gif" data-src-mobile="images/product_galaxys9_midnightblack_03.png" data-src-pc="images/product_galaxys9_midnightblack_03.png">
+                                    <img alt="Galaxy S9 Black left side" src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_03.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_03.png') }}">
                                 </div>
                                 <div class="sh-g-shop-buying-tool_visual_item">
-                                    <img alt="Galaxy S9 Black right side" src="images/blank.gif" data-src-mobile="images/product_galaxys9_midnightblack_04.png" data-src-pc="images/product_galaxys9_midnightblack_04.png">
+                                    <img alt="Galaxy S9 Black right side" src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_04.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_04.png') }}">
                                 </div>
                                 <div class="sh-g-shop-buying-tool_visual_item">
-                                    <img alt="Galaxy S9 Black Galaxy S9 Black front side" src="images/blank.gif" data-src-mobile="images/product_galaxys9_midnightblack_05.png" data-src-pc="images/product_galaxys9_midnightblack_05.png">
+                                    <img alt="Galaxy S9 Black Galaxy S9 Black front side" src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_05.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_05.png') }}">
                                 </div>
                                 <div class="sh-g-shop-buying-tool_visual_item">
-                                    <img alt="Galaxy S9 Black front side with right rotation" src="images/blank.gif" data-src-mobile="images/product_galaxys9_midnightblack_06.png" data-src-pc="images/product_galaxys9_midnightblack_06.png">
+                                    <img alt="Galaxy S9 Black front side with right rotation" src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_06.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/product_galaxys9_midnightblack_06.png') }}">
                                 </div>
                             </div>
                         </div>
@@ -431,21 +430,21 @@ if($sub_domain == 'likemoney'){
 
                                     <div class="sh-g-shop-buying-tool_btn_wrap">
                                         <ul class="sh-g-shop-buying-tool_btn_list_wrap sh-g-shop-buying-tool_promotion_type">
-                                            <li class="sh-g-shop-buying-tool_btn_list" data-role="SM-G960FZKDSER^Быстрое беспроводное з/у EP-PG950^SM-G960FZKDSER^Черный^#000000^images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^316000|SM-G960FZADSER^Быстрое беспроводное з/у EP-PG950^SM-G960FZADSER^Черный^#000000^images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^316000|SM-G960FZPDSER^Быстрое беспроводное з/у EP-PG950^SM-G960FZPDSER^Черный^#000000^images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^316000|SM-G965FZKDSER^Быстрое беспроводное з/у EP-PG950^SM-G965FZKDSER^Черный^#000000^images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^353100|SM-G965FZADSER^Быстрое беспроводное з/у EP-PG950^SM-G965FZADSER^Черный^#000000^images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^353100|SM-G965FZPDSER^Быстрое беспроводное з/у EP-PG950^SM-G965FZPDSER^Черный^#000000^images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^353100|SM-G965FZKHSER^Быстрое беспроводное з/у EP-PG950^SM-G965FZKHSER^Черный^#000000^images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^74990">
+                                            <li class="sh-g-shop-buying-tool_btn_list" data-role="SM-G960FZKDSER^Быстрое беспроводное з/у EP-PG950^SM-G960FZKDSER^Черный^#000000^landings/samsung_s9/images/promotion_wireless_black.png^landings/samsung_s9/images/m_promotion_wireless_black.png^4990^316000|SM-G960FZADSER^Быстрое беспроводное з/у EP-PG950^SM-G960FZADSER^Черный^#000000^landings/samsung_s9/images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^316000|SM-G960FZPDSER^Быстрое беспроводное з/у EP-PG950^SM-G960FZPDSER^Черный^#000000^images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^316000|SM-G965FZKDSER^Быстрое беспроводное з/у EP-PG950^SM-G965FZKDSER^Черный^#000000^landings/samsung_s9/images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^353100|SM-G965FZADSER^Быстрое беспроводное з/у EP-PG950^SM-G965FZADSER^Черный^#000000^images/promotion_wireless_black.png^landings/samsung_s9/images/m_promotion_wireless_black.png^4990^353100|SM-G965FZPDSER^Быстрое беспроводное з/у EP-PG950^SM-G965FZPDSER^Черный^#000000^images/promotion_wireless_black.png^images/m_promotion_wireless_black.png^4990^353100|SM-G965FZKHSER^Быстрое беспроводное з/у EP-PG950^SM-G965FZKHSER^Черный^#000000^landings/samsung_s9/images/promotion_wireless_black.png^landings/samsung_s9/images/m_promotion_wireless_black.png^4990^74990">
 
                                                 <a href="#" class="sh-g-shop-buying-tool_btn_option" data-role-name="Быстрое беспроводное з/у EP-PG950" data-omni-type="microsite_contentinter" data-omni="">
                                                     <div class="sh-g-shop-buying-tool_info_wrap">
                                                         <div class="sh-g-shop-buying-tool_thum_wrap">
 
                                                             <figure>
-                                                                <img alt="" src="images/blank.gif" data-src-mobile="images/m_promotion_wireless_black.png" data-src-pc="images/promotion_wireless_black.png">
+                                                                <img alt="" src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/m_promotion_wireless_black.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/promotion_wireless_black.png') }}">
                                                             </figure>
                                                         </div>
                                                         <div class="sh-g-shop-buying-tool_product_inner">
                                                             <strong class="sh-g-shop-buying-tool_tit"></strong>
                                                             <div class="sh-g-shop-buying-tool_price_wrap">
                                                                 <em class="sh-g-shop-buying-tool_price"></em>
-											<span class="sh-g-shop-buying-tool_price_was">
+                                                                <span class="sh-g-shop-buying-tool_price_was">
 												<strong class="sh-g-shop-buying-tool_save_price"></strong>
 												<span class="sh-g-shop-buying-tool_price">
 													<em></em>
@@ -492,7 +491,7 @@ if($sub_domain == 'likemoney'){
                                 <div class="sh-g-shop-buying-tool_fin_list">
 
                                     <figure>
-                                        <img src="//cdn.samsung.com/etc/designs/smg/global/imgs/pre-order/blank.gif" data-src-mobile="images/m_plans_02.png" data-src-pc="images/plans_02.png">
+                                        <img src="//cdn.samsung.com/etc/designs/smg/global/imgs/pre-order/blank.gif" data-src-mobile="{{ asset('landings/samsung_s9/images/m_plans_02.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/plans_02.png') }}">
                                     </figure>
                                     <div class="sh-g-shop-buying-tool_fin_text_wrap">
                                         <div class="sh-g-shop-buying-tool_fin_text_box">
@@ -560,7 +559,7 @@ if($sub_domain == 'likemoney'){
                                 <div class="sh-g-highlights_base">
 
                                     <figure>
-                                        <img src="images/blank.gif" alt="Кристальная чистота капель, замерших в полёте, истинная природа человеческих эмоций, запечатлённая с помощью сверхзамедленной съёмки и отраженная на экране Galaxy S9+. Вы можете увидеть разницу между стандартным для большинства камер режиме съёмки, с частотой 240 кадров в секунду и сверхзамедленной съёмкой 960 кадров в секунду." data-src-mobile="images/m_highlights_list_slow.jpg" data-src-pc="images/highlights_list_slow.jpg">
+                                        <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" alt="Кристальная чистота капель, замерших в полёте, истинная природа человеческих эмоций, запечатлённая с помощью сверхзамедленной съёмки и отраженная на экране Galaxy S9+. Вы можете увидеть разницу между стандартным для большинства камер режиме съёмки, с частотой 240 кадров в секунду и сверхзамедленной съёмкой 960 кадров в секунду." data-src-mobile="{{ asset('landings/samsung_s9/images/m_highlights_list_slow.jpg') }}" data-src-pc="{{ asset('landings/samsung_s9/images/highlights_list_slow.jpg') }}">
                                     </figure>
                                 </div>
                                 <div class="sh-g-highlights_list_cont">
@@ -586,7 +585,7 @@ if($sub_domain == 'likemoney'){
                                 <div class="sh-g-highlights_base">
 
                                     <figure>
-                                        <img src="images/blank.gif" alt="Утончённый вид нового флагманского смартфона спереди. Изысканный дизайн задней части корпуса Galaxy S9+ в цвете Ультрафиолет. И всё это увенчивает непревзойдённая двойная камера" data-src-mobile="images/m_highlights_list_camera.jpg" data-src-pc="images/highlights_list_camera.jpg">
+                                        <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" alt="Утончённый вид нового флагманского смартфона спереди. Изысканный дизайн задней части корпуса Galaxy S9+ в цвете Ультрафиолет. И всё это увенчивает непревзойдённая двойная камера" data-src-mobile="{{ asset('landings/samsung_s9/images/m_highlights_list_camera.jpg') }}" data-src-pc="{{ asset('landings/samsung_s9/images/highlights_list_camera.jpg') }}">
                                     </figure>
                                 </div>
                                 <div class="sh-g-highlights_list_cont">
@@ -608,7 +607,7 @@ if($sub_domain == 'likemoney'){
                                 <div class="sh-g-highlights_base">
 
                                     <figure>
-                                        <img src="images/blank.gif" alt="Пошаговое сравнение фотографий улыбающейся девушки и её селфимоджи, выполненные в различных мультипликационных техниках." data-src-mobile="images/m_highlights_list_emoji.jpg" data-src-pc="images/highlights_list_emoji.jpg">
+                                        <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" alt="Пошаговое сравнение фотографий улыбающейся девушки и её селфимоджи, выполненные в различных мультипликационных техниках." data-src-mobile="{{ asset('landings/samsung_s9/images/m_highlights_list_emoji.jpg') }}" data-src-pc="{{ asset('landings/samsung_s9/images/highlights_list_emoji.jpg') }}">
                                     </figure>
                                 </div>
                                 <div class="sh-g-highlights_list_cont">
@@ -652,7 +651,7 @@ if($sub_domain == 'likemoney'){
 
 
                                 <figure>
-                                    <img src="images/blank.gif" data-src-mobile="images/m_img_represent_product.png" data-src-pc="images/img_represent_product.png" alt="Galaxy S9 | S9+">
+                                    <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/m_img_represent_product.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/img_represent_product.png') }}" alt="Galaxy S9 | S9+">
                                 </figure>
                                 <em class="sh-g-in-box_tit">Galaxy S9 | S9+</em>
                             </div>
@@ -661,7 +660,7 @@ if($sub_domain == 'likemoney'){
                                 <li>
 
                                     <figure>
-                                        <img src="images/blank.gif" data-src-mobile="images/m_list_compontents01.png" data-src-pc="images/list_compontents01.png" alt="USB кабель">
+                                        <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/m_list_compontents01.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/list_compontents01.png') }}" alt="USB кабель">
                                     </figure>
 
                                     <em class="sh-g-in-box_tit">USB кабель</em>
@@ -670,7 +669,7 @@ if($sub_domain == 'likemoney'){
                                 <li>
 
                                     <figure>
-                                        <img src="images/blank.gif" data-src-mobile="images/m_list_compontents02.png" data-src-pc="images/list_compontents02.png" alt="Наушники">
+                                        <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/m_list_compontents02.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/list_compontents02.png') }}" alt="Наушники">
                                     </figure>
 
                                     <em class="sh-g-in-box_tit">Наушники</em>
@@ -679,7 +678,7 @@ if($sub_domain == 'likemoney'){
                                 <li>
 
                                     <figure>
-                                        <img src="images/blank.gif" data-src-mobile="images/m_list_compontents03.png" data-src-pc="images/list_compontents03.png" alt="Шпилька для извлечения SIM">
+                                        <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/m_list_compontents03.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/list_compontents03.png') }}" alt="Шпилька для извлечения SIM">
                                     </figure>
 
                                     <em class="sh-g-in-box_tit">Шпилька для извлечения SIM</em>
@@ -688,7 +687,7 @@ if($sub_domain == 'likemoney'){
                                 <li>
 
                                     <figure>
-                                        <img src="images/blank.gif" data-src-mobile="images/m_list_compontents04.png" data-src-pc="images/list_compontents04.png" alt="Зарядное устройство">
+                                        <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/m_list_compontents04.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/list_compontents04.png') }}" alt="Зарядное устройство">
                                     </figure>
 
                                     <em class="sh-g-in-box_tit">Зарядное устройство</em>
@@ -697,7 +696,7 @@ if($sub_domain == 'likemoney'){
                                 <li>
 
                                     <figure>
-                                        <img src="images/blank.gif" data-src-mobile="images/m_list_compontents05.png" data-src-pc="images/list_compontents05.png" alt="Руководство пользователя">
+                                        <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/m_list_compontents05.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/list_compontents05.png') }}" alt="Руководство пользователя">
                                     </figure>
 
                                     <em class="sh-g-in-box_tit">Руководство пользователя</em>
@@ -706,7 +705,7 @@ if($sub_domain == 'likemoney'){
                                 <li>
 
                                     <figure>
-                                        <img src="images/blank.gif" data-src-mobile="images/m_list_compontents06.png" data-src-pc="images/list_compontents06.png" alt="Type-C – Type A переходник">
+                                        <img src="{{ asset('landings/samsung_s9/') }}images/blank.gif" data-src-mobile="{{ asset('landings/samsung_s9/images/m_list_compontents06.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/list_compontents06.png') }}" alt="Type-C – Type A переходник">
                                     </figure>
 
                                     <em class="sh-g-in-box_tit">Type-C – Type A переходник</em>
@@ -715,7 +714,7 @@ if($sub_domain == 'likemoney'){
                                 <li>
 
                                     <figure>
-                                        <img src="images/blank.gif" data-src-mobile="images/m_list_compontents07.png" data-src-pc="images/list_compontents07.png" alt="MicroUSB переходник">
+                                        <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/m_list_compontents07.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/list_compontents07.png') }}" alt="MicroUSB переходник">
                                     </figure>
 
                                     <em class="sh-g-in-box_tit">MicroUSB переходник</em>
@@ -724,7 +723,7 @@ if($sub_domain == 'likemoney'){
                                 <li>
 
                                     <figure>
-                                        <img src="images/blank.gif" data-src-mobile="images/m_list_compontents08.png" data-src-pc="images/list_compontents08.png" alt="Лифлет Smart Switch">
+                                        <img src="{{ asset('landings/samsung_s9/images/blank.gif') }}" data-src-mobile="{{ asset('landings/samsung_s9/images/m_list_compontents08.png') }}" data-src-pc="{{ asset('landings/samsung_s9/images/list_compontents08.png') }}" alt="Лифлет Smart Switch">
                                     </figure>
 
                                     <em class="sh-g-in-box_tit">Лифлет Smart Switch</em>
@@ -780,7 +779,7 @@ if($sub_domain == 'likemoney'){
                         </ul>
                         <div class="gb-footer__lang">
                             <a href="https://api.whatsapp.com/send?phone=<?php echo $user_phone;?>&text=Здравствуйте!%20Я%20хотел%20бы%20заказать%20Samsung%20s9.%20%20Спасибо!" title="WhatsApp" target="_blank">
-                                <img src="images/whatsapp.png"/> +<?php echo $user_phone;?>
+                                <img src="{{ asset('landings/samsung_s9/images/whatsapp.png') }}"/> +<?php echo $user_phone;?>
                             </a>
 
 
@@ -823,13 +822,13 @@ if($sub_domain == 'likemoney'){
     </div>
 </div>
 
-<script type="text/javascript" src="js/page.js"></script>
-<script type="text/javascript" src="js/page-shop.js"></script>
+<script type="text/javascript" src="{{ asset('landings/samsung_s9/js/page.js') }}"></script>
+<script type="text/javascript" src="{{ asset('landings/samsung_s9/js/page-shop.js') }}"></script>
 
 <!--[if lte IE 9]>
 <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js'></script>
 <![endif]-->
-<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="{{ asset('landings/samsung_s9/js/script.js') }}"></script>
 
 <script type="text/javascript">
     gaCheck === true ? ga('topTracker.send', 'pageview') : "";

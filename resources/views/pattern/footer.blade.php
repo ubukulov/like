@@ -41,7 +41,7 @@
             <div class="col-sm-3 col-xs-6">
                 <div>
                     <h4>Служба поддержки</h4>
-                    <font size="5">+7(708) 614-46-60</font>
+                    <font size="5">{{ $_SESSION['store_user_phone'] }}</font>
                     <br>
                     <small class="hidden-sm hidden-xs">без перерыва и выходных с 9:00 до 21:00)</small>
                     <br>likemoneyworld@gmail.com
