@@ -56,7 +56,7 @@
                             <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format($cert->prime_cost,0,' ',' ') ?> тг. </font>
                             <br>
                             <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Розничная:<br />
-                            <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format($cert->special2,0,' ',' ') ?> тг. </font>
+                            <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format((int) $cert->special2,0,' ',' ') ?> тг. </font>
                         @else
                             <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Оптовая цена:<br />
                             @if(!empty($cert->opt_price1))
@@ -88,7 +88,7 @@
                 <div class="row" style="margin-top: 15px;">
                     <div class="col-md-6">
 			<span style="font-size: 11px;">Предложите нам свое вознаграждение, чтобы получить товар по себестоимости</span>
-                        <a href="https://api.whatsapp.com/send?phone=77758153538&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>%20(<?php echo $cert->special2; ?>%20тг.)'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://<?php echo $sub_domain; ?>likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="/img/whatsapp_button1.png" /></a>
+                        <a href="https://api.whatsapp.com/send?phone={{ $_SESSION['store_user_phone_whatsapp'] }}&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>%20(<?php echo $cert->special2; ?>%20тг.)'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://<?php echo $sub_domain; ?>likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="{{ asset('img/whatsapp_button.png') }}" /></a>
                     </div>
                     <div class="col-md-6">
                         <div id="msg" class="hidden"></div>

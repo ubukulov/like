@@ -61,7 +61,7 @@
                                             @if(empty($cert->special3) AND $cert->special3 == 0)
                                                 @if(empty($cert->special2))
                                                     <td width="130">
-                                                        <a href="https://api.whatsapp.com/send?phone=77758153538&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="/img/whatsapp_button.png" /></a>
+                                                        <a href="https://api.whatsapp.com/send?phone={{ $_SESSION['store_user_phone_whatsapp'] }}&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="/img/whatsapp_button.png" /></a>
                                                     </td>
                                                 @else
                                                     <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
@@ -101,7 +101,7 @@
         </div>
         <div id="div_show_more" class="row" style="margin-top: 5px;">
             <div class="col-md-12">
-                <button type="button" id="show_more" class="show_more" data-value="32">Показать ещё</button>
+                <button type="button" id="show_more" class="show_more" data-value="32" data-num="0" data-text="{{ $_SESSION['store_user_phone_whatsapp'] }}">Показать ещё</button>
             </div>
         </div>
     </div>

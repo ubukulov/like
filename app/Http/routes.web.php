@@ -93,7 +93,7 @@ Route::post('/search', 'SearchController@search');
 Route::get('/search', 'SearchController@index');
 
 # Кнопка показать ещё
-Route::get('get/certs/{first_row}/{last_row}', 'IndexController@show_more');
+Route::get('get/certs/{first_row}/{last_row}/{button_sort_id}', 'IndexController@show_more');
 
 #
 Route::get('get/information/about/store/{store}', 'IndexController@get_information_about_store');

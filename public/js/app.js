@@ -271,9 +271,11 @@ $(document).ready(function(){
 
         var button = document.getElementById('show_more');
         var first_row = button.getAttribute('data-value');
+        var button_sort_type_id = button.getAttribute('data-num');
+        var whatsapp_phone = button.getAttribute('data-text');
         var last_row  = 32;
         $("#show_more").html("Загружается ...");
-        $.get("/get/certs/"+first_row+"/"+last_row, function (data) {
+        $.get("/get/certs/"+first_row+"/"+last_row+"/"+button_sort_type_id, function (data) {
             data = JSON.parse(data);
 
             var html = '<div class="row">';
@@ -296,7 +298,7 @@ $(document).ready(function(){
                                         html = html + '<table><tbody><tr>';
                                         if(data[i].special2 == ""){
                                             html = html + '<td width="130">';
-                                                html = html + "<a href='https://api.whatsapp.com/send?phone=77758153538&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20"+data[i].title+"!.%20%20Спасибо!%20Код товара:%20"+data[i].article_code+"%20Товар%20по%20этому%20адресу:%20http://likemoney.me/item/"+data[i].id+"' target='_blank'><img src='/img/whatsapp_button.png' /></a>";
+                                                html = html + "<a href='https://api.whatsapp.com/send?phone="+whatsapp_phone+"&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20"+data[i].title+"!.%20%20Спасибо!%20Код товара:%20"+data[i].article_code+"%20Товар%20по%20этому%20адресу:%20http://likemoney.me/item/"+data[i].id+"' target='_blank'><img src='/img/whatsapp_button.png' /></a>";
                                             html = html + '</td>';
                                         }else{
                                             html = html + '<td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>';
@@ -407,6 +409,8 @@ $(document).ready(function(){
 
             html = html + '</div>';
             $('#div_show_more').before(html);
+            var button = document.getElementById('show_more');
+            button.setAttribute('data-value', id);
         });
     });
 });

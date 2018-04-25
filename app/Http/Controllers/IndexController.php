@@ -211,10 +211,32 @@ class IndexController extends BaseController
     }
 
     # Показать еще
-    public function show_more($first_row,$last_row){
+    public function show_more($first_row,$last_row, $button_sort_id){
         $first_row = (int) $first_row;
         $last_row  = (int) $last_row;
-        $result    = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' LIMIT $first_row, $last_row");
+        $button_sort_id  = (int) $button_sort_id;
+        $query = "";
+        switch ($button_sort_id){
+            case 0:
+                    $query = "LIMIT $first_row, $last_row";
+                break;
+
+            case 1:
+                    // От низкой цены к высокой
+                    $query = "ORDER BY prime_cost ASC";
+                break;
+
+            case 2:
+                    // От низкой цены к высокой
+                    $query = "ORDER BY prime_cost DESC";
+                break;
+
+            case 3:
+                    // Самые популярные - надо уточнить ???
+                    $query = "LIMIT $first_row, $last_row";
+                break;
+        }
+        $result    = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' $query");
         return json_encode($result);
     }
 
