@@ -6,16 +6,7 @@
                 {!! $cat_menu !!}
             </ul>
         </div>
-        <div class="row" style="margin-top:15px;">
-            <div class="col-md-6">
-                <label for="type_sort">Сортировка по:&nbsp;</label>
-                <select id="type_sort" class="ui dropdown">
-                    <option value="1">От низкой цены к высокой</option>
-                    <option value="2">От высокой к низкой</option>
-                    <option value="3">Самые популярные</option>
-                </select>
-            </div>
-        </div>
+        @include('pattern.sort')
         <hr>
         <div class="row" id="main_div">
             @foreach($certs as $key=>$cert)

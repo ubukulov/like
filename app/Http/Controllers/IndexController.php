@@ -218,25 +218,28 @@ class IndexController extends BaseController
         $query = "";
         switch ($button_sort_id){
             case 0:
-                    $query = "LIMIT $first_row, $last_row";
+                    $query = "SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 LIMIT $first_row, $last_row";
                 break;
 
             case 1:
                     // От низкой цены к высокой
-                    $query = "ORDER BY prime_cost ASC";
+                $query = "SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 ORDER BY prime_cost ASC LIMIT $first_row, $last_row";
                 break;
 
             case 2:
-                    // От низкой цены к высокой
-                    $query = "ORDER BY prime_cost DESC";
+                    // От высокой цены к низкую
+                $query = "SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 ORDER BY prime_cost DESC LIMIT $first_row, $last_row";
                 break;
 
             case 3:
-                    // Самые популярные - надо уточнить ???
-                    $query = "LIMIT $first_row, $last_row";
+                    // Самые популярные
+                $query = "SELECT * FROM (SELECT certs.*, SUM(business_orders.qty) AS cnt FROM `certs`
+                INNER JOIN business_orders ON business_orders.id_cert=certs.id
+                WHERE business_orders.status='3'
+                GROUP BY business_orders.id_cert) BS ORDER BY BS.cnt DESC";
                 break;
         }
-        $result    = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' $query");
+        $result    = DB::select("$query");
         return json_encode($result);
     }
 
@@ -252,20 +255,23 @@ class IndexController extends BaseController
     # фильтры
     public function sort($id){
 	$id = (int) $id;
-	$sql = "";
+	$query = "";
 	if($id == 1){
 		// От низкой цены к высокой
-		$sql = "ORDER BY prime_cost ASC";
+        $query = "SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 ORDER BY prime_cost ASC LIMIT 32";
 	}
 	if($id == 2){
 		// От высокой к низкой
-		$sql = "ORDER BY prime_cost DESC";
+        $query = "SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 ORDER BY prime_cost DESC LIMIT 32";
 	}
 	if($id == 3){
 		// Самые популярные
-		//$sql = "";
+        $query = "SELECT * FROM (SELECT certs.*, SUM(business_orders.qty) AS cnt FROM `certs`
+                INNER JOIN business_orders ON business_orders.id_cert=certs.id
+                WHERE business_orders.status='3'
+                GROUP BY business_orders.id_cert) BS ORDER BY BS.cnt DESC";
 	}
-	$result = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 $sql LIMIT 32");
+	$result = DB::select("$query");
 	return json_encode($result);
     }		
 }

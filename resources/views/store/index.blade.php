@@ -6,6 +6,7 @@
                 {!! $cat_menu !!}
             </ul>
         </div>
+
         <hr>
         <div class="row">
             @foreach($certs as $key=>$cert)

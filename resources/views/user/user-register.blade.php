@@ -27,7 +27,7 @@
                 <span class="glyphicon glyphicon-phone form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" name="id_referral" placeholder="ID пригласившего">
+                <input type="text" class="form-control" name="promocode" placeholder="Введите промокод, если есть">
                 <span class="fa fa-user-plus form-control-feedback"></span>
             </div>
             <div class="row">
