@@ -302,7 +302,7 @@ $(document).ready(function(){
                                             html = html + '</td>';
                                         }else{
                                             html = html + '<td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>';
-                                            html = html + '<td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>'+XFormatPrice(data[i].prime_cost)+'</b></font></small></td>';
+                                            html = html + '<td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>'+XFormatPrice(data[i].special2)+'</b></font></small></td>';
                                         }
                                             html = html + "<td align='right'><a href='/item/"+data[i].id+"' class='hidden-xs taskbutton'>Подробнее</a></td>";
                                         html = html + '</tr></tbody></table>';
@@ -395,7 +395,7 @@ $(document).ready(function(){
                     html = html + '</td>';
                 }else{
                     html = html + '<td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>';
-                    html = html + '<td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>'+XFormatPrice(data[i].prime_cost)+'</b></font></small></td>';
+                    html = html + '<td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>'+XFormatPrice(data[i].special2)+'</b></font></small></td>';
                 }
                 html = html + "<td align='right'><a href='/item/"+data[i].id+"' class='hidden-xs taskbutton'>Подробнее</a></td>";
                 html = html + '</tr></tbody></table>';
@@ -410,7 +410,7 @@ $(document).ready(function(){
             html = html + '</div>';
             $('#div_show_more').before(html);
             var button = document.getElementById('show_more');
-            button.setAttribute('data-value', id);
+            button.setAttribute('data-num', id);
         });
     });
 });
