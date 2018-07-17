@@ -34,7 +34,7 @@ class IndexController extends BaseController
         }
 
         //$certs = Cert::get();
-        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND conditions <> '' AND image <> '' ORDER BY updated_at DESC LIMIT 32");
+        $certs = DB::select("SELECT * FROM certs WHERE cert_type='2' AND features <> '' AND image <> '' ORDER BY updated_at DESC LIMIT 32");
         //$cats = $this->cats;
         return view('welcome', compact('certs', 'cat_menu'));
     }
@@ -218,17 +218,17 @@ class IndexController extends BaseController
         $query = "";
         switch ($button_sort_id){
             case 0:
-                    $query = "SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 LIMIT $first_row, $last_row";
+                    $query = "SELECT * FROM certs WHERE cert_type='2' AND features<>'' AND image<>'' AND special2<>0 LIMIT $first_row, $last_row";
                 break;
 
             case 1:
                     // От низкой цены к высокой
-                $query = "SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 ORDER BY prime_cost ASC LIMIT $first_row, $last_row";
+                $query = "SELECT * FROM certs WHERE cert_type='2' AND features<>'' AND image<>'' AND special2<>0 ORDER BY special2 ASC LIMIT $first_row, $last_row";
                 break;
 
             case 2:
                     // От высокой цены к низкую
-                $query = "SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 ORDER BY prime_cost DESC LIMIT $first_row, $last_row";
+                $query = "SELECT * FROM certs WHERE cert_type='2' AND features<>'' AND image<>'' AND special2<>0 ORDER BY special2 DESC LIMIT $first_row, $last_row";
                 break;
 
             case 3:
@@ -258,11 +258,11 @@ class IndexController extends BaseController
 	$query = "";
 	if($id == 1){
 		// От низкой цены к высокой
-        $query = "SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 ORDER BY prime_cost ASC LIMIT 32";
+        $query = "SELECT * FROM certs WHERE cert_type='2' AND features<>'' AND image<>'' AND special2<>0 ORDER BY special2 ASC LIMIT 32";
 	}
 	if($id == 2){
 		// От высокой к низкой
-        $query = "SELECT * FROM certs WHERE cert_type='2' AND conditions<>'' AND image<>'' AND prime_cost<>0 ORDER BY prime_cost DESC LIMIT 32";
+        $query = "SELECT * FROM certs WHERE cert_type='2' AND features<>'' AND image<>'' AND special2<>0 ORDER BY special2 DESC LIMIT 32";
 	}
 	if($id == 3){
 		// Самые популярные
@@ -271,6 +271,10 @@ class IndexController extends BaseController
                 WHERE business_orders.status='3'
                 GROUP BY business_orders.id_cert) BS ORDER BY BS.cnt DESC";
 	}
+	if($id == 4){
+        // По вознаграждение
+        $query = "SELECT * FROM certs WHERE /*cert_type='2' AND features<>'' AND image<>'' AND*/ special2<>0 AND com_agent<>0 ORDER BY com_agent DESC";
+    }
 	$result = DB::select("$query");
 	return json_encode($result);
     }		

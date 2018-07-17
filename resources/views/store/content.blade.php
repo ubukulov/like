@@ -9,7 +9,7 @@
             </div>
 
             <div class="col-md-3">
-                <span style="color: forestgreen; font-weight: 600;">Код товара: @if(!empty($cert->article_code)) {{ $cert->article_code }} @else {{ $cert->id }} @endif</span>
+                <span style="color: forestgreen; font-weight: 600;">Код товара: @if(!empty($cert->article_code)) {{ (int) $cert->article_code }} @else {{ $cert->id }} @endif</span>
             </div>
         </div>
 
@@ -52,11 +52,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         @if($sub_domain != 'optprice.')
-                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Себестоимость: <i class="ui teal question circle icon grey" data-title="Информация" data-content="Прекрати переплачивать, плати всегда справедливую цену, мы готовы удивить тебя, потому что у нас ты можешь купить любой товар по себестоимости, заплатив нам вознаграждение, за то что мы нашли тебе самую низкую цену в городе." style="cursor:pointer;"></i><br />
-                            <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format($cert->prime_cost,0,' ',' ') ?> тг. </font>
-                            <br>
-                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Розничная:<br />
+                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Цена:<br />
                             <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format((int) $cert->special2,0,' ',' ') ?> тг. </font>
+                            <br>
+                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Вознаграждение:<br />
+                            <font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05"><?= number_format((int) $cert->com_agent,0,' ',' ') ?> тг. </font>
                         @else
                             <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Оптовая цена:<br />
                             @if(!empty($cert->opt_price1))
@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="cert_button" style="padding-bottom: 10px;">
-                            <a style="width: 100px; font-size: 14px;" @if(Auth::check()) href="{{ url('/store/item/'.$cert->id) }}" @else href="{{ url('/user/login') }}" @endif class="btn btn-danger">Купить</a>
+                            <a style="width: 100px; font-size: 14px;" @if(Auth::check()) href="{{ url('/store/item/'.$cert->id) }}" @else href="{{ url('/user/login') }}" @endif class="btn btn-danger">@if($_SESSION['store_user_id'] == 15) Продать @else Купить @endif</a>
                             <button style="font-size: 14px; width: 100px;" type="button" onclick="addToCartItem({{ $cert->id }});" class="btn btn-danger">В корзину</button>
 							<br /><div style="margin-top: 15px;">
                             <span style="color: green;">Есть в наличии</span>
@@ -87,8 +87,7 @@
 
                 <div class="row" style="margin-top: 15px;">
                     <div class="col-md-6">
-			<span style="font-size: 11px;">Предложите нам свое вознаграждение, чтобы получить товар по себестоимости</span>
-                        <a href="https://api.whatsapp.com/send?phone={{ $_SESSION['store_user_phone_whatsapp'] }}&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>%20(<?php echo $cert->special2; ?>%20тг.)'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://<?php echo $sub_domain; ?>likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="{{ asset('img/whatsapp_button.png') }}" /></a>
+
                     </div>
                     <div class="col-md-6">
                         <div id="msg" class="hidden"></div>
@@ -115,7 +114,7 @@
                 <div class="last_time" style="padding: 10px;">
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Хочешь получить скидку? <br> от 500 до 2000тг</label>
+                            <label>Как зарабатывать больше? <br> от 500 до 2000тг</label>
                         </div>
                         <div class="col-md-6">
                             <a href="{{ url('/task') }}" class="playbutton">
@@ -168,6 +167,8 @@
 
             </div>
         </div>
+
+
     </div>
     <br><br>
     <style>

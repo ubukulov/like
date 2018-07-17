@@ -33,6 +33,16 @@ Route::group(['namespace' => 'Usr', 'prefix' => 'user'], function(){
         Route::get('/business/offline', 'IndexController@offline');
         Route::post('/business/offline', 'IndexController@setOfflineOrder');
         Route::post('/business/set_offline_order', 'IndexController@set_offline_order');
+
+        # мои товары
+        Route::get('/create/product', 'ProductController@create');
+        Route::post('/cert/store', 'ProductController@store');
+        Route::get('/products', 'ProductController@index');
+        Route::get('/product/edit/{id}', 'ProductController@edit');
+
+        # мои заказы
+        Route::get('/product/orders', 'OrderController@index');
+        Route::get('/order/approve/{id}', 'OrderController@update');
     });
 
 });

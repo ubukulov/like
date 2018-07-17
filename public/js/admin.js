@@ -177,6 +177,13 @@ function delete_type_task(id) {
         window.location = '/admin/task/type/delete/'+id;
     }
 }
+// удаление сертификатов
+function delete_cert_sub(id) {
+    var del = confirm('Вы действительно хотите удалить?');
+    if(del){
+        window.location = '/admin/cert/sub/delete/'+id;
+    }
+}
 // opt_price
 function createUploadForm(){
     var m = Array();

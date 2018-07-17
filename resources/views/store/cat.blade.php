@@ -33,7 +33,7 @@
                                         <tr>
                                             @if(empty($cert->special3) AND $cert->special3 == 0)
                                                 <td align="center"><font color="#62A005" size="4"><i class="fa fa-credit-card-alt"></i></font></td>
-                                                <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ $cert->special2 }} тг.</b></font></small></td>
+                                                <td style="width: 130px;padding-left:7px; line-height: 15px;"><small>Цена:<br><font color="#62A005"><b>{{ $cert->prime_cost }} тг.</b></font></small></td>
                                             @else
                                                 <td width="130">
                                                     <span style="text-decoration: line-through; font-size: 12px;">{{ $cert->special2 }} тг</span><br>
@@ -51,7 +51,7 @@
                                                 @endif
                                             @else
                                                 <td align="right">
-                                                    <a href="{{ url('/cert/'.$cert->id) }}" class="hidden-xs taskbutton">Подробнее</a>
+                                                    <a href="{{ url('/item/'.$cert->id) }}" class="hidden-xs taskbutton">Подробнее</a>
                                                 </td>
                                             @endif
                                         </tr>

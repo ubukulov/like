@@ -113,6 +113,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         # Купить в 1 клик
         Route::get('/buy_one_clicks', 'IndexController@buy_one_click');
         Route::get('/buy_one_click/{id}', 'IndexController@buy_one_click');
+        # обновление цены
+        Route::get('upgrade/price', 'IndexController@upgrade_price');
+        Route::post('upgrade/price', 'IndexController@execute');
     });
 
     # Привилегии для менеджера

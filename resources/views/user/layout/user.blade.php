@@ -115,6 +115,18 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="ui compact menu" style="font-size: 18px; border: none;box-shadow: none;">
+                                    <div class="ui simple dropdown item">
+                                        Товар
+                                        <i class="dropdown icon"></i>
+                                        <div class="menu">
+                                            <div class="item"><a href="{{ url('user/create/product') }}">Добавить товар</a></div>
+                                            <div class="item"><a href="{{ url('user/products') }}">Мои товары</a></div>
+                                            <div class="item"><a href="{{ url('user/product/orders') }}">Мои заказы</a></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -167,7 +179,8 @@
     @include('pattern.footer')
 </div>
 </body>
-<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('themes/admin/admin_lte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+{{--<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>--}}
 <script src="{{ asset('js/semantic.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 <script type="text/javascript">
@@ -176,7 +189,7 @@
 <script src="{{ asset('lib/froala/js/froala_editor.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('lib/froala/js/languages/ru.js') }}"></script>
 <script src="{{ asset('js/ajaxupload.js') }}"></script>
-{{--<script src="{{ asset('js/upload_image.js') }}"></script>--}}
+<script src="{{ asset('js/upload_image.js') }}"></script>
 <script src="{{ asset('js/upload.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 </html>

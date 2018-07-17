@@ -6,6 +6,7 @@
             <option class="ui large" value="1">От низкой цены к высокой</option>
             <option value="2">От высокой к низкой</option>
             <option value="3">Самые популярные</option>
+            <option value="4">По вознаграждение</option>
         </select>
     </div>
 </div>

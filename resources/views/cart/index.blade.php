@@ -72,7 +72,10 @@
         </div>
         <?php else :?>
             @if(Session::has('message'))
-                {!! Session::get('message') !!}
+                {!! Session::get('message') !!} <br>
+
+                <p>Заказ будет доставлен быстрее, если Вы уведомите поставщика о заказе по WhatsApp</p> <br>'
+                <a href="https://api.whatsapp.com/send?phone={{ $_SESSION['store_user_phone_whatsapp'] }}&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="/img/whatsapp_button.png" /></a>
             @else
                 Корзина пуста
             @endif

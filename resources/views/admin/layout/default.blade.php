@@ -496,6 +496,15 @@
                         </span>
                     </a>
                 </li>
+
+                <li @if(request_uri('upgrade')) class="active" @endif>
+                    <a href="{{ url('admin/upgrade/price') }}">
+                        <i class="fa fa-inbox" aria-hidden="true"></i> <span>Обновление цены</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right"></span>
+                        </span>
+                    </a>
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->

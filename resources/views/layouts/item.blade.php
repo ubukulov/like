@@ -42,16 +42,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @if(check_user_store_img(Auth::id()))
-                        <a href="/" rel="nofollow"><img src="{{ asset('uploads/users/store/'.check_user_store_img(Auth::id())) }}" alt=""></a>
+                    @if(isset($_SESSION['store_user_id']) AND check_user_store_img($_SESSION['store_user_id']))
+                        <a href="/" rel="nofollow"><img src="{{ asset('uploads/users/store/'.check_user_store_img($_SESSION['store_user_id'])) }}" alt=""></a>
                     @else
                         <a href="/" rel="nofollow"><img src="{{ asset('img/logo.png') }}" alt=""></a>
                     @endif
                 </div>
                 <div class="col-sm-9">
                     <div class="col-sm-4">
-                        Прием заказов по WhatsApp <br>
-                        <i class="fa fa-whatsapp">&nbsp; &nbsp; {{ $_SESSION['store_user_phone'] }}</i>
+                        Служба поддержки <i class="fa fa-whatsapp"></i><br>
+                        &nbsp; &nbsp; {{ $_SESSION['store_user_phone'] }}
                     </div>
                     {{--<div class="col-sm-5">--}}
                         {{--<div class="ui action input">--}}
@@ -132,7 +132,7 @@
                     </div>
                 </div>
 
-                @if(check_user_roles(Auth::id()) == 0)
+                @if(check_user_roles(Auth::id()) == 0 || !empty($cert->user_id))
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-md-12" style="text-align: center;">
                         <span>Данные о поставщиках</span>
@@ -142,19 +142,32 @@
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col-md-2"><i class="briefcase icon large"></i></div>
                         <div class="col-md-10" style="padding-top: 9px;">
-                            {{ $partner->name }}
+                            @if(!empty($cert->user_id))
+                                {{ getUserData($cert->user_id)->firstname }}
+                            @else
+                                {{ $partner->name }}
+                            @endif
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col-md-2"><i class="phone icon large"></i></div>
                         <div class="col-md-10" style="padding-top: 8px;">
-                            {{ $partner->phone }}
+                            @if(!empty($cert->user_id))
+                                {{ getUserData($cert->user_id)->mphone }} <br>
+                                <a href="https://api.whatsapp.com/send?phone=<?php echo preg_replace("/[^0-9]/","", getUserData($cert->user_id)->mphone) ?>&text=Здравствуйте!%20Я%20хотел%20бы%20узнать%20цену%20по%20товару%20'<?php echo $cert->title; ?>'!.%20%20Спасибо!%20Код товара:%20<?php echo $cert->article_code; ?>%20Товар%20по%20этому%20адресу:%20http://likemoney.me/item/<?php echo $cert->id ?>" target="_blank"><img src="{{ asset('img/whatsapp_button.png') }}" /></a>
+                            @else
+                                {{ $partner->phone }}
+                            @endif
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2"><i class="address card icon large"></i></div>
+                        <div class="col-md-2"><i @if(!empty($cert->user_id)) class="envelope outline icon large" @else class="address card icon large" @endif></i></div>
                         <div class="col-md-10" style="padding-top: 8px;">
-                            {{ $partner->address }}
+                            @if(!empty($cert->user_id))
+                                {{ getUserData($cert->user_id)->email }}
+                            @else
+                                {{ $partner->address }}
+                            @endif
                         </div>
                     </div>
                 </div>

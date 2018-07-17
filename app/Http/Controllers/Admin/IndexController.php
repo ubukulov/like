@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use SSH;
+use PHPExcel_IOFactory;
+use App\Partner;
 
 class IndexController extends Controller
 {
@@ -100,5 +102,44 @@ class IndexController extends Controller
                 ->paginate(20);
             return view('admin/click', compact('clicks'));
         }
+    }
+
+    # обновление цены
+    public function upgrade_price(){
+        $partners = Partner::all();
+        return view('admin/upgrade/index', compact('partners'));
+    }
+
+    # процесс обновление цены
+    public function execute(Request $request){
+        $file_name = $_FILES['file']['tmp_name'];
+        $objPHPExcel = PHPExcel_IOFactory::load($file_name);
+        $sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+        $partner_id = $request->input('partner_id');
+
+        for($i = 2; $i<count($sheetData); $i++) {
+            $article_code = $sheetData[$i]['A'];
+            $title = $sheetData[$i]['B'];
+            $manufacturer = $sheetData[$i]['C'];
+            $price = (int) $sheetData[$i]['D'];
+            $prime_cost = (int) $sheetData[$i]['E'];
+
+//            $opt_price1 = $sheetData[$i]['E'];
+//            $opt_price2 = $sheetData[$i]['G'];
+//            $opt_price3 = $sheetData[$i]['I'];
+//            $opt_count1 = $sheetData[$i]['D'];
+//            $opt_count2 = $sheetData[$i]['F'];
+//            $opt_count3 = $sheetData[$i]['H'];
+
+            //обновление всех цен
+            /*DB::update("UPDATE certs SET prime_cost='$prime_cost', opt_price1='$opt_price1', opt_price2='$opt_price2',
+                        opt_price3='$opt_price3', opt_count1='$opt_count1', opt_count2='$opt_count2', opt_count3='$opt_count3'
+                        WHERE article_code='$article_code' AND price_company='ТехноГрад'");*/
+            // обновление себестоимость и розничную
+            DB::update("UPDATE certs SET cert_type='2', partner_id='$partner_id', speacial2='$price', prime_cost='$prime_cost', manufacturer='$manufacturer'
+            WHERE article_code='$article_code' AND manufacturer='$manufacturer'");
+        }
+
+        return redirect()->back()->with('message', 'Цены успешно обновлены.');
     }
 }

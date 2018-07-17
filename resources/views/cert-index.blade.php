@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="price">
-                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Цена:<br /><font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $cert->special1 ?></font>
+                            <font style="color:#619F05"><i class="fa fa-credit-card fa-2"></i></font>&nbsp;&nbsp;Цена:<br /><font style="font-family: ubuntu; font-size: 20px; font-weight: 600; color:#619F05">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $cert->prime_cost ?></font>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -117,7 +117,7 @@
                 <li><a href="#tabs-3">Отзывы ()</a></li>
             </ul>
             <div id="tabs-1">
-                <p>{!! htmlspecialchars_decode($cert->conditions) !!}</p>
+                <p>{!! htmlspecialchars_decode($cert->conditions) !!}</p>https://193.124.176.160:1500/ispmgr?startpage=services
             </div>
             <div id="tabs-2">
                 <p>{!! htmlspecialchars_decode($cert->features) !!}</p>

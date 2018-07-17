@@ -10,7 +10,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body">
-                        <a href="{{ url('adminsudo apt-get install putty') }}"><i class="fa fa-file-o"></i>&nbsp;&nbsp;Добавить сертификата</a>
+                        <a href="{{ url('admin/certs/subs/создать') }}"><i class="fa fa-file-o"></i>&nbsp;&nbsp;Добавить сертификата</a>
                         <br><br>
                         @if(Session::has('message'))
                             <div class="alert alert-success alert-dismissable">

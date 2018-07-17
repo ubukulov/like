@@ -100,15 +100,23 @@ class StoreController extends BaseController
         $domain = explode(".",$url);
         $sub_domain = $domain[0].".";
         $certs_sub = CertSub::get_cert_subs($id);
-        $partner = Partner::getByIdPartnerData($cert->partner_id);
+        if(!empty($cert->partner_id)){
+            $partner = Partner::getByIdPartnerData($cert->partner_id);
+        }else{
+            $partner = Partner::find(568);
+        }
+
+        $some_certs = Cert::where(['cert_type' => 2, 'category_id' => $cert->category_id, 'pod_cat' => $cert->pod_cat])->take(4)->get();
+
+
         // посчитаем кол-во проданного товара
         $sell_certs = DB::select("SELECT COUNT(*) AS cnt FROM business_orders BO WHERE BO.id_cert=$id AND BO.status='3'");
         $count_sell_certs = $sell_certs[0]->cnt;
         if($sub_domain != 'likemoney.'){
-            return view('store/content', compact('cert', 'partner', 'certs_sub', 'sub_domain', 'count_sell_certs'));
+            return view('store/content', compact('cert', 'partner', 'certs_sub', 'sub_domain', 'count_sell_certs', 'some_certs'));
         }else{
             $sub_domain = '';
-            return view('store/content', compact('cert', 'partner', 'certs_sub', 'sub_domain', 'count_sell_certs'));
+            return view('store/content', compact('cert', 'partner', 'certs_sub', 'sub_domain', 'count_sell_certs', 'some_certs'));
         }
     }
 
@@ -171,6 +179,7 @@ class StoreController extends BaseController
         $domain = explode(".",$url);
         $sub_domain = $domain[0].".likemoney.me";
         $sms_code = strtoupper(generateCode(6));
+
 
         DB::transaction(function() use ($email, $phone, $status, $address, $delivery, $sub_domain, $client_name,$sms_code){
             $customer_id = $this->setBusinessCustomers($email, $phone, $client_name);

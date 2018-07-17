@@ -23,7 +23,7 @@ $(document).ready(function(){
     if($('div').is('#tabs')){
         $("#tabs").tabs();
     }
-    $('#doneTask').click(function(){
+    $('#doneTask,#some_cert').click(function(){
         $('.ui.modal').modal({
             closable  : false,
         }).modal('show');
@@ -823,4 +823,67 @@ function buy_1_click(id_item){
             }
         }
     });
+}
+
+// список категории
+function get_cats(id1, id2){
+    if(id1 == 'id_pod_cat1'){
+        $('#id_pod_cat').val($('#'+id1+' :selected').val());
+    }
+    if(id1 == 'id_pod_cat2'){
+        $('#id_pod_cat').val($('#'+id1+' :selected').val());
+    }
+    if(id1 == 'id_pod_cat3'){
+        $('#id_pod_cat').val($('#'+id1+' :selected').val());
+    }else{
+        var id_cat = $('#'+id1).val();
+        $.get('/admin/cert/get/cats/'+id_cat, function(data){
+            data = JSON.parse(data);
+            var html = '<option value="">-- Выберите --</option>';
+            for(var i=0; i<data.length; i++){
+                html = html + '<option value="'+data[i].id+'">'+data[i].title+'</option>';
+            }
+            $('#'+id2).html(html);
+
+        });
+    }
+}
+
+// opt_price
+function createOptom(){
+    var m = Array();
+    var i = 0;
+    if($("div").is("#uploadPrice1")) {
+        $(".uploadPrice").each(function(){
+            i = i + 1;
+            var n = $(this).attr('id');
+            m[i] = n.substr(11);
+        });
+        var count = m.length;
+        var k = m.length-1;
+        var n = k+1;
+        $('#cnt').val(count);
+        var html = '<div class="row uploadPrice" id="uploadPrice'+n+'"><div class="col-md-2"><label for="number'+n+'">№</label><span class="form-control">'+n+'</span></div><div class="col-md-2"><label for="from">от</label><input type="text" id="from'+n+'" class="form-control int" name="from'+n+'" required></div><div class="col-md-2"><label for="to'+n+'">до</label><input type="text" id="to'+n+'" class="form-control int" name="to'+n+'" required></div><div class="col-md-4"><label for="sum'+n+'">сумма</label><input type="text" id="sum'+n+'" class="form-control int" name="sum'+n+'" required></div><div class="col-md-2"><label for="number'+n+'">удалить</label><button type="button" onclick="deleteOptom('+n+');" class="btn btn-danger"><i class="fa fa-trash-o"></i></button></div></div>';
+        $("#createUploadButton").before(html);
+    }else{
+        $('#cnt').val(1);
+        var html = '<div class="row uploadPrice" id="uploadPrice1"><div class="col-md-2"><label for="number1">№</label><span class="form-control">1</span></div><div class="col-md-2"><label for="from">от</label><input type="text" id="from1" class="form-control int" name="from1" required></div><div class="col-md-2"><label for="to1">до</label><input type="text" id="to1" class="form-control int" name="to1" required></div><div class="col-md-4"><label for="sum1">сумма</label><input type="text" id="sum1" class="form-control int" name="sum1" required></div></div>';
+        $("#createUploadButton").before(html);
+    }
+}
+//
+function deleteOptom(id) {
+    $('#uploadPrice'+id).remove();
+    var count = $('#cnt').val();
+    $('#cnt').val(count-1);
+}
+function deleteOptomBD(id, id_cert){
+    $('#uploadPrice'+id).remove();
+    $.get("/admin/cert/opt/"+id, function(data){
+        if(data == 0){
+            alert("Успешно удален");
+            window.location = '/admin/cert/'+id_cert;
+        }
+    });
+
 }
