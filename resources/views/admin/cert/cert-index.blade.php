@@ -62,10 +62,10 @@
                                         {{ $cert->purchased }}
                                     </td>
                                     <td>
-                                        {{ date("d-m-Y H:i:s", $cert->date_start) }}
+                                        {{ $cert->created_at }}
                                     </td>
                                     <td>
-                                        {{ date("d-m-Y H:i:s", $cert->date_end) }}
+                                        {{ $cert->created_at }}
                                     </td>
                                     <td>
                                         <a href="{{ url('admin/cert/'.$cert->id) }}" class="btn btn-warning">Редактировать</a>

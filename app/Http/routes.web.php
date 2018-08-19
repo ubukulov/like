@@ -2,28 +2,28 @@
 use Illuminate\Support\Facades\DB;
 use App\User;
 ### Общее ###
-Route::group(['as' => 'subdomain', 'domain' => '{account}.likemoney.me'], function () {
-    $url = $_SERVER["SERVER_NAME"];
-    $domain = explode(".",$url);
-    $sub_domain = $domain[0];
-
-    $result = DB::table('business_store')->where(['store_name' => $sub_domain, 'status' => 1])->first();
-    Route::get('/', ['as' => 'home', 'uses' => 'IndexController@welcome']); // Главная страница
-    if($result){
-//        Auth::loginUsingId($result->id_user, true);
-        $user = User::find($result->id_user);
-        $_SESSION['store_user_id'] = $result->id_user;
-        $_SESSION['store_user_phone'] = $user->mphone;
-        $for_whatsapp = preg_replace("/[^0-9]/","", $user->mphone);
-        $_SESSION['store_user_phone_whatsapp'] = $for_whatsapp;
-        Route::get('/', 'IndexController@market');
-    }else{
-        $_SESSION['store_user_id'] = 15;
-        $_SESSION['store_user_phone'] = '+7(708) 614-46-60';
-        $_SESSION['store_user_phone_whatsapp'] = '77086144660';
-        return Redirect::to('http://likemoney.me');
-    }
-});
+//Route::group(['as' => 'subdomain', 'domain' => '{account}.likemoney.me'], function () {
+//    $url = $_SERVER["SERVER_NAME"];
+//    $domain = explode(".",$url);
+//    $sub_domain = $domain[0];
+//
+//    $result = DB::table('business_store')->where(['store_name' => $sub_domain, 'status' => 1])->first();
+//    Route::get('/', ['as' => 'home', 'uses' => 'IndexController@welcome']); // Главная страница
+//    if($result){
+////        Auth::loginUsingId($result->id_user, true);
+//        $user = User::find($result->id_user);
+//        $_SESSION['store_user_id'] = $result->id_user;
+//        $_SESSION['store_user_phone'] = $user->mphone;
+//        $for_whatsapp = preg_replace("/[^0-9]/","", $user->mphone);
+//        $_SESSION['store_user_phone_whatsapp'] = $for_whatsapp;
+//        Route::get('/', 'IndexController@market');
+//    }else{
+//        $_SESSION['store_user_id'] = 15;
+//        $_SESSION['store_user_phone'] = '+7(708) 614-46-60';
+//        $_SESSION['store_user_phone_whatsapp'] = '77086144660';
+//        return Redirect::to('http://likemoney.me');
+//    }
+//});
 
 Route::get('/', ['as' => 'home', 'uses' => 'IndexController@welcome']); // Главная страница
 Route::get('/cashback', 'IndexController@cashback'); // Сервис кэшбэк

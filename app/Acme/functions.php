@@ -364,7 +364,7 @@ function getUserData($id){
 }
 # По ролу пользователя скрыть некоторые модули
 function check_admin_users_role($role){
-    if($role == 4){
+    if($role == 1){
         return true;
     }
 }

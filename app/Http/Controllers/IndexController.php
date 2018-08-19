@@ -185,8 +185,13 @@ class IndexController extends BaseController
     }
 
     public function partner(){
-        $for_partner = Page::find(13)->text;
-        return view('for-partner', compact('for_partner'));
+        $for_partner = Page::findorFail(13);
+        if($for_partner){
+            return view('for-partner', compact('for_partner'));
+        }else{
+            $for_partner = "";
+            return view('for-partner', compact('for_partner'));
+        }
     }
 
     # Предложить свой товар - страница

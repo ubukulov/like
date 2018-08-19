@@ -73,11 +73,11 @@
         <div class="content section-wrapper">
             <div class="row">
                 <div class="col-md-6">
-                    <h2><small><font color="#62A005" size="5"><i class="fa fa-thumbs-up"></i></font>&nbsp; Сделок за день: {{ count_order_today() }}</small></h2>
+                    <h2><small><font color="#62A005" size="5"><i class="fa fa-thumbs-up"></i></font>&nbsp; Сделок за день: </small></h2>
                 </div>
 
                 <div class="col-md-6">
-                    <h2><small><font color="#62A005" size="5"><i class="fa fa-credit-card-alt"></i></font>&nbsp; Лучший доход за день: {{ number_format(max_price_today(),0,' ',' ') }} тг.</small></h2>
+                    <h2><small><font color="#62A005" size="5"><i class="fa fa-credit-card-alt"></i></font>&nbsp; Лучший доход за день:  тг.</small></h2>
                 </div>
             </div>
 
